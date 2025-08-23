@@ -16,27 +16,27 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-10 bg-light-background-100/80 dark:bg-dark-background-900/80 backdrop-blur-sm">
-      <div className="max-w-6xl mx-auto p-2 flex justify-between items-center">
+    <header className="fixed top-0 left-0 w-full z-10 bg-white/75 dark:bg-gray-900/75 backdrop-blur-md">
+      <div className="max-w-6xl mx-auto px-4 py-1 flex justify-between items-center">
         <Link href="/">
             {/* The logo is switched based on the current theme. */}
             {mounted && (
               <Image
                 src={theme === 'dark' ? '/darklogo.png' : '/lightlogo.png'}
                 alt="Aryan Singh Shaktawat Logo"
-                width={120}
-                height={40}
+                width={100}
+                height={32}
                 priority
               />
             )}
         </Link>
         <nav className="hidden md:flex items-center space-x-4">
           <ul className="flex space-x-4">
-            <li><Link href="#about">About</Link></li>
-            <li><Link href="#projects">Projects</Link></li>
-            <li><Link href="#experience">Experience</Link></li>
-            <li><Link href="#resume">Resume</Link></li>
-            <li><Link href="#contact">Contact</Link></li>
+            <li><Link href="/about">About</Link></li>
+            <li><Link href="/projects">Projects</Link></li>
+            <li><Link href="/experience">Experience</Link></li>
+            <li><Link href="/resume">Resume</Link></li>
+            <li><Link href="/contact">Contact</Link></li>
           </ul>
           {mounted && <ThemeSwitcher />}
         </nav>
@@ -48,13 +48,13 @@ const Header = () => {
         </div>
       </div>
       {isOpen && (
-        <div className="absolute top-16 left-0 w-full bg-light-background-100 dark:bg-dark-background-900 md:hidden">
+        <div className="absolute top-12 left-0 w-full bg-light-background-100 dark:bg-dark-background-900 md:hidden">
           <ul className="flex flex-col items-center space-y-4 py-4">
-            <li><Link href="#about" onClick={() => setIsOpen(false)}>About</Link></li>
-            <li><Link href="#projects" onClick={() => setIsOpen(false)}>Projects</Link></li>
-            <li><Link href="#experience" onClick={() => setIsOpen(false)}>Experience</Link></li>
-            <li><Link href="#resume" onClick={() => setIsOpen(false)}>Resume</Link></li>
-            <li><Link href="#contact" onClick={() => setIsOpen(false)}>Contact</Link></li>
+            <li><Link href="/about" onClick={() => setIsOpen(false)}>About</Link></li>
+            <li><Link href="/projects" onClick={() => setIsOpen(false)}>Projects</Link></li>
+            <li><Link href="/experience" onClick={() => setIsOpen(false)}>Experience</Link></li>
+            <li><Link href="/resume" onClick={() => setIsOpen(false)}>Resume</Link></li>
+            <li><Link href="/contact" onClick={() => setIsOpen(false)}>Contact</Link></li>
           </ul>
         </div>
       )}

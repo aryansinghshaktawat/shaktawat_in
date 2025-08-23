@@ -5,7 +5,7 @@ import { useScrambleOnInteract } from "@/hooks/useScrambleOnInteract";
 
 export default function Projects() {
   const hRef = useRef<HTMLHeadingElement | null>(null);
-  useScrambleOnInteract(hRef as any, "PROJECTS");
+  useScrambleOnInteract(hRef, "PROJECTS");
   const projects = [
     { title: "Portfolio Website", desc: "Personal site built with Next.js and React; deployed and optimized.", tech: ["Next.js", "TypeScript", "Tailwind"], outcome: "Improved web fundamentals and deployment workflow." },
     { title: "3D Scene Study", desc: "Small real‑time 3D scene prototype with controls.", tech: ["Unity", "C#"], outcome: "Learned scene organization and input handling." },

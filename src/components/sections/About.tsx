@@ -22,7 +22,7 @@ const About = () => {
         <div className="md:col-span-2">
           <h3 className="text-3xl font-bold mb-4">Achievements</h3>
           <ul className="list-disc list-inside text-lg text-light-text-200 dark:text-dark-text-200 space-y-2">
-            <li>NCC 'A' Certificate Holder</li>
+            <li>NCC &apos;A&apos; Certificate Holder</li>
             <li>Active member of the university dance club and event organizer.</li>
             <li>Participated in various hackathons and cybersecurity bootcamps.</li>
           </ul>

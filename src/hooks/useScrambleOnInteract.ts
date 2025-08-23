@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 export const useScrambleOnInteract = (
-  ref: React.RefObject<HTMLElement>,
+  ref: React.RefObject<HTMLElement | null>,
   text: string
 ) => {
   const pos = useRef(0);

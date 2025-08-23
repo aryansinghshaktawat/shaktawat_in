@@ -13,8 +13,16 @@ html {
 }
 
 body {
+  background-color: var(--light-background-100);
+  color: var(--light-text-100);
+}
+
+.dark body {
   background-color: var(--dark-background-900);
   color: var(--dark-text-100);
+}
+
+body {
   font-family: 'Roboto Mono', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

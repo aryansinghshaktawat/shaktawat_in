@@ -5,12 +5,19 @@ import { useTheme } from '@/app/theme-provider';
 const ThemeSwitcher = () => {
   const { theme, toggleTheme } = useTheme();
 
+  const isDark = theme === 'dark';
+
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-full bg-gray-200 dark:bg-gray-800"
+      aria-label="Toggle theme"
+      className="relative w-10 h-6 rounded-full border border-[#2a2b31] bg-[#1b1e25] flex items-center transition-colors"
     >
-      {theme === 'dark' ? '☀️' : '🌙'}
+      <span
+        className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white text-xs grid place-items-center transition-transform ${isDark ? 'translate-x-4' : ''}`}
+      >
+        {isDark ? '☀️' : '🌙'}
+      </span>
     </button>
   );
 };

@@ -58,6 +58,10 @@ a, button, input, textarea { transition: color 150ms ease, background-color 150m
 [data-reveal] { opacity: 0; transform: translateY(14px); will-change: opacity, transform; }
 .reveal-in { opacity: 1; transform: translateY(0); transition: opacity 500ms ease, transform 500ms ease; }
 
+/* Nav link entrance animation */
+.nav-link-appear { opacity: 0; transform: translateY(6px); animation: navFade 500ms ease forwards; }
+@keyframes navFade { to { opacity: 1; transform: translateY(0); } }
+
 /* Animated film grain overlay */
 .grain-layer {
   position: fixed;

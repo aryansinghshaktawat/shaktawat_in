@@ -119,8 +119,8 @@ const Header = () => {
         {/* Nav links at far right, tight spacing */}
         <div className="navbar-links flex items-center justify-end h-full">
           <nav className="hidden md:flex items-center gap-1 font-sans font-semibold text-[0.95rem] tracking-[0.08em] uppercase" aria-label="Primary navigation">
-      {/* All links in a single row, right-aligned, including Resume */}
-      {[...leftItems, ...rightItems, { href: '/resume.pdf', id: 'resume', label: 'Resume' }].map((item, i, arr) => {
+  {/* All links in a single row, right-aligned, including Resume */}
+  {[...leftItems, ...rightItems, { href: '/resume', id: 'resume', label: 'Resume' }].map((item, i, arr) => {
               const isActive =
         (item.id === 'home' && pathname === '/') ||
         (item.id !== 'home' && pathname?.startsWith(`/${item.id}`));
@@ -128,8 +128,8 @@ const Header = () => {
                 <React.Fragment key={`nav-${item.href}`}>
                   <Link
                     href={item.href}
-                    target={item.id === 'resume' ? '_blank' : undefined}
-                    rel={item.id === 'resume' ? 'noopener noreferrer' : undefined}
+                    target={undefined}
+                    rel={undefined}
                     className={`nav-link px-[6px] py-1 relative${isActive ? ' active' : ''}`}
                     aria-current={isActive ? 'page' : undefined}
                     onClick={(e) => {
@@ -205,7 +205,7 @@ const Header = () => {
                   { href: '/projects', id: 'projects', label: 'Projects' },
                   { href: '/blog', id: 'blog', label: 'Blog' },
                   { href: '/contact', id: 'contact', label: 'Contact' },
-                  { href: '/resume.pdf', id: 'resume', label: 'Resume' },
+                  { href: '/resume', id: 'resume', label: 'Resume' },
                 ].map((item, idx, arr) => (
                   <li key={item.href} className="relative">
                     <Link

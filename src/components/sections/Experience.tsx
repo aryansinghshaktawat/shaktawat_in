@@ -3,15 +3,15 @@ const Experience = () => {
   const experiences = [
     {
       role: "Cyber Security Intern",
-      company: "STF Cyber Cell",
-      timeline: "June 2024 - July 2024",
-      description: "Gained hands-on experience in cyber threat analysis, incident response, and digital forensics investigations."
+  company: "STF Cyber Cell",
+  timeline: "June 2024 - July 2024",
+  description: "Hands-on work in threat analysis, incident response, and digital forensics investigations; contributed to case triage and tool automation."
     },
     {
-      role: "Social Intern",
-      company: "Aashman Foundation",
-      timeline: "May 2023 - June 2023",
-      description: "Contributed to community outreach programs and awareness campaigns."
+  role: "Intern",
+  company: "Shine India Foundation",
+  timeline: "May 2023 - June 2023",
+  description: "Supported outreach initiatives and assisted with digital awareness campaigns; learned project coordination and team collaboration."
     }
   ];
 

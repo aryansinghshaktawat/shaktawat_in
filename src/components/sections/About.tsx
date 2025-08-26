@@ -21,11 +21,15 @@ const About = () => {
           {/* Left: profile + bio */}
           <div>
             <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden relative mx-auto md:mx-0 ring-1 ring-[#2a2b31] shadow-[0_0_60px_-20px_rgba(99,102,241,0.35)]">
-              <Avatar src="/profile.jpg" alt="Profile photo" className="object-cover" />
+              <Avatar src="/profile.webp" alt="Profile photo" className="object-cover" />
             </div>
 
             <p className="mt-6 text-[#c6c6c9] font-mono text-base leading-relaxed md:max-w-md">
-              Developer focused on building fast, accessible web experiences. I enjoy crafting polished UI, scalable systems, and tools that improve developer workflows.
+              I am currently pursuing a B.Tech in CSE (Cyber Security &amp; Forensics) at UPES with a strong interest in cyber security, digital forensics, and continual learning.
+            </p>
+
+            <p className="mt-4 text-[#c6c6c9] font-mono text-base leading-relaxed md:max-w-md">
+              I enjoy hands-on work in OSINT, incident response, and building tools that help investigators and students. I&apos;ve taken leadership roles in student clubs and volunteered in community outreach and campus events.
             </p>
           </div>
 

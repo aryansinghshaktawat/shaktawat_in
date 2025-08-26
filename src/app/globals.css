@@ -54,8 +54,9 @@ h2 {
 /* Soft transitions for interactive elements */
 a, button, input, textarea { transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease; }
 
-/* Reveal animations */
-[data-reveal] { opacity: 0; transform: translateY(14px); will-change: opacity, transform; }
+/* Reveal animations: default visible; hide only when JS adds .js-reveal */
+[data-reveal] { opacity: 1; transform: none; }
+.js-reveal [data-reveal] { opacity: 0; transform: translateY(14px); will-change: opacity, transform; }
 .reveal-in { opacity: 1; transform: translateY(0); transition: opacity 500ms ease, transform 500ms ease; }
 
 /* Nav link entrance animation */

@@ -1,11 +1,31 @@
 import type { Metadata } from "next";
-import Hero from "@/components/sections/Hero";
+import HomeHero from '@/components/sections/HomeHero';
+import HomeSkills from '@/components/sections/HomeSkills';
+import FeaturedProjects from '@/components/sections/FeaturedProjects';
+import Education from '@/components/sections/Education';
+import Involvement from '@/components/sections/Involvement';
+import ContactInvite from '@/components/sections/ContactInvite';
 
 export default function Home() {
   return (
     <main className="flex flex-col">
       <div data-reveal>
-        <Hero />
+        <HomeHero />
+      </div>
+      <div data-reveal>
+        <HomeSkills />
+      </div>
+      <div data-reveal>
+        <FeaturedProjects />
+      </div>
+      <div data-reveal>
+        <Education />
+      </div>
+      <div data-reveal>
+        <Involvement />
+      </div>
+      <div data-reveal>
+        <ContactInvite />
       </div>
     </main>
   );

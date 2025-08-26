@@ -4,10 +4,11 @@ import Link from 'next/link';
 import React from 'react';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 // Theme toggle removed per request
 
 const Header = () => {
+  const router = useRouter();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
@@ -103,7 +104,7 @@ const Header = () => {
   <div className="w-full pl-0 pr-6 h-[64px] flex items-center justify-between relative">
         {/* Logo at extreme left, full height */}
   <div className="navbar-logo pl-10 flex items-center h-full">
-          <Link href="/" className="pointer-events-auto inline-flex items-center h-full">
+          <Link href="/" className="pointer-events-auto inline-flex items-center h-full" onClick={(e) => { e.preventDefault(); router.push('/'); }}>
             <Image
               src="/darklogo.png"
               alt="Aryan Singh Shaktawat Logo"
@@ -131,6 +132,12 @@ const Header = () => {
                     rel={item.id === 'resume' ? 'noopener noreferrer' : undefined}
                     className={`nav-link px-[6px] py-1 relative${isActive ? ' active' : ''}`}
                     aria-current={isActive ? 'page' : undefined}
+                    onClick={(e) => {
+                      if (item.id === 'home') {
+                        e.preventDefault();
+                        router.push('/');
+                      }
+                    }}
                   >
                     {item.label}
                   </Link>

@@ -3,21 +3,21 @@ const Projects = () => {
   const projects = [
     {
       name: "Cyber Investigation OSINT Toolkit",
-      description: "A comprehensive toolkit for Open-Source Intelligence gathering, built with Python and CustomTkinter.",
-      techStack: "Python, CustomTkinter",
-      link: "#"
+  description: "Toolkit for digital evidence management, OSINT collection, and reporting.",
+  techStack: "Python, CustomTkinter, SQLite",
+  link: "/projects#osint-toolkit",
     },
     {
       name: "PYQ Analyzer",
-      description: "An application to analyze previous year question papers for students.",
-      techStack: "Python, NLP",
-      link: "#"
+  description: "Predicts repeated exam questions using historical PYQ analysis and pattern detection.",
+  techStack: "Python, pandas, scikit-learn",
+  link: "/projects#pyq-analyzer",
     },
     {
       name: "BACHAAV App",
-      description: "A mobile application for safety and emergency situations, developed using Flutter.",
-      techStack: "Flutter, Dart",
-      link: "#"
+  description: "Emergency response mobile app prototype to coordinate responders and notify contacts.",
+  techStack: "Flutter, Firebase",
+  link: "/projects#bachaav-app",
     }
   ];
 

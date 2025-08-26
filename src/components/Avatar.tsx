@@ -1,6 +1,6 @@
 "use client";
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type Props = {
   src: string;
@@ -9,14 +9,34 @@ type Props = {
 };
 
 export default function Avatar({ src, alt, className }: Props) {
-  const [current, setCurrent] = useState(src);
+  // Start with a safe, existing placeholder to avoid invalid image requests
+  const [current, setCurrent] = useState<string>('/darklogo.png');
+
+  useEffect(() => {
+    let active = true;
+    // Probe the target image; only switch if it exists
+    (async () => {
+      try {
+        const res = await fetch(src, { method: 'HEAD' });
+        if (!active) return;
+        if (res.ok) setCurrent(src);
+        else setCurrent('/darklogo.png');
+      } catch {
+        if (active) setCurrent('/darklogo.png');
+      }
+    })();
+    return () => {
+      active = false;
+    };
+  }, [src]);
+
   return (
     <Image
       src={current}
       alt={alt}
       fill
       className={className}
-      onError={() => setCurrent('/profile.svg')}
+      onError={() => setCurrent('/darklogo.png')}
     />
   );
 }

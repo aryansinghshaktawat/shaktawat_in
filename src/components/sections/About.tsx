@@ -1,5 +1,5 @@
 // src/components/sections/About.tsx
-import Image from 'next/image';
+import Avatar from '@/components/Avatar';
 
 const highlights = [
   { label: 'Languages', value: 'TypeScript, Python, C++' },
@@ -21,7 +21,7 @@ const About = () => {
           {/* Left: profile + bio */}
           <div>
             <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden relative mx-auto md:mx-0 ring-1 ring-[#2a2b31] shadow-[0_0_60px_-20px_rgba(99,102,241,0.35)]">
-              <Image src="/profile.svg" alt="Profile" fill className="object-cover" />
+              <Avatar src="/profile.jpg" alt="Profile photo" className="object-cover" />
             </div>
 
             <p className="mt-6 text-[#c6c6c9] font-mono text-base leading-relaxed md:max-w-md">

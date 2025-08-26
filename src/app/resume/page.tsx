@@ -1,4 +1,5 @@
 // src/app/resume/page.tsx
+import type { Metadata } from 'next';
 import Resume from '@/components/sections/Resume';
 
 const ResumePage = () => {
@@ -10,3 +11,8 @@ const ResumePage = () => {
 };
 
 export default ResumePage;
+
+export const metadata: Metadata = {
+  title: 'Resume — Aryan Singh Shaktawat',
+  description: 'View or download my resume in PDF.',
+};

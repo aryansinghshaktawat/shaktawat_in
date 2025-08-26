@@ -1,4 +1,5 @@
 // src/app/contact/page.tsx
+import type { Metadata } from 'next';
 import Contact from '@/components/sections/Contact';
 
 const ContactPage = () => {
@@ -10,3 +11,8 @@ const ContactPage = () => {
 };
 
 export default ContactPage;
+
+export const metadata: Metadata = {
+  title: 'Contact — Aryan Singh Shaktawat',
+  description: 'Get in touch via email or social—let’s connect.',
+};

@@ -81,60 +81,20 @@ const Header = () => {
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [isOpen]);
 
-  const [contactInView, setContactInView] = useState(false);
-  const isContactRoute = pathname?.startsWith('/contact');
-  const [activeId, setActiveId] = useState<string | null>(null);
+  // Simplified: pure page routes now (no in-page section tracking)
 
   // Desktop inline nav groups
   const leftItems = [
     { href: '/', id: 'home', label: 'Home' },
-    { href: '/#about', id: 'about', label: 'About' },
-    { href: '/#projects', id: 'projects', label: 'Projects/Experience' },
+    { href: '/about', id: 'about', label: 'About' },
+    { href: '/projects', id: 'projects', label: 'Projects' },
   ] as const;
   const rightItems = [
-    { href: '/#blogs', id: 'blogs', label: 'Blogs' },
-    { href: '/#contact', id: 'contact', label: 'Contact' },
+    { href: '/blog', id: 'blog', label: 'Blog' },
+    { href: '/contact', id: 'contact', label: 'Contact' },
   ] as const;
 
-  // Observe contact section on pages that include it
-  useEffect(() => {
-    const el = document.querySelector('#contact');
-    if (!el) {
-      setContactInView(false);
-      return;
-    }
-    const obs = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setContactInView(true);
-          else setContactInView(false);
-        }
-      },
-      { rootMargin: '-20% 0px -60% 0px', threshold: [0, 0.2, 0.5] }
-    );
-  obs.observe(el);
-    return () => obs.disconnect();
-  }, [pathname]);
-
-  // Active section observer
-  useEffect(() => {
-    const ids = ['about', 'projects', 'blogs', 'contact'];
-    const els = ids
-      .map((id) => document.getElementById(id))
-      .filter(Boolean) as HTMLElement[];
-    if (els.length === 0) return;
-    const obs = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]) setActiveId((visible[0].target as HTMLElement).id);
-      },
-      { threshold: [0.25, 0.5, 0.75], rootMargin: '-20% 0px -55% 0px' }
-    );
-    els.forEach((e) => obs.observe(e));
-    return () => obs.disconnect();
-  }, [pathname]);
+  // No in-page section observers needed.
 
   return (
     <header className="fixed top-0 left-0 w-full z-[1000] navbar bg-[linear-gradient(90deg,#101114_0%,#20222A_100%)]/95 backdrop-blur shadow-[0_6px_24px_-8px_#65cdf952] border-b border-transparent" role="banner">
@@ -157,17 +117,19 @@ const Header = () => {
         </div>
         {/* Nav links at far right, tight spacing */}
         <div className="navbar-links flex items-center justify-end h-full">
-          <nav className="hidden md:flex items-center gap-1 font-sans font-semibold text-[1rem] tracking-[0.08em] uppercase" aria-label="Primary navigation">
-            {/* All links in a single row, right-aligned, including Resume */}
-            {[...leftItems, ...rightItems, { href: '/resume', id: 'resume', label: 'Resume' }].map((item, i, arr) => {
+          <nav className="hidden md:flex items-center gap-1 font-sans font-semibold text-[0.95rem] tracking-[0.08em] uppercase" aria-label="Primary navigation">
+      {/* All links in a single row, right-aligned, including Resume */}
+      {[...leftItems, ...rightItems, { href: '/resume.pdf', id: 'resume', label: 'Resume' }].map((item, i, arr) => {
               const isActive =
-                (item.id === 'home' && pathname === '/') ||
-                (item.id !== 'home' && (pathname?.startsWith(`/${item.id}`) || pathname === item.href));
+        (item.id === 'home' && pathname === '/') ||
+        (item.id !== 'home' && pathname?.startsWith(`/${item.id}`));
               return (
                 <React.Fragment key={`nav-${item.href}`}>
                   <Link
                     href={item.href}
-                    className={`nav-link px-2 py-1 relative${isActive ? ' active' : ''}`}
+                    target={item.id === 'resume' ? '_blank' : undefined}
+                    rel={item.id === 'resume' ? 'noopener noreferrer' : undefined}
+                    className={`nav-link px-[6px] py-1 relative${isActive ? ' active' : ''}`}
                     aria-current={isActive ? 'page' : undefined}
                   >
                     {item.label}
@@ -232,19 +194,19 @@ const Header = () => {
               <ul className="flex flex-col gap-2">
                 {[
                   { href: '/', id: 'home', label: 'Home' },
-                  { href: '/#about', id: 'about', label: 'About' },
-                  { href: '/#projects', id: 'projects', label: 'Projects/Experience' },
-                  { href: '/#blogs', id: 'blogs', label: 'Blogs' },
-                  { href: '/#contact', id: 'contact', label: 'Contact' },
-                  { href: '/resume', id: 'resume', label: 'Resume' },
+                  { href: '/about', id: 'about', label: 'About' },
+                  { href: '/projects', id: 'projects', label: 'Projects' },
+                  { href: '/blog', id: 'blog', label: 'Blog' },
+                  { href: '/contact', id: 'contact', label: 'Contact' },
+                  { href: '/resume.pdf', id: 'resume', label: 'Resume' },
                 ].map((item, idx, arr) => (
                   <li key={item.href} className="relative">
                     <Link
                       href={item.href}
+                      target={item.id === 'resume' ? '_blank' : undefined}
+                      rel={item.id === 'resume' ? 'noopener noreferrer' : undefined}
                       onClick={() => setIsOpen(false)}
-                      className={`block px-3 py-3 rounded-md text-white uppercase tracking-[0.13em] font-semibold transition-colors hover:bg-[#23242a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
-                        activeId === item.id ? 'bg-[#23242a]' : ''
-                      }`}
+                      className={`block px-3 py-3 rounded-md text-white uppercase tracking-[0.13em] font-semibold transition-colors hover:bg-[#23242a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500`}
                     >
                       {item.label}
                     </Link>
@@ -274,16 +236,16 @@ const Header = () => {
         .navbar-links {
           display: flex;
           align-items: center;
-          gap: 1rem;
+          gap: 0.5rem;
           font-size: 1rem;
           letter-spacing: 0.08em;
         }
         .nav-link {
           text-transform: uppercase;
-          letter-spacing: 0.08em;
+          letter-spacing: 0.06em;
           color: #eeeeee;
           position: relative;
-          font-size: 1rem;
+          font-size: 0.95rem;
           font-family: inherit;
           font-weight: 600;
           transition: color 0.18s, transform 0.18s, box-shadow 0.18s;
@@ -324,7 +286,7 @@ const Header = () => {
           box-shadow: 0 2px 16px #65cdf9cc;
         }
         .navbar-separator {
-          margin: 0 0.5rem;
+          margin: 0 0.375rem; /* ~6px */
           color: #65cdf980;
           font-size: 1em;
           user-select: none;

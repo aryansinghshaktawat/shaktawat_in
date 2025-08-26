@@ -71,7 +71,7 @@ const Hero = () => {
         {/* MORE button */}
         <div className="mt-16">
           <Link
-            href="#about"
+            href="/about"
             className="group inline-flex items-center gap-3 px-5 py-2.5 rounded-md border border-[#2a2b31] text-sm font-medium text-[#e6e6e8] bg-[#1b1c21] hover:bg-[#1f2026] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
           >
             MORE

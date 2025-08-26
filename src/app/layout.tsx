@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import RevealProvider from "@/components/RevealProvider";
 import GrainOverlay from "@/components/GrainOverlay";
+import PageTransition from "@/components/PageTransition";
 
 export const metadata: Metadata = {
   title: "Aryan Singh Shaktawat",
@@ -39,7 +40,9 @@ export default function RootLayout({
           <GrainOverlay />
           <Header />
           <RevealProvider>
-            <main className="pt-20 flex-1">{children}</main>
+            <main className="pt-20 flex-1">
+              <PageTransition>{children}</PageTransition>
+            </main>
           </RevealProvider>
           <Footer />
         </ThemeProvider>

@@ -1,4 +1,5 @@
 // src/app/about/page.tsx
+import type { Metadata } from 'next';
 import About from '@/components/sections/About';
 
 const AboutPage = () => {
@@ -10,3 +11,8 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
+
+export const metadata: Metadata = {
+  title: 'About — Aryan Singh Shaktawat',
+  description: 'Detailed bio, skills, and profile of Aryan Singh Shaktawat.',
+};

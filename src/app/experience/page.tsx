@@ -1,4 +1,5 @@
 // src/app/experience/page.tsx
+import type { Metadata } from 'next';
 import Experience from '@/components/sections/Experience';
 
 const ExperiencePage = () => {
@@ -10,3 +11,8 @@ const ExperiencePage = () => {
 };
 
 export default ExperiencePage;
+
+export const metadata: Metadata = {
+  title: 'Experience — Aryan Singh Shaktawat',
+  description: 'Professional experience and roles held by Aryan Singh Shaktawat.',
+};

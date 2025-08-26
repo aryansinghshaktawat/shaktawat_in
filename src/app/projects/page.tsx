@@ -1,4 +1,5 @@
 // src/app/projects/page.tsx
+import type { Metadata } from 'next';
 import Projects from '@/components/sections/Projects';
 
 const ProjectsPage = () => {
@@ -10,3 +11,8 @@ const ProjectsPage = () => {
 };
 
 export default ProjectsPage;
+
+export const metadata: Metadata = {
+  title: 'Projects — Aryan Singh Shaktawat',
+  description: 'Selected projects with concise summaries and tech stacks.',
+};

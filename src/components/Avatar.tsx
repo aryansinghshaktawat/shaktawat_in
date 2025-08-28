@@ -14,13 +14,30 @@ export default function Avatar({ src, alt, className }: Props) {
 
   useEffect(() => {
     let active = true;
-    // Probe the target image; only switch if it exists
+    // Probe the target image and a few common fallbacks; switch to the first that exists
     (async () => {
       try {
-        const res = await fetch(src, { method: 'HEAD' });
-        if (!active) return;
-        if (res.ok) setCurrent(src);
-        else setCurrent('/darklogo.png');
+        const unique = (arr: string[]) => Array.from(new Set(arr));
+        const candidates = unique([
+          src,
+          '/profile.webp',
+          '/profile.png',
+          '/profile.jpg',
+          '/profile.jpeg',
+        ]);
+        for (const url of candidates) {
+          try {
+            const res = await fetch(url, { method: 'HEAD' });
+            if (!active) return;
+            if (res.ok) {
+              setCurrent(url);
+              return;
+            }
+          } catch {
+            // keep trying next candidate
+          }
+        }
+        if (active) setCurrent('/darklogo.png');
       } catch {
         if (active) setCurrent('/darklogo.png');
       }
@@ -35,7 +52,9 @@ export default function Avatar({ src, alt, className }: Props) {
       src={current}
       alt={alt}
       fill
-      className={className}
+  sizes="(min-width: 768px) 16rem, 14rem"
+  className={className}
+  style={{ objectFit: 'cover' }}
       onError={() => setCurrent('/darklogo.png')}
     />
   );

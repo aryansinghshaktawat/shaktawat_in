@@ -20,8 +20,20 @@ const About = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left: profile + bio */}
           <div>
-            <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden relative mx-auto md:mx-0 ring-1 ring-[#2a2b31] shadow-[0_0_60px_-20px_rgba(99,102,241,0.35)]">
-              <Avatar src="/profile.webp" alt="Profile photo" className="object-cover" />
+            {/* Modern portrait card */}
+            <div className="group relative mx-auto md:mx-0 w-56 md:w-64 h-72 md:h-80 select-none">
+              {/* Glow frame */}
+              <div aria-hidden className="absolute -inset-2 rounded-2xl bg-[conic-gradient(at_10%_10%,#65cdf955,transparent_35%,#6366F155,transparent_65%,#65cdf955)] blur-md opacity-70 group-hover:opacity-100 transition-opacity" />
+              {/* Decorative corner */}
+              <div aria-hidden className="absolute -top-2 -right-2 w-10 h-10 rotate-12 bg-gradient-to-br from-[#65cdf940] to-transparent rounded-xl" />
+              {/* Image shell */}
+              <div className="relative rounded-2xl overflow-hidden ring-1 ring-[#2a2b31] bg-[#0f1116] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)] transition-transform duration-300 ease-out group-hover:-translate-y-1 group-hover:rotate-[0.5deg]">
+                <Avatar src="/profile.webp" alt="Profile photo" className="object-cover" />
+                {/* Subtle bottom fade for text legibility if we add captions later */}
+                <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#0f1116] to-transparent" />
+                {/* Small badge */}
+                <span className="absolute bottom-2 left-2 text-[11px] uppercase tracking-wide text-[#dbeafe] bg-white/5 px-2 py-1 rounded-md border border-white/10 backdrop-blur-sm">Cyber Security</span>
+              </div>
             </div>
 
             <p className="mt-6 text-[#c6c6c9] font-mono text-base leading-relaxed md:max-w-md">

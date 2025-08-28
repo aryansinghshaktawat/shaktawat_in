@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
 import HomeHero from '@/components/sections/HomeHero';
-import HomeSkills from '@/components/sections/HomeSkills';
-import FeaturedProjects from '@/components/sections/FeaturedProjects';
-import Education from '@/components/sections/Education';
-import Involvement from '@/components/sections/Involvement';
 import ContactInvite from '@/components/sections/ContactInvite';
 
 export default function Home() {
@@ -73,33 +69,33 @@ export default function Home() {
         `}</style>
         <h1 className="section-title body-animate">Welcome to My World 👋</h1>
         <div className="section-subtitle body-animate">
-          <span className="section-em">I am a learner first, and everything else follows.</span> Hey there! I'm <span className="section-em">Aryan Singh Shaktawat</span> — a curious <span className="section-em">Computer Science student</span> who believes that the best way to understand technology is to build it, break it, and rebuild it better.
+          <span className="section-em">I am a learner first, and everything else follows.</span> Hey there! I&apos;m <span className="section-em">Aryan Singh Shaktawat</span> — a curious <span className="section-em">Computer Science student</span> who believes that the best way to understand technology is to build it, break it, and rebuild it better.
         </div>
         <h2 className="section-heading body-animate">My Student Journey</h2>
         <div className="section-body body-animate">
-          I'm currently in my <span className="section-em">third year of B.Tech in Computer Science &amp; Engineering with Cyber Security &amp; Forensics</span> at UPES Dehradun (5th semester and counting!). Every day brings new challenges, late-night coding sessions, and those amazing "aha!" moments when everything finally clicks.
+          I&apos;m currently in my <span className="section-em">third year of B.Tech in Computer Science &amp; Engineering with Cyber Security &amp; Forensics</span> at UPES Dehradun (5th semester and counting!). Every day brings new challenges, late-night coding sessions, and those amazing &quot;aha!&quot; moments when everything finally clicks.
         </div>
-        <h2 className="section-heading body-animate">What I'm Learning By Doing</h2>
+        <h2 className="section-heading body-animate">What I&apos;m Learning By Doing</h2>
         <div className="section-body body-animate">
           <span className="section-em">From Classroom Theory to Real-World Projects</span><br />
-          As a student, I learn best with my hands on the keyboard. I'm currently exploring <span className="section-em">AI model integrations</span> with tools like <span className="section-em">Llama-3</span> and <span className="section-em">Perplexity APIs</span>, building <span className="section-em">OSINT tools</span> that actually work, and creating <span className="section-em">user-friendly interfaces</span> that don't make people want to throw their computers out the window.
+          As a student, I learn best with my hands on the keyboard. I&apos;m currently exploring <span className="section-em">AI model integrations</span> with tools like <span className="section-em">Llama-3</span> and <span className="section-em">Perplexity APIs</span>, building <span className="section-em">OSINT tools</span> that actually work, and creating <span className="section-em">user-friendly interfaces</span> that don&apos;t make people want to throw their computers out the window.
         </div>
         <h2 className="section-heading body-animate">My Current Learning Adventure</h2>
         <div className="section-body body-animate">
-          Right now, I'm <span className="section-em">rebuilding my entire portfolio from scratch</span> — turning a simple single-page site into something that truly represents my growth as a developer. It's messy, it's challenging, and it's exactly the kind of hands-on learning I love.<br /><br />
-          I prefer <span className="section-em">month-long projects</span> that let me dive deep without overwhelming my semester schedule. Because let's be honest — balancing coursework, personal projects, and actually having a life requires some serious time management skills.
+          Right now, I&apos;m <span className="section-em">rebuilding my entire portfolio from scratch</span> — turning a simple single-page site into something that truly represents my growth as a developer. It&apos;s messy, it&apos;s challenging, and it&apos;s exactly the kind of hands-on learning I love.<br /><br />
+          I prefer <span className="section-em">month-long projects</span> that let me dive deep without overwhelming my semester schedule. Because let&apos;s be honest — balancing coursework, personal projects, and actually having a life requires some serious time management skills.
         </div>
         <h2 className="section-heading body-animate">The Reality Check</h2>
         <div className="section-body body-animate">
-          I'm not claiming to be an expert (yet!). I'm that student who <span className="section-em">Googles syntax</span>, celebrates when code compiles without errors, and genuinely gets excited about <span className="section-em">solving real problems with technology</span>. My dorm room is probably 50% textbooks, 50% project notes, and 100% proof that learning never stops.
+          I&apos;m not claiming to be an expert (yet!). I&apos;m that student who <span className="section-em">Googles syntax</span>, celebrates when code compiles without errors, and genuinely gets excited about <span className="section-em">solving real problems with technology</span>. My dorm room is probably 50% textbooks, 50% project notes, and 100% proof that learning never stops.
         </div>
-        <h2 className="section-heading body-animate">What's Next?</h2>
+        <h2 className="section-heading body-animate">What&apos;s Next?</h2>
         <div className="section-body body-animate">
-          Every <span className="section-em">API integration</span>, every <span className="section-em">GUI component</span>, every <span className="section-em">cybersecurity tool</span> I build is a step toward becoming the developer I want to be. I'm here to learn, experiment, fail fast, and keep building.
+          Every <span className="section-em">API integration</span>, every <span className="section-em">GUI component</span>, every <span className="section-em">cybersecurity tool</span> I build is a step toward becoming the developer I want to be. I&apos;m here to learn, experiment, fail fast, and keep building.
         </div>
         <div className="section-quote body-animate">
           Want to learn alongside me or see what a determined student can create?<br />
-          <span className="section-em">Let's figure it out together.</span>
+          <span className="section-em">Let&apos;s figure it out together.</span>
         </div>
         <div className="section-footer body-animate">
           B.Tech Student | Code Learner | Future Problem Solver

@@ -11,12 +11,11 @@ export default function HomeHero() {
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 pt-24 pb-24 md:pt-32 md:pb-32 text-center">
-        <h1 className="uppercase font-extrabold font-sans text-[2.6rem] md:text-[4rem] lg:text-[5rem] leading-none tracking-tight mb-5 drop-shadow-lg" style={{ letterSpacing: '0.01em' }}>
+        <h1 className="uppercase font-extrabold font-sans text-[2.6rem] md:text-[4rem] lg:text-[5rem] leading-none tracking-tight mb-2 drop-shadow-lg" style={{ letterSpacing: '0.01em' }}>
           ARYAN SINGH SHAKTAWAT
         </h1>
-
-        <p className="font-sans text-lg md:text-2xl text-[#e6e6e8] max-w-3xl mx-auto leading-relaxed">
-          Aspiring Cyber Security & Forensics Developer exploring innovative digital solutions.
+        <p className="font-sans text-lg md:text-2xl text-[#65cdf9] font-semibold max-w-3xl mx-auto leading-relaxed mb-6">
+          I’m a passionate B.Tech Computer Science student exploring AI, Cybersecurity, and Software Development through hands-on projects and continuous learning.
         </p>
 
         <ul className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl mx-auto">

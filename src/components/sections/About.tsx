@@ -1,5 +1,8 @@
 // src/components/sections/About.tsx
+
 import Avatar from '@/components/Avatar';
+import { useRef } from 'react';
+import { useScrambleOnInteract } from '@/hooks/useScrambleOnInteract';
 
 const highlights = [
   { label: 'Languages', value: 'TypeScript, Python, C++' },
@@ -35,6 +38,21 @@ const About = () => {
                 <span className="absolute bottom-2 left-2 text-[11px] uppercase tracking-wide text-[#dbeafe] bg-white/5 px-2 py-1 rounded-md border border-white/10 backdrop-blur-sm">Cyber Security</span>
               </div>
             </div>
+
+            {/* Scramble effect name */}
+            {(() => {
+              const scrambleRef = useRef<HTMLHeadingElement>(null);
+              useScrambleOnInteract(scrambleRef, "ARYAN SINGH SHAKTAWAT");
+              return (
+                <h2
+                  ref={scrambleRef}
+                  className="mt-8 text-2xl font-extrabold text-[#65cdf9] tracking-tight"
+                  tabIndex={-1}
+                >
+                  ARYAN SINGH SHAKTAWAT
+                </h2>
+              );
+            })()}
 
             <p className="mt-6 text-[#c6c6c9] font-mono text-base leading-relaxed md:max-w-md">
               I am currently pursuing a B.Tech in CSE (Cyber Security &amp; Forensics) at UPES with a strong interest in cyber security, digital forensics, and continual learning.

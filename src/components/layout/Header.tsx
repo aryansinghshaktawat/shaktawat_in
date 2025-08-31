@@ -104,14 +104,14 @@ const Header = () => {
   <div className="w-full pl-0 pr-6 h-[64px] flex items-center justify-between relative">
         {/* Logo at extreme left, full height */}
   <div className="navbar-logo pl-10 flex items-center h-full">
-          <Link href="/" className="pointer-events-auto inline-flex items-center h-full" onClick={(e) => { e.preventDefault(); router.push('/'); }}>
+          <Link href="/" className="pointer-events-auto inline-flex items-center h-full group" onClick={(e) => { e.preventDefault(); router.push('/'); }}>
             <Image
               src="/darklogo.png"
               alt="Aryan Singh Shaktawat Logo"
               width={45}
               height={45}
               priority
-              className="block h-[50px] w-auto drop-shadow-lg relative top-[1px]"
+              className="block h-[50px] w-auto drop-shadow-lg relative top-[1px] transition-all duration-200 group-hover:scale-110 group-hover:drop-shadow-[0_0_20px_#65cdf980]"
               style={{ objectFit: 'contain' }}
             />
           </Link>
@@ -142,7 +142,7 @@ const Header = () => {
                     {item.label}
                   </Link>
                   {i < arr.length - 1 && (
-                    <span className="navbar-separator mx-2 text-xs">•</span>
+                    <span className="navbar-separator mx-2 text-xs transition-all duration-200 hover:text-[#65cdf9] hover:scale-125 hover:drop-shadow-[0_0_8px_#65cdf980]">•</span>
                   )}
                 </React.Fragment>
               );
@@ -154,12 +154,12 @@ const Header = () => {
             aria-label="Toggle menu"
             onClick={() => setIsOpen(!isOpen)}
             onMouseDown={(e) => e.stopPropagation()}
-            className="md:hidden ml-2 group inline-flex items-center gap-2 px-3 py-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500"
+            className="md:hidden ml-2 group inline-flex items-center gap-2 px-3 py-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 transition-all duration-200 hover:bg-[#65cdf915] hover:shadow-[0_0_20px_#65cdf940]"
           >
             <span className="relative w-6 h-6">
-              <span className={`absolute left-0 right-0 top-1 block h-0.5 bg-white transition-transform ${isOpen ? 'translate-y-2 rotate-45' : ''}`}></span>
-              <span className={`absolute left-0 right-0 top-1/2 -mt-0.5 block h-0.5 bg-white transition-opacity ${isOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-              <span className={`absolute left-0 right-0 bottom-1 block h-0.5 bg-white transition-transform ${isOpen ? '-translate-y-2 -rotate-45' : ''}`}></span>
+              <span className={`absolute left-0 right-0 top-1 block h-0.5 bg-white transition-all duration-200 group-hover:bg-[#65cdf9] ${isOpen ? 'translate-y-2 rotate-45' : ''}`}></span>
+              <span className={`absolute left-0 right-0 top-1/2 -mt-0.5 block h-0.5 bg-white transition-all duration-200 group-hover:bg-[#65cdf9] ${isOpen ? 'opacity-0' : 'opacity-100'}`}></span>
+              <span className={`absolute left-0 right-0 bottom-1 block h-0.5 bg-white transition-all duration-200 group-hover:bg-[#65cdf9] ${isOpen ? '-translate-y-2 -rotate-45' : ''}`}></span>
             </span>
           </button>
         </div>
@@ -186,12 +186,12 @@ const Header = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-2">
-              <Link href="/" className="inline-flex items-center">
-                <Image src="/darklogo.png" alt="Aryan Singh Shaktawat Logo" width={120} height={32} className="h-8 w-auto" />
+              <Link href="/" className="inline-flex items-center group" onClick={() => setIsOpen(false)}>
+                <Image src="/darklogo.png" alt="Aryan Singh Shaktawat Logo" width={120} height={32} className="h-8 w-auto transition-all duration-200 group-hover:scale-110 group-hover:drop-shadow-[0_0_20px_#65cdf980]" />
               </Link>
               <button
                 aria-label="Close menu"
-                className="p-2 rounded-md hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+                className="p-2 rounded-md hover:bg-[#65cdf915] hover:shadow-[0_0_15px_#65cdf930] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-all duration-200 text-white hover:text-[#65cdf9] text-xl"
                 onClick={() => setIsOpen(false)}
               >
                 <span aria-hidden>×</span>
@@ -213,12 +213,12 @@ const Header = () => {
                       target={item.id === 'resume' ? '_blank' : undefined}
                       rel={item.id === 'resume' ? 'noopener noreferrer' : undefined}
                       onClick={() => setIsOpen(false)}
-                      className={`block px-3 py-3 rounded-md text-white uppercase tracking-[0.13em] font-semibold transition-colors hover:bg-[#23242a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500`}
+                      className={`block px-3 py-3 rounded-md text-white uppercase tracking-[0.13em] font-semibold transition-all duration-200 hover:bg-[#65cdf915] hover:text-[#65cdf9] hover:shadow-[0_0_15px_#65cdf930] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500`}
                     >
                       {item.label}
                     </Link>
                     {idx < arr.length - 1 && (
-                      <span className="absolute right-0 top-1/2 -translate-y-1/2 text-[#65cdf980] text-lg">◆</span>
+                      <span className="absolute right-0 top-1/2 -translate-y-1/2 text-[#65cdf980] text-lg transition-all duration-200 hover:text-[#65cdf9] hover:scale-125 hover:drop-shadow-[0_0_8px_#65cdf980]">◆</span>
                     )}
                   </li>
                 ))}
@@ -279,6 +279,7 @@ const Header = () => {
           color: #7ee7ff;
           transform: scale(1.06);
           box-shadow: 0 2px 12px #65cdf970;
+          text-shadow: 0 0 8px #65cdf980;
         }
         .nav-link:hover::after,
         .nav-link:focus::after {

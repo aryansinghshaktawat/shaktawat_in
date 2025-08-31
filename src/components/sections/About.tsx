@@ -1,8 +1,7 @@
 "use client";
-import React, { useRef } from "react";
+import React from "react";
 import Head from "next/head";
-import Avatar from '@/components/Avatar';
-import { useScrambleOnInteract } from '@/hooks/useScrambleOnInteract';
+import Image from "next/image";
 
 const highlights = [
   { label: 'Languages', value: 'TypeScript, Python, C++' },
@@ -13,21 +12,9 @@ const highlights = [
   { label: 'Focus', value: 'Performance, DX' },
 ];
 
-function ScrambleName({ scrambleRef }: { scrambleRef: React.RefObject<HTMLHeadingElement | null> }) {
-  return (
-    <h2
-      ref={scrambleRef}
-      className="mt-4 text-xl font-extrabold text-[#65cdf9] tracking-tight text-center"
-      tabIndex={-1}
-    >
-      ARYAN SINGH SHAKTAWAT
-    </h2>
-  );
-}
 
 const About = () => {
-  const scrambleRef = useRef<HTMLHeadingElement>(null);
-  useScrambleOnInteract(scrambleRef, "ARYAN SINGH SHAKTAWAT");
+  // static heading (scramble effect removed)
 
   return (
     <>
@@ -39,55 +26,53 @@ const About = () => {
       </Head>
       <section id="about" className="relative w-full bg-[#121318] text-white border-t border-[#202025]" style={{ fontFamily: 'Space Mono, monospace' }}>
         <div aria-hidden className="absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3b82f652] to-transparent" />
-        <div className="max-w-6xl mx-auto px-4 py-20 md:py-28 flex flex-col gap-16">
-          {/* My Student Journey - left */}
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="md:w-1/2 w-full md:pr-8">
-              <h2 className="text-2xl font-extrabold text-[#65cdf9] mb-4">My Student Journey</h2>
-              <p className="text-[#c6c6c9] text-base leading-relaxed">
-                I am currently pursuing a B.Tech in CSE (Cyber Security &amp; Forensics) at UPES with a strong interest in cyber security, digital forensics, and continual learning.
+        <div className="max-w-6xl mx-auto px-4 py-16 md:py-24">
+          <div className="md:grid md:grid-cols-2 md:gap-10 items-center">
+            {/* Left: Intro + CTA */}
+            <div className="order-2 md:order-1">
+              <h1 className="text-3xl md:text-4xl font-extrabold text-[#65cdf9] mb-4">Welcome — I build and learn by doing</h1>
+              <p className="text-[#c6c6c9] text-lg md:text-xl max-w-2xl leading-relaxed mb-6">
+                I&apos;m <span className="font-bold text-[#e6e6e8]">Aryan Singh Shaktawat</span>, a B.Tech Computer Science student focused on practical learning: building tools, integrating AI models, and exploring cybersecurity and forensics.
               </p>
-              <p className="mt-4 text-[#c6c6c9] text-base leading-relaxed">
-                I enjoy hands-on work in OSINT, incident response, and building tools that help investigators and students. I&apos;ve taken leadership roles in student clubs and volunteered in community outreach and campus events.
-              </p>
-            </div>
-            <div className="md:w-1/2 w-full flex justify-center">
-              <div className="group relative w-56 md:w-64 h-72 md:h-80 select-none">
-                <div aria-hidden className="absolute -inset-2 rounded-2xl bg-[conic-gradient(at_10%_10%,#65cdf955,transparent_35%,#6366F155,transparent_65%,#65cdf955)] blur-md opacity-70 group-hover:opacity-100 transition-opacity" />
-                <div aria-hidden className="absolute -top-2 -right-2 w-10 h-10 rotate-12 bg-gradient-to-br from-[#65cdf940] to-transparent rounded-xl" />
-                <div className="relative rounded-2xl overflow-hidden ring-1 ring-[#2a2b31] bg-[#0f1116] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)] transition-transform duration-300 ease-out group-hover:-translate-y-1 group-hover:rotate-[0.5deg]">
-                  <Avatar src="/profile.webp" alt="Profile photo" className="object-cover" />
-                  <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#0f1116] to-transparent" />
-                  <span className="absolute bottom-2 left-2 text-[11px] uppercase tracking-wide text-[#dbeafe] bg-white/5 px-2 py-1 rounded-md border border-white/10 backdrop-blur-sm">Cyber Security</span>
+
+              <div className="flex flex-wrap gap-3 items-center mb-6">
+                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="inline-block px-5 py-2 rounded-md bg-[#65cdf9] text-black font-semibold hover:brightness-95 transition">Download Resume</a>
+                <a href="#projects" className="inline-block px-4 py-2 rounded-md border border-white/10 text-white hover:bg-white/5 transition">View Projects</a>
+                <a href="#contact" className="ml-2 text-sm text-[#9ea0a6] hover:text-white transition">Get in touch</a>
+              </div>
+
+              <div className="grid grid-cols-3 gap-3 max-w-md">
+                <div className="p-3 bg-[#0f1116] rounded-lg ring-1 ring-white/6 text-center">
+                  <div className="text-sm text-[#9ea0a6]">Projects</div>
+                  <div className="text-lg font-bold">12+</div>
                 </div>
-                <ScrambleName scrambleRef={scrambleRef} />
+                <div className="p-3 bg-[#0f1116] rounded-lg ring-1 ring-white/6 text-center">
+                  <div className="text-sm text-[#9ea0a6]">Internships</div>
+                  <div className="text-lg font-bold">1</div>
+                </div>
+                <div className="p-3 bg-[#0f1116] rounded-lg ring-1 ring-white/6 text-center">
+                  <div className="text-sm text-[#9ea0a6]">Languages</div>
+                  <div className="text-lg font-bold">TS / Python</div>
+                </div>
               </div>
             </div>
-          </div>
-          {/* What I'm Learning By Doing - right */}
-          <div className="flex flex-col md:flex-row-reverse items-center gap-8">
-            <div className="md:w-1/2 w-full md:pl-8">
-              <h2 className="text-2xl font-extrabold text-[#65cdf9] mb-4">What I&apos;m Learning By Doing</h2>
-              <p className="text-[#c6c6c9] text-base leading-relaxed">
-                As a student, I learn best with my hands on the keyboard. I&apos;m currently exploring AI model integrations with tools like Llama-3 and Perplexity APIs, building OSINT tools that actually work, and creating user-friendly interfaces that don&apos;t make people want to throw their computers out the window.
-              </p>
-            </div>
-            <div className="md:w-1/2 w-full flex justify-center">
-              <div>
-                <h3 className="text-xl font-semibold tracking-tight mb-4">Highlights</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {highlights.map((item) => (
-                    <div
-                      key={item.label}
-                      className="group flex items-start gap-3 rounded-md border border-[#26272e] bg-[#181a20] px-4 py-3 hover:bg-[#1b1e25] transition-colors"
-                    >
-                      <span aria-hidden className="mt-1 text-[#8a8a92]">›</span>
-                      <div className="leading-tight">
-                        <div className="text-sm uppercase tracking-wide text-[#9ea0a6]">{item.label}</div>
-                        <div className="text-[15px] text-[#e6e6e8]">{item.value}</div>
-                      </div>
-                    </div>
-                  ))}
+
+            {/* Right: Profile card + mini-timeline */}
+            <div className="order-1 md:order-2 mb-6 md:mb-0 flex justify-center">
+              <div className="w-56 md:w-72 rounded-2xl overflow-hidden ring-1 ring-[#2a2b31] bg-[#0f1116] shadow-lg">
+                <Image src="/profile.webp" alt="Aryan profile" width={448} height={560} className="w-full h-auto object-cover" />
+                <div className="p-4">
+                  <div className="text-sm text-[#9ea0a6]">B.Tech CSE · UPES</div>
+                  <div className="text-lg font-semibold text-white mt-1">Aryan Singh Shaktawat</div>
+                  <div className="mt-3 text-sm text-[#c6c6c9]">Hands-on in AI integrations, OSINT tooling, and security-focused projects.</div>
+
+                  <div className="mt-4 border-t border-white/6 pt-3">
+                    <div className="text-xs text-[#9ea0a6] mb-2">Recent</div>
+                    <ul className="text-sm text-[#e6e6e8] space-y-2">
+                      <li>Rebuilding portfolio — deeper UX &amp; tooling</li>
+                      <li>Integrating Llama-3 in local tools</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>

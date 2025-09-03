@@ -62,6 +62,12 @@ body {
   100% { transform: translateX(-200px) translateY(-100px); }
 }
 
+/* Float animation for elements */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
 /* Glass morphism effect */
 .glass {
   background: rgba(30, 41, 59, 0.7);

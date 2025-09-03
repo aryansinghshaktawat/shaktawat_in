@@ -87,7 +87,6 @@ const Header = () => {
   // Desktop inline nav groups
   const leftItems = [
     { href: '/', id: 'home', label: 'Home' },
-    { href: '/about', id: 'about', label: 'About' },
     { href: '/projects', id: 'projects', label: 'Projects' },
   ] as const;
   const rightItems = [
@@ -150,19 +149,33 @@ const Header = () => {
             })}
           </nav>
           {/* Hamburger for mobile on right */}
-          <button
-            aria-expanded={isOpen}
-            aria-label="Toggle menu"
-            onClick={() => setIsOpen(!isOpen)}
-            onMouseDown={(e) => e.stopPropagation()}
-            className="md:hidden ml-2 group inline-flex items-center gap-2 px-3 py-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 transition-all duration-200 hover:bg-[#65cdf915] hover:shadow-[0_0_20px_#65cdf940]"
-          >
-            <span className="relative w-6 h-6">
-              <span className={`absolute left-0 right-0 top-1 block h-0.5 bg-white transition-all duration-200 group-hover:bg-[#65cdf9] ${isOpen ? 'translate-y-2 rotate-45' : ''}`}></span>
-              <span className={`absolute left-0 right-0 top-1/2 -mt-0.5 block h-0.5 bg-white transition-all duration-200 group-hover:bg-[#65cdf9] ${isOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-              <span className={`absolute left-0 right-0 bottom-1 block h-0.5 bg-white transition-all duration-200 group-hover:bg-[#65cdf9] ${isOpen ? '-translate-y-2 -rotate-45' : ''}`}></span>
-            </span>
-          </button>
+          <div className="md:hidden ml-2 relative">
+            {/* Close button - positioned above hamburger when menu is open */}
+            {isOpen && (
+              <button
+                aria-label="Close menu"
+                className="fixed top-4 right-4 p-3 rounded-full bg-[#101114] border border-[#202025] hover:bg-[#65cdf915] hover:border-[#65cdf9] hover:shadow-[0_0_15px_#65cdf930] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-all duration-200 text-white hover:text-[#65cdf9] text-xl z-[1200]"
+                onClick={() => setIsOpen(false)}
+              >
+                <span aria-hidden>×</span>
+              </button>
+            )}
+            
+            {/* Hamburger button */}
+            <button
+              aria-expanded={isOpen}
+              aria-label="Toggle menu"
+              onClick={() => setIsOpen(!isOpen)}
+              onMouseDown={(e) => e.stopPropagation()}
+              className="group inline-flex items-center gap-2 px-3 py-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500 transition-all duration-200 hover:bg-[#65cdf915] hover:shadow-[0_0_20px_#65cdf940]"
+            >
+              <span className="relative w-6 h-6">
+                <span className={`absolute left-0 right-0 top-1 block h-0.5 bg-white transition-all duration-200 group-hover:bg-[#65cdf9] ${isOpen ? 'translate-y-2 rotate-45' : ''}`}></span>
+                <span className={`absolute left-0 right-0 top-1/2 -mt-0.5 block h-0.5 bg-white transition-all duration-200 group-hover:bg-[#65cdf9] ${isOpen ? 'opacity-0' : 'opacity-100'}`}></span>
+                <span className={`absolute left-0 right-0 bottom-1 block h-0.5 bg-white transition-all duration-200 group-hover:bg-[#65cdf9] ${isOpen ? '-translate-y-2 -rotate-45' : ''}`}></span>
+              </span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -175,34 +188,21 @@ const Header = () => {
         >
           {/* Backdrop */}
           <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
-          {/* Drawer */}
+          {/* Drawer - slides in from right */}
           <div
             role="dialog"
             aria-modal="true"
             aria-labelledby="mobile-menu-title"
             ref={menuRef}
-            className={`absolute left-0 top-0 h-full w-[80%] max-w-xs sm:max-w-sm bg-[linear-gradient(120deg,#101114_80%,#20222A_100%)] border-r border-[#202025] shadow-[0_0_60px_-20px_rgba(0,0,0,0.5)] p-6 flex flex-col gap-4 focus:outline-none transform transition-transform duration-300 ease-out ${
-              animateDrawer ? 'translate-x-0' : '-translate-x-full'
+            className={`absolute right-0 top-0 h-full w-[80%] max-w-xs sm:max-w-sm bg-[linear-gradient(120deg,#101114_80%,#20222A_100%)] border-l border-[#202025] shadow-[0_0_60px_-20px_rgba(0,0,0,0.5)] p-6 flex flex-col gap-4 focus:outline-none transform transition-transform duration-300 ease-out ${
+              animateDrawer ? 'translate-x-0' : 'translate-x-full'
             }`}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between mb-2">
-              <Link href="/" className="inline-flex items-center group" onClick={() => setIsOpen(false)}>
-                <Image src="/darklogo.png" alt="Aryan Singh Shaktawat Logo" width={120} height={32} className="h-8 w-auto transition-all duration-200 group-hover:scale-110 group-hover:drop-shadow-[0_0_20px_#65cdf980]" />
-              </Link>
-              <button
-                aria-label="Close menu"
-                className="p-2 rounded-md hover:bg-[#65cdf915] hover:shadow-[0_0_15px_#65cdf930] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-all duration-200 text-white hover:text-[#65cdf9] text-xl"
-                onClick={() => setIsOpen(false)}
-              >
-                <span aria-hidden>×</span>
-              </button>
-            </div>
-            <nav className="mt-2" aria-label="Mobile">
+            <nav className="mt-4" aria-label="Mobile">
               <ul className="flex flex-col gap-2">
                 {[
                   { href: '/', id: 'home', label: 'Home' },
-                  { href: '/about', id: 'about', label: 'About' },
                   { href: '/projects', id: 'projects', label: 'Projects' },
                   { href: '/blog', id: 'blog', label: 'Blog' },
                   { href: '/contact', id: 'contact', label: 'Contact' },

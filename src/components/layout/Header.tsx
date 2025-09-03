@@ -97,7 +97,7 @@ const Header = () => {
   // No in-page section observers needed.
 
   return (
-    <header className="fixed top-0 left-0 w-full z-[1000] navbar bg-[linear-gradient(90deg,#101114_0%,#20222A_100%)]/95 backdrop-blur shadow-[0_6px_24px_-8px_#65cdf952] border-b border-transparent" role="banner">
+    <header className={`fixed top-0 left-0 w-full z-[1000] navbar shadow-[0_6px_24px_-8px_#65cdf952] border-b border-transparent ${isOpen ? 'bg-[#071022] !backdrop-blur-none' : 'bg-[linear-gradient(90deg,#101114_0%,#20222A_100%)]/95 backdrop-blur'}`} role="banner">
       {/* Cinematic glowing accent separator */}
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-[4px] bg-[linear-gradient(90deg,transparent,#65cdf9_50%,transparent)] opacity-70 shadow-[0_2px_24px_0_#65cdf952]" />
   <div className="w-full pl-0 pr-6 h-[64px] flex items-center justify-between relative">
@@ -150,17 +150,6 @@ const Header = () => {
           </nav>
           {/* Hamburger for mobile on right */}
           <div className="md:hidden ml-2 relative">
-            {/* Close button - positioned above hamburger when menu is open */}
-            {isOpen && (
-              <button
-                aria-label="Close menu"
-                className="fixed top-4 right-4 p-3 rounded-full bg-[#101114] border border-[#202025] hover:bg-[#65cdf915] hover:border-[#65cdf9] hover:shadow-[0_0_15px_#65cdf930] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 transition-all duration-200 text-white hover:text-[#65cdf9] text-xl z-[1200]"
-                onClick={() => setIsOpen(false)}
-              >
-                <span aria-hidden>×</span>
-              </button>
-            )}
-            
             {/* Hamburger button */}
             <button
               aria-expanded={isOpen}
@@ -188,17 +177,25 @@ const Header = () => {
         >
           {/* Backdrop */}
           <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
-          {/* Drawer - slides in from right */}
+          {/* Drawer - slides in from right (opaque background) */}
           <div
             role="dialog"
             aria-modal="true"
             aria-labelledby="mobile-menu-title"
             ref={menuRef}
-            className={`absolute right-0 top-0 h-full w-[80%] max-w-xs sm:max-w-sm bg-[linear-gradient(120deg,#101114_80%,#20222A_100%)] border-l border-[#202025] shadow-[0_0_60px_-20px_rgba(0,0,0,0.5)] p-6 flex flex-col gap-4 focus:outline-none transform transition-transform duration-300 ease-out ${
+            className={`absolute right-0 top-0 h-full w-[80%] max-w-xs sm:max-w-sm bg-[#0b1220] border-l border-[#202025] shadow-[0_0_60px_-20px_rgba(0,0,0,0.5)] p-6 flex flex-col gap-4 focus:outline-none transform transition-transform duration-300 ease-out ${
               animateDrawer ? 'translate-x-0' : 'translate-x-full'
             }`}
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Left-edge arrow close control */}
+            <button
+              aria-label="Close menu"
+              onClick={() => setIsOpen(false)}
+              className="absolute left-[-26px] top-1/2 transform -translate-y-1/2 w-10 h-10 bg-[#0f1720] text-white rounded-full flex items-center justify-center border border-[#1f2933] shadow-md"
+            >
+              <span aria-hidden className="text-lg">→</span>
+            </button>
             <nav className="mt-4" aria-label="Mobile">
               <ul className="flex flex-col gap-2">
                 {[
@@ -214,7 +211,7 @@ const Header = () => {
                       target={item.id === 'resume' ? '_blank' : undefined}
                       rel={item.id === 'resume' ? 'noopener noreferrer' : undefined}
                       onClick={() => setIsOpen(false)}
-                      className={`nav-tab-mobile block px-4 py-3 rounded-full text-white uppercase tracking-[0.09em] font-semibold transition-all duration-200 hover:bg-[#65cdf915] hover:text-[#65cdf9] hover:shadow-[0_0_15px_#65cdf930] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500`}
+                      className={`nav-tab-mobile block px-4 py-3 rounded-full text-white uppercase tracking-[0.09em] font-semibold transition-all duration-200 hover:bg-[#122033] hover:text-[#65cdf9] hover:shadow-[0_0_15px_#65cdf930] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500`}
                     >
                       <span className="tab-dot mr-3 inline-block" aria-hidden />
                       {item.label}

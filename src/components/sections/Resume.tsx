@@ -2,39 +2,51 @@
 import Link from 'next/link';
 
 const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
-  <section className="mt-8">
-    <h3 className="text-lg md:text-xl font-semibold tracking-tight mb-3">{title}</h3>
-    <div className="space-y-2 text-sm md:text-[15px] text-[#c6c6c9] leading-relaxed">{children}</div>
+  <section className="glass hover-lift p-6 mb-6 animate-fade-in-up">
+    <h3 className="text-lg md:text-xl font-semibold tracking-tight mb-4 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">{title}</h3>
+    <div className="space-y-2 text-sm md:text-[15px] text-white/80 leading-relaxed">{children}</div>
   </section>
 );
 
 const Bullet = ({ children }: { children: React.ReactNode }) => (
-  <li className="pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-[#65cdf9]">{children}</li>
+  <li className="pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-cyan-400">{children}</li>
 );
 
 const Resume = () => {
   return (
-    <div className="relative w-full bg-[#121318] text-white border-t border-[#202025]">
-      <div aria-hidden className="absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3b82f652] to-transparent" />
+    <div className="relative w-full min-h-screen animated-bg text-white overflow-hidden">
+      {/* Floating geometric elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-20 left-10 w-20 h-20 bg-blue-500/10 rounded-full animate-spin-slow"></div>
+        <div className="absolute top-40 right-20 w-16 h-16 bg-purple-500/10 rounded-lg animate-pulse"></div>
+        <div className="absolute bottom-40 left-20 w-24 h-24 bg-cyan-500/10 rounded-full animate-bounce"></div>
+        <div className="absolute bottom-20 right-10 w-32 h-32 bg-pink-500/10 rounded-lg animate-spin-slow"></div>
+      </div>
 
-      <div className="max-w-4xl mx-auto px-4 py-10 md:py-16">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 py-10 md:py-16">
         {/* Header */}
-        <header className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
-          <div>
-            <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight">Aryan Singh Shaktawat</h1>
-            <p className="text-sm md:text-[15px] text-[#c6c6c9] mt-1">B.Tech CSE (Cyber Security &amp; Forensics), 5th Semester — UPES Dehradun</p>
-            <p className="text-sm text-[#9ea0a6] font-geist-mono mt-1">
-              Email: <a href="mailto:aryan@shaktawat.in" className="underline decoration-dotted underline-offset-2 hover:decoration-solid">aryan@shaktawat.in</a>
-              {' '}·{' '}
-              Website: <a href="https://shaktawat.in" target="_blank" rel="noopener noreferrer" className="underline decoration-dotted underline-offset-2 hover:decoration-solid">shaktawat.in</a>
-              {' '}·{' '}
-              LinkedIn: <a href="https://linkedin.com/in/aryansinghshaktawat" target="_blank" rel="noopener noreferrer" className="underline decoration-dotted underline-offset-2 hover:decoration-solid">/aryansinghshaktawat</a>
-              {' '}·{' '}
-              GitHub: <a href="https://github.com/aryansinghshaktawat" target="_blank" rel="noopener noreferrer" className="underline decoration-dotted underline-offset-2 hover:decoration-solid">/aryansinghshaktawat</a>
-            </p>
-          </div>
-          <div className="flex gap-2">
-            <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-md border border-[#2a2b31] text-xs font-medium text-[#e6e6e8] bg-[#1b1c21] hover:bg-[#1f2026]">Download PDF</Link>
+        <header className="glass hover-lift p-8 mb-8 animate-fade-in-up">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+            <div>
+              <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent">
+                Aryan Singh Shaktawat
+              </h1>
+              <p className="text-sm md:text-[15px] text-white/80 mt-1">B.Tech CSE (Cyber Security &amp; Forensics), 5th Semester — UPES Dehradun</p>
+              <p className="text-sm text-white/60 font-geist-mono mt-1">
+                Email: <a href="mailto:aryan@shaktawat.in" className="underline decoration-dotted underline-offset-2 hover:decoration-solid hover:text-white transition-colors">aryan@shaktawat.in</a>
+                {' '}·{' '}
+                Website: <a href="https://shaktawat.in" target="_blank" rel="noopener noreferrer" className="underline decoration-dotted underline-offset-2 hover:decoration-solid hover:text-white transition-colors">shaktawat.in</a>
+                {' '}·{' '}
+                LinkedIn: <a href="https://linkedin.com/in/aryansinghshaktawat" target="_blank" rel="noopener noreferrer" className="underline decoration-dotted underline-offset-2 hover:decoration-solid hover:text-white transition-colors">/aryansinghshaktawat</a>
+                {' '}·{' '}
+                GitHub: <a href="https://github.com/aryansinghshaktawat" target="_blank" rel="noopener noreferrer" className="underline decoration-dotted underline-offset-2 hover:decoration-solid hover:text-white transition-colors">/aryansinghshaktawat</a>
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-md border border-white/20 text-xs font-medium text-white bg-white/10 hover:bg-white/20 transition-all duration-200">
+                Download PDF
+              </Link>
+            </div>
           </div>
         </header>
 
@@ -48,15 +60,15 @@ const Resume = () => {
         </Section>
 
         <Section title="Internships &amp; Experience">
-          <div className="rounded-lg border border-[#26272e] bg-[#181a20] p-4">
+          <div className="glass hover-lift p-6 mb-4">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h4 className="uppercase text-sm font-bold tracking-wide">Cyber Security Intern</h4>
-                <p className="uppercase text-[12px] tracking-wide text-[#9ea0a6] font-geist-mono">STF Cyber Cell, Uttarakhand Police, Dehradun</p>
+                <h4 className="uppercase text-sm font-bold tracking-wide text-white">Cyber Security Intern</h4>
+                <p className="uppercase text-[12px] tracking-wide text-white/60 font-geist-mono">STF Cyber Cell, Uttarakhand Police, Dehradun</p>
               </div>
-              <span className="text-[12px] text-[#9ea0a6] font-geist-mono whitespace-nowrap">June 2025 – July 2025</span>
+              <span className="text-[12px] text-white/60 font-geist-mono whitespace-nowrap">June 2025 – July 2025</span>
             </div>
-            <ul className="mt-2 space-y-1">
+            <ul className="mt-3 space-y-1">
               <Bullet>Assisted Special Task Force cyber unit in real-time cybercrime investigations and digital forensics operations</Bullet>
               <Bullet>Developed and maintained a Python-based Cyber Investigation OSINT Toolkit (CIOT) with CustomTkinter GUI for evidence collection, case tracking, and reporting</Bullet>
               <Bullet>Automated workflows for digital evidence management, improving efficiency in active cybercrime cases by 40%</Bullet>
@@ -64,15 +76,15 @@ const Resume = () => {
               <Bullet>Supported community outreach via public awareness campaigns on eye donation and digital safety</Bullet>
             </ul>
           </div>
-          <div className="rounded-lg border border-[#26272e] bg-[#181a20] p-4 mt-3">
+          <div className="glass hover-lift p-6">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h4 className="uppercase text-sm font-bold tracking-wide">Social Intern</h4>
-                <p className="uppercase text-[12px] tracking-wide text-[#9ea0a6] font-geist-mono">Shine India Foundation</p>
+                <h4 className="uppercase text-sm font-bold tracking-wide text-white">Social Intern</h4>
+                <p className="uppercase text-[12px] tracking-wide text-white/60 font-geist-mono">Shine India Foundation</p>
               </div>
-              <span className="text-[12px] text-[#9ea0a6] font-geist-mono whitespace-nowrap">June 2024 – July 2024</span>
+              <span className="text-[12px] text-white/60 font-geist-mono whitespace-nowrap">June 2024 – July 2024</span>
             </div>
-            <ul className="mt-2 space-y-1">
+            <ul className="mt-3 space-y-1">
               <Bullet>Participated in social campaigns and community engagement initiatives focusing on health awareness and public welfare</Bullet>
               <Bullet>Assisted in organizing events and managing digital outreach activities</Bullet>
               <Bullet>Contributed to volunteer coordination and event management for community service programs</Bullet>
@@ -81,48 +93,48 @@ const Resume = () => {
         </Section>
 
         <Section title="Key Projects">
-          <ul className="space-y-2">
-            <li className="rounded-lg border border-[#26272e] bg-[#181a20] p-4">
-              <h4 className="uppercase text-sm font-bold tracking-wide">Cyber Investigation OSINT Toolkit (CIOT)</h4>
-              <p className="text-[13px] text-[#9ea0a6]">Python · CustomTkinter · APIs</p>
+          <ul className="space-y-3">
+            <li className="glass hover-lift p-4">
+              <h4 className="uppercase text-sm font-bold tracking-wide text-white">Cyber Investigation OSINT Toolkit (CIOT)</h4>
+              <p className="text-[13px] text-white/60">Python · CustomTkinter · APIs</p>
               <ul className="mt-2 space-y-1">
                 <Bullet>Comprehensive digital investigation tool featuring case management, evidence logging, automated report generation, and social media profile analysis</Bullet>
                 <Bullet>Built with Python and CustomTkinter; integrated multiple APIs for enhanced functionality (Available on GitHub)</Bullet>
               </ul>
             </li>
-            <li className="rounded-lg border border-[#26272e] bg-[#181a20] p-4">
-              <h4 className="uppercase text-sm font-bold tracking-wide">PYQ Analyzer &ndash; Repeated Question Predictor</h4>
-              <p className="text-[13px] text-[#9ea0a6]">Python · Data analysis &amp; visualization</p>
+            <li className="glass hover-lift p-4">
+              <h4 className="uppercase text-sm font-bold tracking-wide text-white">PYQ Analyzer &ndash; Repeated Question Predictor</h4>
+              <p className="text-[13px] text-white/60">Python · Data analysis &amp; visualization</p>
               <ul className="mt-2 space-y-1">
                 <Bullet>Analyzes previous years&rsquo; question papers to predict frequently asked questions</Bullet>
                 <Bullet>Provides ranked insights for targeted exam preparation with visualizations</Bullet>
               </ul>
             </li>
-            <li className="rounded-lg border border-[#26272e] bg-[#181a20] p-4">
-              <h4 className="uppercase text-sm font-bold tracking-wide">Personal Portfolio Website (shaktawat.in)</h4>
-              <p className="text-[13px] text-[#9ea0a6]">Next.js · Tailwind · App Router</p>
+            <li className="glass hover-lift p-4">
+              <h4 className="uppercase text-sm font-bold tracking-wide text-white">Personal Portfolio Website (shaktawat.in)</h4>
+              <p className="text-[13px] text-white/60">Next.js · Tailwind · App Router</p>
               <ul className="mt-2 space-y-1">
                 <Bullet>Responsive multi-page portfolio with dark/light theme and integrated resume showcase</Bullet>
                 <Bullet>Custom domain and modern UI patterns</Bullet>
               </ul>
             </li>
-            <li className="rounded-lg border border-[#26272e] bg-[#181a20] p-4">
-              <h4 className="uppercase text-sm font-bold tracking-wide">Todo App</h4>
-              <p className="text-[13px] text-[#9ea0a6]">Python · DB integration</p>
+            <li className="glass hover-lift p-4">
+              <h4 className="uppercase text-sm font-bold tracking-wide text-white">Todo App</h4>
+              <p className="text-[13px] text-white/60">Python · DB integration</p>
               <ul className="mt-2 space-y-1">
                 <Bullet>Full-featured task manager with persistent storage</Bullet>
               </ul>
             </li>
-            <li className="rounded-lg border border-[#26272e] bg-[#181a20] p-4">
-              <h4 className="uppercase text-sm font-bold tracking-wide">Emergency Response App &lsquo;BACHAAV&rsquo;</h4>
-              <p className="text-[13px] text-[#9ea0a6]">UPES CSA Hackathon 4.0</p>
+            <li className="glass hover-lift p-4">
+              <h4 className="uppercase text-sm font-bold tracking-wide text-white">Emergency Response App &lsquo;BACHAAV&rsquo;</h4>
+              <p className="text-[13px] text-white/60">UPES CSA Hackathon 4.0</p>
               <ul className="mt-2 space-y-1">
                 <Bullet>Co-developed a secure alert app with real-time notifications, location services, and robust backend security</Bullet>
               </ul>
             </li>
-            <li className="rounded-lg border border-[#26272e] bg-[#181a20] p-4">
-              <h4 className="uppercase text-sm font-bold tracking-wide">Data Structures Implementation (2024)</h4>
-              <p className="text-[13px] text-[#9ea0a6]">Multi-language implementations</p>
+            <li className="glass hover-lift p-4">
+              <h4 className="uppercase text-sm font-bold tracking-wide text-white">Data Structures Implementation (2024)</h4>
+              <p className="text-[13px] text-white/60">Multi-language implementations</p>
               <ul className="mt-2 space-y-1">
                 <Bullet>Comprehensive collection of data structures and algorithms demonstrating core CS fundamentals</Bullet>
               </ul>
@@ -160,9 +172,9 @@ const Resume = () => {
         </Section>
 
         <Section title="Relevant Courses">
-          <div className="space-y-2">
+          <div className="space-y-3">
             <div>
-              <div className="text-[#9ea0a6] text-[13px] mb-1">Core Computer Science</div>
+              <div className="text-white/60 text-[13px] mb-2 font-medium">Core Computer Science</div>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-1">
                 <Bullet>Problem Solving and Algorithms</Bullet>
                 <Bullet>Object Oriented Analysis and Design (OOAD)</Bullet>
@@ -170,7 +182,7 @@ const Resume = () => {
               </ul>
             </div>
             <div>
-              <div className="text-[#9ea0a6] text-[13px] mb-1">Cybersecurity Specialization</div>
+              <div className="text-white/60 text-[13px] mb-2 font-medium">Cybersecurity Specialization</div>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-1">
                 <Bullet>Cyber Security Fundamentals</Bullet>
                 <Bullet>Digital Forensics &amp; OSINT Methods</Bullet>
@@ -178,7 +190,7 @@ const Resume = () => {
               </ul>
             </div>
             <div>
-              <div className="text-[#9ea0a6] text-[13px] mb-1">Mathematics &amp; Systems</div>
+              <div className="text-white/60 text-[13px] mb-2 font-medium">Mathematics &amp; Systems</div>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-1">
                 <Bullet>Probability Mathematics</Bullet>
                 <Bullet>FLAT (Fundamentals of Logic and Automata Theory)</Bullet>
@@ -191,7 +203,7 @@ const Resume = () => {
         <Section title="Academic Background">
           <div className="overflow-x-auto">
             <table className="w-full text-sm md:text-[15px]">
-              <thead className="text-[#9ea0a6]">
+              <thead className="text-white/60">
                 <tr className="text-left">
                   <th className="py-2 pr-4 font-medium">Year</th>
                   <th className="py-2 pr-4 font-medium">Qualification</th>
@@ -200,9 +212,9 @@ const Resume = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-[#26272e]"><td className="py-2 pr-4">2023 – Present</td><td className="py-2 pr-4">B.Tech CSE (Cyber Security &amp; Forensics)</td><td className="py-2 pr-4">School of Computer Science, UPES, Dehradun</td><td className="py-2 pr-4">CGPA: 7.8 / 10</td></tr>
-                <tr className="border-t border-[#26272e]"><td className="py-2 pr-4">2021 – 2023</td><td className="py-2 pr-4">Class 12th (Science)</td><td className="py-2 pr-4">Sir Padampat Singhania School, Kota — CBSE</td><td className="py-2 pr-4">84%</td></tr>
-                <tr className="border-t border-[#26272e]"><td className="py-2 pr-4">2019 – 2021</td><td className="py-2 pr-4">Class 10th</td><td className="py-2 pr-4">Sir Padampat Singhania School, Kota — CBSE</td><td className="py-2 pr-4">92%</td></tr>
+                <tr className="border-t border-white/20"><td className="py-2 pr-4">2023 – Present</td><td className="py-2 pr-4">B.Tech CSE (Cyber Security &amp; Forensics)</td><td className="py-2 pr-4">School of Computer Science, UPES, Dehradun</td><td className="py-2 pr-4">CGPA: 7.8 / 10</td></tr>
+                <tr className="border-t border-white/20"><td className="py-2 pr-4">2021 – 2023</td><td className="py-2 pr-4">Class 12th (Science)</td><td className="py-2 pr-4">Sir Padampat Singhania School, Kota — CBSE</td><td className="py-2 pr-4">84%</td></tr>
+                <tr className="border-t border-white/20"><td className="py-2 pr-4">2019 – 2021</td><td className="py-2 pr-4">Class 10th</td><td className="py-2 pr-4">Sir Padampat Singhania School, Kota — CBSE</td><td className="py-2 pr-4">92%</td></tr>
               </tbody>
             </table>
           </div>
@@ -218,7 +230,7 @@ const Resume = () => {
         </Section>
 
         {/* Footer note */}
-        <p className="mt-10 text-xs text-[#8a8a92]">Updated: Aug 2025 • Contact for references or detailed project walkthroughs.</p>
+        <p className="mt-10 text-xs text-white/40 text-center">Updated: Aug 2025 • Contact for references or detailed project walkthroughs.</p>
       </div>
     </div>
   );

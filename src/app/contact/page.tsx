@@ -6,19 +6,17 @@ const ContactPage = () => {
   return (
     <>
       {/* Interactive Contact Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] py-24">
-        <div className="absolute inset-0 opacity-20" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='50' cy='50' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-        }}></div>
+      <section className="relative overflow-hidden animated-bg py-24">
+        <div className="absolute inset-0 glass"></div>
         
         {/* Floating message bubbles */}
-        <div className="absolute top-16 left-16 w-20 h-20 bg-gradient-to-br from-[#65cdf9]/30 to-[#3b82f6]/20 rounded-full flex items-center justify-center animate-float-message">
+        <div className="absolute top-16 left-16 w-20 h-20 bg-gradient-to-br from-[#65cdf9]/30 to-[#3b82f6]/20 rounded-full flex items-center justify-center animate-bounce">
           <span className="text-2xl">💬</span>
         </div>
-        <div className="absolute top-32 right-20 w-16 h-16 bg-gradient-to-br from-[#10b981]/30 to-[#059669]/20 rounded-full flex items-center justify-center animate-float-delayed">
+        <div className="absolute top-32 right-20 w-16 h-16 bg-gradient-to-br from-[#10b981]/30 to-[#059669]/20 rounded-full flex items-center justify-center animate-pulse">
           <span className="text-lg">📧</span>
         </div>
-        <div className="absolute bottom-20 left-32 w-12 h-12 bg-gradient-to-br from-[#f59e0b]/30 to-[#d97706]/20 rounded-full flex items-center justify-center animate-float-slow">
+        <div className="absolute bottom-20 left-32 w-12 h-12 bg-gradient-to-br from-[#f59e0b]/30 to-[#d97706]/20 rounded-full flex items-center justify-center animate-spin-slow">
           <span className="text-sm">🤝</span>
         </div>
         
@@ -40,7 +38,7 @@ const ContactPage = () => {
 
           {/* Contact method cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div className="group bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-2xl p-8 border border-[#334155] hover:border-[#65cdf9] transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#65cdf9]/20">
+            <div className="group glass rounded-2xl p-8 hover:bg-slate-800/50 hover-lift">
               <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#65cdf9] to-[#3b82f6] flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-300">
                 <span className="text-3xl">📧</span>
               </div>

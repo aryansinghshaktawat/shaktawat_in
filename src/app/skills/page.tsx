@@ -3,24 +3,22 @@ import Skills from '@/components/sections/Skills';
 
 export default function SkillsPage() {
   return (
-    <>
+    <div className="animated-bg">
       {/* Skills Hero with Tech Theme */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] py-24">
-        <div className="absolute inset-0 opacity-20" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M0 0h30v30H0z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-        }}></div>
+      <section className="relative overflow-hidden py-24">
+        <div className="absolute inset-0 glass"></div>
         
         {/* Floating tech icons */}
-        <div className="absolute top-20 left-20 w-20 h-20 bg-gradient-to-br from-[#61dafb]/20 to-[#21d4fd]/10 rounded-xl flex items-center justify-center animate-tech-float">
+        <div className="absolute top-20 left-20 w-20 h-20 bg-gradient-to-br from-[#61dafb]/20 to-[#21d4fd]/10 rounded-xl flex items-center justify-center animate-pulse">
           <span className="text-3xl">⚛️</span>
         </div>
-        <div className="absolute top-32 right-32 w-16 h-16 bg-gradient-to-br from-[#f7df1e]/20 to-[#f0db4f]/10 rounded-xl flex items-center justify-center animate-tech-float" style={{animationDelay: '1s'}}>
+        <div className="absolute top-32 right-32 w-16 h-16 bg-gradient-to-br from-[#f7df1e]/20 to-[#f0db4f]/10 rounded-xl flex items-center justify-center animate-bounce" style={{animationDelay: '1s'}}>
           <span className="text-2xl">🟨</span>
         </div>
-        <div className="absolute bottom-24 left-1/3 w-18 h-18 bg-gradient-to-br from-[#3178c6]/20 to-[#235a97]/10 rounded-xl flex items-center justify-center animate-tech-float" style={{animationDelay: '2s'}}>
+        <div className="absolute bottom-24 left-1/3 w-18 h-18 bg-gradient-to-br from-[#3178c6]/20 to-[#235a97]/10 rounded-xl flex items-center justify-center animate-spin-slow" style={{animationDelay: '2s'}}>
           <span className="text-2xl">🔷</span>
         </div>
-        <div className="absolute bottom-32 right-20 w-14 h-14 bg-gradient-to-br from-[#e34c26]/20 to-[#f16529]/10 rounded-xl flex items-center justify-center animate-tech-float" style={{animationDelay: '0.5s'}}>
+        <div className="absolute bottom-32 right-20 w-14 h-14 bg-gradient-to-br from-[#e34c26]/20 to-[#f16529]/10 rounded-xl flex items-center justify-center animate-pulse" style={{animationDelay: '0.5s'}}>
           <span className="text-xl">🌐</span>
         </div>
         
@@ -95,7 +93,7 @@ export default function SkillsPage() {
 
       {/* Skills Content */}
       <Skills />
-    </>
+    </div>
   );
 }
 

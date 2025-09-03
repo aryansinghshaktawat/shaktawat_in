@@ -18,6 +18,65 @@ h1, h2, h3, h4, h5, h6 {
 /* Body text uses Geist Mono fallback */
 body {
   font-family: var(--font-geist-mono), monospace;
+  background: linear-gradient(135deg, #0f1419 0%, #1a202c 25%, #2d3748 50%, #1a202c 75%, #0f1419 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  color: #e2e8f0;
+  min-height: 100vh;
+}
+
+/* Animated background gradient */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating particles animation */
+.animated-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.animated-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, rgba(59, 130, 246, 0.3), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(16, 185, 129, 0.3), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(249, 115, 22, 0.3), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(139, 92, 246, 0.3), transparent),
+    radial-gradient(2px 2px at 160px 30px, rgba(59, 130, 246, 0.3), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: floatingParticles 20s linear infinite;
+  z-index: -1;
+}
+
+@keyframes floatingParticles {
+  0% { transform: translateX(0) translateY(0); }
+  100% { transform: translateX(-200px) translateY(-100px); }
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+/* Enhanced hover effects */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 :root {
@@ -130,5 +189,76 @@ a, button, input, textarea { transition: color 150ms ease, background-color 150m
   background: radial-gradient(900px 200px at 60% -40px, rgba(59,130,246,0.22), rgba(99,102,241,0.18) 40%, rgba(18,19,24,0) 70%);
   filter: blur(22px);
   opacity: 0.85;
+}
+
+/* Projects page animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out;
+}
+
+/* Slow spin animation */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* Home page styles */
+.body-animate { 
+  animation: fadeUp 1s cubic-bezier(.4,2,.3,1) both; 
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-title {
+  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #65cdf9;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #e6e6e8;
+  margin-bottom: 1.5rem;
+}
+
+.hacker-name { 
+  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif; 
+  font-size: 3.25rem; 
+  line-height: 1; 
+  color: #65cdf9; 
+  text-shadow: 0 0 8px rgba(101,205,249,0.08); 
+}
+
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  min-height: 60vh;
 }
 

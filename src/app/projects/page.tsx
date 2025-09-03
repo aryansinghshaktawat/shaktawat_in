@@ -91,60 +91,102 @@ const projects = [
 
 const ProjectsPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      <div className="max-w-6xl mx-auto px-4 py-16">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-white mb-6">Projects</h1>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-            A collection of projects demonstrating technical skills, problem-solving capabilities, and innovative thinking across various domains.
-          </p>
+    <>
+      {/* Hero Section */}
+      <section className="relative min-h-[50vh] animated-bg flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/50 to-gray-900/80"></div>
+        <div className="relative z-10 text-center px-6 py-20">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-6xl md:text-7xl font-bold text-white mb-8 tracking-tight leading-none">
+              Projects
+            </h1>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto mb-8 rounded-full"></div>
+            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light">
+              A collection of projects demonstrating technical skills, problem-solving capabilities, and innovative thinking across various domains.
+            </p>
+          </div>
         </div>
+        
+        {/* Subtle geometric decoration with animation */}
+        <div className="absolute top-20 right-20 w-32 h-32 border border-blue-400/20 rotate-45 opacity-30 animate-spin-slow"></div>
+        <div className="absolute bottom-20 left-20 w-20 h-20 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-full opacity-40 animate-pulse"></div>
+      </section>
 
-        <div className="space-y-12">
-          {projects.map((project) => (
-            <div key={project.id} className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-slate-700 hover:border-slate-600 transition-all duration-300">
-              <div className="mb-6">
-                <h2 className="text-2xl font-bold text-white mb-3">{project.title}</h2>
-                <div className="inline-block bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 py-2 rounded-lg text-sm font-medium mb-4">
-                  {project.techStack}
-                </div>
-                <p className="text-slate-300 text-lg leading-relaxed">{project.description}</p>
-              </div>
+      {/* Projects Grid */}
+      <section className="animated-bg py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid gap-12 lg:gap-16">
+            {projects.map((project, index) => (
+              <div 
+                key={project.id} 
+                className="group glass rounded-3xl hover:bg-slate-800/80 hover-lift overflow-hidden opacity-0 animate-fade-in-up"
+                style={{
+                  animationDelay: `${index * 100}ms`,
+                  animationFillMode: 'forwards'
+                }}
+              >
+                <div className="p-10 lg:p-12">
+                  {/* Project Header */}
+                  <div className="mb-8">
+                    <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
+                      <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4 lg:mb-0 leading-tight">
+                        {project.title}
+                      </h2>
+                      <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-full text-sm font-medium shadow-lg">
+                        {project.techStack}
+                      </div>
+                    </div>
+                    <p className="text-lg text-gray-300 leading-relaxed font-light">
+                      {project.description}
+                    </p>
+                  </div>
 
-              {project.details && (
-                <div className="mb-6">
-                  <p className="text-slate-300 mb-4">{project.details}</p>
-                  {project.options && (
-                    <ol className="list-decimal list-inside space-y-2 ml-4">
-                      {project.options.map((option, index) => (
-                        <li key={index} className="text-slate-400">{option}</li>
-                      ))}
-                    </ol>
+                  {/* Project Details */}
+                  {project.details && (
+                    <div className="mb-8 p-6 bg-slate-800/50 rounded-2xl border border-slate-700/50">
+                      <p className="text-gray-300 mb-4 leading-relaxed">{project.details}</p>
+                      {project.options && (
+                        <ol className="space-y-3 ml-2">
+                          {project.options.map((option, index) => (
+                            <li key={index} className="flex items-start gap-4">
+                              <span className="flex-shrink-0 w-6 h-6 bg-gradient-to-r from-blue-500 to-cyan-400 text-white rounded-full flex items-center justify-center text-sm font-semibold">
+                                {index + 1}
+                              </span>
+                              <span className="text-gray-400 leading-relaxed">{option}</span>
+                            </li>
+                          ))}
+                        </ol>
+                      )}
+                    </div>
                   )}
+
+                  {/* Key Features */}
+                  <div className="mb-8">
+                    <h3 className="text-xl font-semibold text-white mb-6">Key Features</h3>
+                    <div className="grid gap-4">
+                      {project.features.map((feature, index) => (
+                        <div key={index} className="flex items-start gap-4 group/feature hover:bg-slate-800/30 p-3 rounded-lg transition-all duration-200">
+                          <div className="flex-shrink-0 w-2 h-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full mt-3 group-hover/feature:scale-125 transition-transform duration-200"></div>
+                          <span className="text-gray-300 leading-relaxed">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Impact */}
+                  <div className="border-t border-slate-700/50 pt-8">
+                    <h3 className="text-xl font-semibold text-white mb-4">Impact</h3>
+                    <p className="text-gray-300 leading-relaxed font-light text-lg">
+                      {project.impact}
+                    </p>
+                  </div>
                 </div>
-              )}
-
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold text-white mb-4">Key Features:</h3>
-                <ul className="space-y-2">
-                  {project.features.map((feature, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-slate-300">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
-
-              <div className="border-t border-slate-700 pt-6">
-                <h3 className="text-lg font-semibold text-white mb-3">Impact:</h3>
-                <p className="text-slate-300 leading-relaxed">{project.impact}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 };
 

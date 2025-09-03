@@ -4,17 +4,15 @@ import Experience from '@/components/sections/Experience';
 
 const ExperiencePage = () => {
   return (
-    <>
+    <div className="animated-bg">
       {/* Dynamic Experience Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] py-24">
-        <div className="absolute inset-0 opacity-20" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M0 20h40v20H0z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-        }}></div>
+      <section className="relative overflow-hidden py-24">
+        <div className="absolute inset-0 glass"></div>
         
         {/* Animated timeline elements */}
-        <div className="absolute top-20 left-20 w-8 h-32 bg-gradient-to-b from-[#8b5cf6] to-transparent rounded-full animate-timeline-pulse"></div>
-        <div className="absolute top-40 right-32 w-6 h-24 bg-gradient-to-b from-[#65cdf9] to-transparent rounded-full animate-timeline-pulse" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-32 left-1/3 w-4 h-16 bg-gradient-to-b from-[#10b981] to-transparent rounded-full animate-timeline-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-20 left-20 w-8 h-32 bg-gradient-to-b from-[#8b5cf6] to-transparent rounded-full animate-pulse"></div>
+        <div className="absolute top-40 right-32 w-6 h-24 bg-gradient-to-b from-[#65cdf9] to-transparent rounded-full animate-bounce" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-32 left-1/3 w-4 h-16 bg-gradient-to-b from-[#10b981] to-transparent rounded-full animate-spin-slow" style={{animationDelay: '2s'}}></div>
         
         <div className="max-w-6xl mx-auto px-4 relative z-10">
           <div className="text-center mb-20">
@@ -38,7 +36,7 @@ const ExperiencePage = () => {
 
           {/* Experience highlights */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            <div className="group bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-2xl p-8 border border-[#334155] hover:border-[#8b5cf6] transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#8b5cf6]/20">
+            <div className="group glass rounded-2xl p-8 hover:bg-slate-800/50 hover-lift">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#8b5cf6] to-[#6366f1] flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
                   <span className="text-3xl">🔒</span>
@@ -93,7 +91,7 @@ const ExperiencePage = () => {
 
       {/* Experience Content */}
       <Experience />
-    </>
+    </div>
   );
 };
 

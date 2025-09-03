@@ -4,17 +4,15 @@ import Resume from '@/components/sections/Resume';
 
 const ResumePage = () => {
   return (
-    <>
+    <div className="animated-bg">
       {/* Resume Hero with Document Theme */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] py-24">
-        <div className="absolute inset-0 opacity-15" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 50 50' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Crect x='0' y='0' width='50' height='3'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-        }}></div>
+      <section className="relative overflow-hidden py-24">
+        <div className="absolute inset-0 glass"></div>
         
         {/* Floating document elements */}
-        <div className="absolute top-16 left-16 w-24 h-32 bg-gradient-to-br from-[#65cdf9]/20 to-[#3b82f6]/10 rounded-lg border border-[#65cdf9]/20 animate-float-doc"></div>
-        <div className="absolute top-32 right-20 w-20 h-28 bg-gradient-to-br from-[#10b981]/20 to-[#059669]/10 rounded-lg border border-[#10b981]/20 animate-float-delayed"></div>
-        <div className="absolute bottom-20 left-1/4 w-16 h-20 bg-gradient-to-br from-[#f59e0b]/20 to-[#d97706]/10 rounded-lg border border-[#f59e0b]/20 animate-float-slow"></div>
+        <div className="absolute top-16 left-16 w-24 h-32 bg-gradient-to-br from-[#65cdf9]/20 to-[#3b82f6]/10 rounded-lg border border-[#65cdf9]/20 animate-pulse"></div>
+        <div className="absolute top-32 right-20 w-20 h-28 bg-gradient-to-br from-[#10b981]/20 to-[#059669]/10 rounded-lg border border-[#10b981]/20 animate-bounce"></div>
+        <div className="absolute bottom-20 left-1/4 w-16 h-20 bg-gradient-to-br from-[#f59e0b]/20 to-[#d97706]/10 rounded-lg border border-[#f59e0b]/20 animate-spin-slow"></div>
         
         <div className="max-w-6xl mx-auto px-4 relative z-10">
           <div className="text-center mb-20">
@@ -36,7 +34,7 @@ const ResumePage = () => {
 
           {/* Resume sections preview */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div className="group bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-2xl p-8 border border-[#334155] hover:border-[#65cdf9] transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#65cdf9]/20">
+            <div className="group glass rounded-2xl p-8 hover:bg-slate-800/50 hover-lift">
               <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#65cdf9] to-[#3b82f6] flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-300">
                 <span className="text-3xl">🎓</span>
               </div>
@@ -45,7 +43,7 @@ const ResumePage = () => {
               <div className="text-[#65cdf9] font-geist-mono text-sm">UPES Dehradun</div>
             </div>
             
-            <div className="group bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-2xl p-8 border border-[#334155] hover:border-[#10b981] transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#10b981]/20">
+            <div className="group glass rounded-2xl p-8 hover:bg-slate-800/50 hover-lift">
               <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#10b981] to-[#059669] flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-300">
                 <span className="text-3xl">💼</span>
               </div>
@@ -89,7 +87,7 @@ const ResumePage = () => {
 
       {/* Resume Content */}
       <Resume />
-    </>
+    </div>
   );
 };
 

@@ -4,15 +4,13 @@ import About from '@/components/sections/About';
 
 const AboutPage = () => {
   return (
-    <>
+    <div className="animated-bg">
       {/* Original About Component */}
       <About />
       
       {/* Innovative Personal Journey Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#0f172a] via-[#1e293b] to-[#0f172a] py-20">
-        <div className="absolute inset-0 opacity-40" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='7' cy='7' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-        }}></div>
+      <section className="relative overflow-hidden py-20">
+        <div className="absolute inset-0 glass"></div>
         
         <div className="max-w-6xl mx-auto px-4 relative z-10">
           {/* Interactive Timeline */}
@@ -28,7 +26,7 @@ const AboutPage = () => {
           {/* Interactive Cards Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20">
             {/* Learning Philosophy Card */}
-            <div className="group relative bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-2xl p-8 border border-[#334155] hover:border-[#65cdf9] transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#65cdf9]/20">
+            <div className="group glass rounded-2xl p-8 hover:bg-slate-800/50 hover-lift">
               <div className="absolute inset-0 bg-gradient-to-br from-[#65cdf9]/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
                 <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#65cdf9] to-[#3b82f6] flex items-center justify-center mb-6">
@@ -43,7 +41,7 @@ const AboutPage = () => {
             </div>
 
             {/* Current Focus Card */}
-            <div className="group relative bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-2xl p-8 border border-[#334155] hover:border-[#65cdf9] transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#65cdf9]/20">
+            <div className="group glass rounded-2xl p-8 hover:bg-slate-800/50 hover-lift">
               <div className="absolute inset-0 bg-gradient-to-br from-[#65cdf9]/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
                 <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#10b981] to-[#059669] flex items-center justify-center mb-6">
@@ -199,12 +197,10 @@ const AboutPage = () => {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
           }
-          .animate-float {
-            animation: float 3s ease-in-out infinite;
           }
         `}</style>
       </section>
-    </>
+    </div>
   );
 };
 

@@ -4,7 +4,16 @@ import About from '@/components/sections/About';
 
 const AboutPage = () => {
   return (
-    <div className="animated-bg">
+    <div className="min-h-screen animated-bg overflow-hidden">
+      {/* Floating geometric elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-10 left-5 w-24 h-24 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full animate-spin-slow"></div>
+        <div className="absolute top-32 right-10 w-16 h-16 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-lg animate-pulse"></div>
+        <div className="absolute bottom-32 left-16 w-20 h-20 bg-gradient-to-br from-pink-500/20 to-red-500/20 rounded-full animate-bounce"></div>
+        <div className="absolute bottom-10 right-8 w-28 h-28 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-lg animate-spin-slow"></div>
+        <div className="absolute top-1/2 left-1/3 w-12 h-12 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-full animate-pulse"></div>
+      </div>
+
       {/* Original About Component */}
       <About />
       
@@ -66,16 +75,16 @@ const AboutPage = () => {
             </div>
 
             {/* Reality Check Card */}
-            <div className="group relative bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-2xl p-8 border border-[#334155] hover:border-[#65cdf9] transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#65cdf9]/20">
+            <div className="group glass hover-lift p-8">
               <div className="absolute inset-0 bg-gradient-to-br from-[#65cdf9]/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
                 <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#f59e0b] to-[#d97706] flex items-center justify-center mb-6">
                   <span className="text-2xl">💯</span>
                 </div>
                 <h3 className="font-space-grotesk text-xl font-bold text-white mb-4">The Real Talk</h3>
-                <p className="font-geist-mono text-[#e6e6e8] leading-relaxed">
-                  I&apos;m that student who <span className="text-[#65cdf9]">Googles syntax</span>, celebrates error-free compilation, 
-                  and gets genuinely excited about <span className="text-[#10b981]">solving real problems</span> with code.
+                <p className="font-geist-mono text-white/80 leading-relaxed">
+                  I&apos;m that student who <span className="text-cyan-400">Googles syntax</span>, celebrates error-free compilation, 
+                  and gets genuinely excited about <span className="text-green-400">solving real problems</span> with code.
                 </p>
               </div>
             </div>
@@ -89,22 +98,22 @@ const AboutPage = () => {
               {/* Student Journey */}
               <div className="flex flex-col lg:flex-row items-center gap-8">
                 <div className="lg:w-1/2 lg:pr-12">
-                  <div className="bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-2xl p-8 border border-[#334155] hover:border-[#65cdf9] transition-all duration-300">
-                    <h3 className="font-space-grotesk text-2xl font-bold text-[#65cdf9] mb-4 flex items-center gap-3">
-                      <span className="w-8 h-8 rounded-full bg-gradient-to-br from-[#65cdf9] to-[#3b82f6] flex items-center justify-center text-sm font-bold text-white">1</span>
+                  <div className="glass hover-lift p-8">
+                    <h3 className="font-space-grotesk text-2xl font-bold text-cyan-400 mb-4 flex items-center gap-3">
+                      <span className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-sm font-bold text-white">1</span>
                       Student Journey
                     </h3>
-                    <p className="font-geist-mono text-[#e6e6e8] leading-relaxed">
-                      Currently in my <span className="text-[#65cdf9] font-bold">third year of B.Tech CSE with Cyber Security &amp; Forensics</span> 
+                    <p className="font-geist-mono text-white/80 leading-relaxed">
+                      Currently in my <span className="text-cyan-400 font-bold">third year of B.Tech CSE with Cyber Security &amp; Forensics</span> 
                       at UPES Dehradun. Every day brings new challenges, late-night coding sessions, and those amazing &quot;aha!&quot; moments.
                     </p>
                   </div>
                 </div>
                 <div className="lg:w-1/2 lg:pl-12">
                   <div className="text-center lg:text-left">
-                    <div className="inline-flex items-center gap-2 bg-[#65cdf9]/10 border border-[#65cdf9]/30 rounded-full px-4 py-2 mb-4">
-                      <div className="w-2 h-2 rounded-full bg-[#65cdf9] animate-pulse"></div>
-                      <span className="font-geist-mono text-sm text-[#65cdf9]">5th Semester & Counting</span>
+                    <div className="inline-flex items-center gap-2 glass px-4 py-2 mb-4 rounded-full">
+                      <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></div>
+                      <span className="font-geist-mono text-sm text-cyan-400">5th Semester & Counting</span>
                     </div>
                   </div>
                 </div>
@@ -113,28 +122,28 @@ const AboutPage = () => {
               {/* Learning Style */}
               <div className="flex flex-col lg:flex-row-reverse items-center gap-8">
                 <div className="lg:w-1/2 lg:pl-12">
-                  <div className="bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-2xl p-8 border border-[#334155] hover:border-[#10b981] transition-all duration-300">
-                    <h3 className="font-space-grotesk text-2xl font-bold text-[#10b981] mb-4 flex items-center gap-3">
-                      <span className="w-8 h-8 rounded-full bg-gradient-to-br from-[#10b981] to-[#059669] flex items-center justify-center text-sm font-bold text-white">2</span>
+                  <div className="glass hover-lift p-8">
+                    <h3 className="font-space-grotesk text-2xl font-bold text-green-400 mb-4 flex items-center gap-3">
+                      <span className="w-8 h-8 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center text-sm font-bold text-white">2</span>
                       Learning by Doing
                     </h3>
-                    <p className="font-geist-mono text-[#e6e6e8] leading-relaxed">
-                      <span className="text-[#10b981] font-bold">From Classroom Theory to Real-World Projects.</span> 
+                    <p className="font-geist-mono text-white/80 leading-relaxed">
+                      <span className="text-green-400 font-bold">From Classroom Theory to Real-World Projects.</span> 
                       I learn best with my hands on the keyboard, building interfaces that don&apos;t make people want to throw their computers out the window.
                     </p>
                   </div>
                 </div>
                 <div className="lg:w-1/2 lg:pr-12">
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-[#10b981]/10 border border-[#10b981]/30 rounded-lg p-4 text-center">
+                    <div className="glass p-4 text-center hover-lift">
                       <div className="text-2xl mb-2">⚡</div>
-                      <div className="font-geist-mono text-xs text-[#10b981] font-semibold">MONTH-LONG</div>
-                      <div className="font-geist-mono text-xs text-[#e6e6e8]">Deep Dives</div>
+                      <div className="font-geist-mono text-xs text-green-400 font-semibold">MONTH-LONG</div>
+                      <div className="font-geist-mono text-xs text-white/80">Deep Dives</div>
                     </div>
-                    <div className="bg-[#f59e0b]/10 border border-[#f59e0b]/30 rounded-lg p-4 text-center">
+                    <div className="glass p-4 text-center hover-lift">
                       <div className="text-2xl mb-2">🎯</div>
-                      <div className="font-geist-mono text-xs text-[#f59e0b] font-semibold">PRACTICAL</div>
-                      <div className="font-geist-mono text-xs text-[#e6e6e8]">Focus</div>
+                      <div className="font-geist-mono text-xs text-yellow-400 font-semibold">PRACTICAL</div>
+                      <div className="font-geist-mono text-xs text-white/80">Focus</div>
                     </div>
                   </div>
                 </div>
@@ -143,20 +152,20 @@ const AboutPage = () => {
               {/* Future Vision */}
               <div className="flex flex-col lg:flex-row items-center gap-8">
                 <div className="lg:w-1/2 lg:pr-12">
-                  <div className="bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-2xl p-8 border border-[#334155] hover:border-[#f59e0b] transition-all duration-300">
-                    <h3 className="font-space-grotesk text-2xl font-bold text-[#f59e0b] mb-4 flex items-center gap-3">
-                      <span className="w-8 h-8 rounded-full bg-gradient-to-br from-[#f59e0b] to-[#d97706] flex items-center justify-center text-sm font-bold text-white">3</span>
+                  <div className="glass hover-lift p-8">
+                    <h3 className="font-space-grotesk text-2xl font-bold text-yellow-400 mb-4 flex items-center gap-3">
+                      <span className="w-8 h-8 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-sm font-bold text-white">3</span>
                       What&apos;s Next?
                     </h3>
-                    <p className="font-geist-mono text-[#e6e6e8] leading-relaxed">
-                      Every <span className="text-[#65cdf9]">API integration</span>, every <span className="text-[#10b981]">GUI component</span>, 
-                      every <span className="text-[#f59e0b]">cybersecurity tool</span> I build is a step toward becoming the developer I want to be.
+                    <p className="font-geist-mono text-white/80 leading-relaxed">
+                      Every <span className="text-cyan-400">API integration</span>, every <span className="text-green-400">GUI component</span>, 
+                      every <span className="text-yellow-400">cybersecurity tool</span> I build is a step toward becoming the developer I want to be.
                     </p>
                   </div>
                 </div>
                 <div className="lg:w-1/2 lg:pl-12">
                   <div className="text-center">
-                    <div className="inline-block bg-gradient-to-r from-[#65cdf9] to-[#10b981] rounded-2xl p-8 text-center">
+                    <div className="glass hover-lift p-8 text-center">
                       <div className="text-4xl mb-4">🚀</div>
                       <div className="font-space-grotesk text-lg font-bold text-white mb-2">Ready to Collaborate?</div>
                       <div className="font-geist-mono text-sm text-white/80">Let&apos;s learn and build together</div>
@@ -169,22 +178,22 @@ const AboutPage = () => {
 
           {/* Call to Action */}
           <div className="text-center mt-20">
-            <div className="bg-gradient-to-r from-[#65cdf9]/10 via-[#10b981]/10 to-[#f59e0b]/10 border border-[#65cdf9]/30 rounded-3xl p-12 max-w-4xl mx-auto">
-              <h3 className="font-space-grotesk text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#65cdf9] to-[#10b981] mb-6">
+            <div className="glass hover-lift p-12 max-w-4xl mx-auto">
+              <h3 className="font-space-grotesk text-3xl font-bold bg-gradient-to-r from-cyan-400 to-green-400 bg-clip-text text-transparent mb-6">
                 Let&apos;s Build Something Amazing
               </h3>
-              <p className="font-geist-mono text-lg text-[#e6e6e8] mb-8 max-w-2xl mx-auto">
+              <p className="font-geist-mono text-lg text-white/80 mb-8 max-w-2xl mx-auto">
                 Want to learn alongside me or see what a determined student can create? 
-                <span className="text-[#65cdf9] font-bold"> Let&apos;s figure it out together.</span>
+                <span className="text-cyan-400 font-bold"> Let&apos;s figure it out together.</span>
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <div className="bg-[#65cdf9] text-black px-6 py-3 rounded-full font-space-grotesk font-bold hover:bg-[#5bb8e3] transition-colors cursor-pointer">
+                <div className="bg-cyan-400 text-black px-6 py-3 rounded-full font-space-grotesk font-bold hover:bg-cyan-300 transition-colors cursor-pointer">
                   B.Tech Student
                 </div>
-                <div className="bg-[#10b981] text-white px-6 py-3 rounded-full font-space-grotesk font-bold hover:bg-[#0d9668] transition-colors cursor-pointer">
+                <div className="bg-green-400 text-black px-6 py-3 rounded-full font-space-grotesk font-bold hover:bg-green-300 transition-colors cursor-pointer">
                   Code Learner
                 </div>
-                <div className="bg-[#f59e0b] text-white px-6 py-3 rounded-full font-space-grotesk font-bold hover:bg-[#d97706] transition-colors cursor-pointer">
+                <div className="bg-yellow-400 text-black px-6 py-3 rounded-full font-space-grotesk font-bold hover:bg-yellow-300 transition-colors cursor-pointer">
                   Future Problem Solver
                 </div>
               </div>

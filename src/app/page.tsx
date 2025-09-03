@@ -1,6 +1,5 @@
-import type { Metadata } from "next";
 import ContactInvite from '@/components/sections/ContactInvite';
-import HackerName from '@/components/HackerName';
+import HackerName from '@/components/ui/HackerName';
 
 export default function Home() {
   return (

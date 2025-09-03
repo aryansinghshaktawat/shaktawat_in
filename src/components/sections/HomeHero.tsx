@@ -1,6 +1,5 @@
 // src/components/sections/HomeHero.tsx
 "use client";
-import Image from 'next/image';
 
 export default function HomeHero() {
   return (

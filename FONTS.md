@@ -34,15 +34,14 @@ This website now uses a comprehensive font hierarchy for optimal typography acro
 - ✅ `src/components/sections/HomeHero.tsx`
 - ✅ `src/components/sections/About.tsx`
 - ✅ `src/components/sections/Skills.tsx`
-- ✅ `src/components/sections/FeaturedProjects.tsx`
 - ✅ `src/components/sections/Contact.tsx`
 - ✅ `src/components/sections/Blogs.tsx`
 - ✅ `src/components/sections/Education.tsx`
 - ✅ `src/components/sections/HomeSkills.tsx`
 - ✅ `src/components/sections/Involvement.tsx`
 - ✅ `src/components/sections/ContactInvite.tsx`
-- ✅ `src/components/sections/Hero.tsx`
-- ✅ `src/components/sections/ProjectsExperience.tsx`
+- ✅ `src/components/sections/Resume.tsx`
+- ✅ `src/components/sections/Experience.tsx`
 
 ## Implementation Details
 

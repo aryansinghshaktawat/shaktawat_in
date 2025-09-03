@@ -113,34 +113,32 @@ export default function Blogs() {
   };
 
   return (
-    <section id="blogs" className="relative w-full bg-[#121318] text-white border-t border-[#202025]">
-      <div aria-hidden className="absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#3b82f652] to-transparent" />
-
-      <div className="max-w-6xl mx-auto px-4 py-20 md:py-28">
-        <h2 className="uppercase text-left font-space-grotesk font-extrabold text-2xl md:text-3xl tracking-tight" style={{ letterSpacing: '-0.02em' }}>
+    <section id="blogs" className="relative w-full py-20 md:py-28">
+      <div className="max-w-6xl mx-auto px-4">
+        <h2 className="uppercase text-left font-space-grotesk font-extrabold text-2xl md:text-3xl tracking-tight bg-gradient-to-r from-white to-cyan-100 bg-clip-text text-transparent mb-10" style={{ letterSpacing: '-0.02em' }}>
           Blogs
         </h2>
 
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((p) => (
             <article
               key={p.id}
-              className="group rounded-lg border border-[#26272e] bg-[#181a20] p-5 transition-colors hover:bg-[#1b1e25] hover:border-[#2f313a]"
+              className="glass hover-lift p-6"
             >
-              <header className="flex items-start justify-between gap-3">
+              <header className="flex items-start justify-between gap-3 mb-4">
                 <h3 className="font-space-grotesk font-bold text-base text-white tracking-tight">{p.title}</h3>
-                <time className="text-[12px] text-[#9ea0a6] font-geist-mono whitespace-nowrap">
+                <time className="text-[12px] text-white/60 font-geist-mono whitespace-nowrap">
                   {formatDate(p.date)}
                 </time>
               </header>
 
-              <p className="mt-3 text-sm text-[#c6c6c9] font-geist-mono leading-relaxed">{p.excerpt}</p>
+              <p className="text-sm text-white/80 font-geist-mono leading-relaxed mb-4">{p.excerpt}</p>
 
-              <ul className="mt-4 flex flex-wrap gap-2">
+              <ul className="flex flex-wrap gap-2 mb-4">
                 {p.tags.map((t) => (
                   <li
                     key={t}
-                    className="text-[11px] uppercase tracking-wide text-[#e6e6e8] bg-[#1f2129] border border-[#2a2b31] rounded-md px-2 py-1"
+                    className="text-[11px] uppercase tracking-wide text-white bg-white/10 border border-white/20 rounded-md px-2 py-1"
                   >
                     {t}
                   </li>
@@ -149,7 +147,7 @@ export default function Blogs() {
 
               <button
                 onClick={() => setOpenId(p.id)}
-                className="mt-5 inline-flex items-center gap-2 text-sm text-[#e6e6e8] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+                className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
                 aria-label={`Read more: ${p.title}`}
               >
                 READ MORE
@@ -172,18 +170,18 @@ export default function Blogs() {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-[1100] flex items-end sm:items-center justify-center bg-black/60"
+          className="fixed inset-0 z-[1100] flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm"
           onClick={() => setOpenId(null)}
         >
           <div
-            className="w-full sm:w-[640px] max-w-[92vw] rounded-t-xl sm:rounded-xl overflow-hidden border border-[#2a2b31] bg-[#181a20]"
+            className="w-full sm:w-[640px] max-w-[92vw] glass border border-white/20 overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="px-5 py-4 border-b border-[#24262c] flex items-center justify-between">
-              <h4 className="font-space-grotesk font-bold text-sm tracking-tight">{openPost.title}</h4>
+            <div className="px-6 py-4 border-b border-white/20 flex items-center justify-between">
+              <h4 className="font-space-grotesk font-bold text-lg tracking-tight text-white">{openPost.title}</h4>
               <button
                 onClick={() => setOpenId(null)}
-                className="p-2 rounded-md hover:bg-white/5"
+                className="p-2 rounded-md hover:bg-white/10 transition-colors text-white"
                 aria-label="Close"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -191,8 +189,8 @@ export default function Blogs() {
                 </svg>
               </button>
             </div>
-            <div className="px-5 py-4">
-              <p className="text-sm text-[#c6c6c9] font-geist-mono leading-relaxed">{openPost.content}</p>
+            <div className="px-6 py-6">
+              <p className="text-sm text-white/80 font-geist-mono leading-relaxed">{openPost.content}</p>
             </div>
           </div>
         </div>

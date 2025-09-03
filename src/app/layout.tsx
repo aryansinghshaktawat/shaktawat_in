@@ -3,10 +3,10 @@ import "./globals.css";
 import { ThemeProvider } from "./theme-provider";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import RevealProvider from "@/components/RevealProvider";
-import GrainOverlay from "@/components/GrainOverlay";
-import PageTransition from "@/components/PageTransition";
-import { spaceGrotesk, geistMono } from "@/lib/fonts";
+import RevealProvider from "@/components/ui/RevealProvider";
+import GrainOverlay from "@/components/ui/GrainOverlay";
+import PageTransition from "@/components/ui/PageTransition";
+import { spaceGrotesk } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   title: "Aryan Singh Shaktawat",

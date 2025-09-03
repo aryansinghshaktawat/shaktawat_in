@@ -118,9 +118,9 @@ const Header = () => {
         </div>
         {/* Nav links at far right, tight spacing */}
         <div className="navbar-links flex items-center justify-end h-full">
-          <nav className="hidden md:flex items-center gap-1 font-sans font-semibold text-[0.95rem] tracking-[0.08em] uppercase" aria-label="Primary navigation">
+          <nav className="hidden md:flex items-center gap-1 font-space-grotesk font-semibold text-[0.95rem] tracking-[0.08em] uppercase" aria-label="Primary navigation">
   {/* All links in a single row, right-aligned, including Resume */}
-  {[...leftItems, ...rightItems, { href: '/resume', id: 'resume', label: 'Resume' }].map((item, i, arr) => {
+              {[...leftItems, ...rightItems, { href: '/resume', id: 'resume', label: 'Resume' }].map((item, i, arr) => {
               const isActive =
         (item.id === 'home' && pathname === '/') ||
         (item.id !== 'home' && pathname?.startsWith(`/${item.id}`));
@@ -130,7 +130,7 @@ const Header = () => {
                     href={item.href}
                     target={undefined}
                     rel={undefined}
-                    className={`nav-link px-[6px] py-1 relative${isActive ? ' active' : ''}`}
+                    className={`nav-tab px-3 py-1.5 relative ${isActive ? 'active' : ''}`}
                     aria-current={isActive ? 'page' : undefined}
                     onClick={(e) => {
                       if (item.id === 'home') {
@@ -139,6 +139,7 @@ const Header = () => {
                       }
                     }}
                   >
+                    <span aria-hidden className="tab-dot mr-2" />
                     {item.label}
                   </Link>
                   {i < arr.length - 1 && (
@@ -213,8 +214,9 @@ const Header = () => {
                       target={item.id === 'resume' ? '_blank' : undefined}
                       rel={item.id === 'resume' ? 'noopener noreferrer' : undefined}
                       onClick={() => setIsOpen(false)}
-                      className={`block px-3 py-3 rounded-md text-white uppercase tracking-[0.13em] font-semibold transition-all duration-200 hover:bg-[#65cdf915] hover:text-[#65cdf9] hover:shadow-[0_0_15px_#65cdf930] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500`}
+                      className={`nav-tab-mobile block px-4 py-3 rounded-full text-white uppercase tracking-[0.09em] font-semibold transition-all duration-200 hover:bg-[#65cdf915] hover:text-[#65cdf9] hover:shadow-[0_0_15px_#65cdf930] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500`}
                     >
+                      <span className="tab-dot mr-3 inline-block" aria-hidden />
                       {item.label}
                     </Link>
                     {idx < arr.length - 1 && (
@@ -247,51 +249,38 @@ const Header = () => {
           font-size: 1rem;
           letter-spacing: 0.08em;
         }
-        .nav-link {
-          text-transform: uppercase;
-          letter-spacing: 0.06em;
-          color: #eeeeee;
-          position: relative;
-          font-size: 0.95rem;
-          font-family: inherit;
+        /* Pill-style navigation tabs */
+        .nav-tab, .nav-tab-mobile {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+          padding: 0.4rem 0.75rem;
+          border-radius: 9999px;
+          background: transparent;
+          color: #eaeef2;
+          transition: transform 180ms, box-shadow 180ms, background 200ms, color 200ms;
           font-weight: 600;
-          transition: color 0.18s, transform 0.18s, box-shadow 0.18s;
         }
-        .nav-link.active {
+        .nav-tab .tab-dot, .nav-tab-mobile .tab-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: linear-gradient(180deg,#65cdf9,#3b82f6);
+          box-shadow: 0 0 6px #65cdf980;
+          transform: scale(0.9);
+          transition: transform 200ms, opacity 200ms;
+        }
+        .nav-tab:hover, .nav-tab:focus, .nav-tab-mobile:hover, .nav-tab-mobile:focus {
+          transform: translateY(-3px) scale(1.02);
+          color: #ffffff;
+          box-shadow: 0 6px 20px rgba(101,205,249,0.12);
+        }
+        .nav-tab.active, .nav-tab-mobile.active {
+          background: linear-gradient(90deg, rgba(101,205,249,0.06), rgba(75,187,230,0.03));
           color: #65cdf9;
         }
-        .nav-link::after {
-          content: "";
-          display: block;
-          width: 0;
-          height: 2px;
-          background: linear-gradient(90deg,#65cdf9 60%,#4bbbe6 100%);
-          position: absolute;
-          left: 0;
-          bottom: -4px;
-          border-radius: 2px;
-          opacity: 0;
-          box-shadow: 0 0 0 #65cdf9cc;
-          transition: width 0.22s cubic-bezier(.4,0,.2,1), opacity 0.22s cubic-bezier(.4,0,.2,1), box-shadow 0.22s cubic-bezier(.4,0,.2,1), background 0.22s cubic-bezier(.4,0,.2,1);
-        }
-        .nav-link:hover,
-        .nav-link:focus {
-          color: #7ee7ff;
-          transform: scale(1.06);
-          box-shadow: 0 2px 12px #65cdf970;
-          text-shadow: 0 0 8px #65cdf980;
-        }
-        .nav-link:hover::after,
-        .nav-link:focus::after {
-          width: 100%;
-          opacity: 1;
-          box-shadow: 0 2px 16px #65cdf9cc;
-        }
-        .nav-link.active::after {
-          width: 100%;
-          opacity: 1;
-          background: linear-gradient(90deg,#65cdf9 80%,#4bbbe6 100%);
-          box-shadow: 0 2px 16px #65cdf9cc;
+        .nav-tab.active .tab-dot, .nav-tab-mobile.active .tab-dot {
+          transform: scale(1.15);
         }
         .navbar-separator {
           margin: 0 0.375rem; /* ~6px */

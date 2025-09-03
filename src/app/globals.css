@@ -1,9 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
+:root {
+  --font-geist-mono: ui-monospace, SFMono-Regular, 'Menlo', 'Monaco', 'Cascadia Code', 'Segoe UI Mono', 'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro', 'Fira Code', 'Droid Sans Mono', 'Courier New', monospace;
+}
+
 html {
+  font-family: var(--font-geist-mono), monospace;
   scroll-behavior: smooth;
+}
+
+/* Headings use Space Grotesk */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+}
+
+/* Body text uses Geist Mono fallback */
+body {
+  font-family: var(--font-geist-mono), monospace;
 }
 
 :root {

@@ -28,20 +28,20 @@ const Hero = () => {
       <div className="relative z-10 flex flex-col items-center justify-center max-w-4xl mx-auto px-4 pt-24 pb-28 md:pt-32 md:pb-40 text-center">
         {/* Name */}
         <h1
-          className="uppercase font-extrabold font-sans text-[2.8rem] md:text-[4.5rem] lg:text-[5.5rem] leading-none tracking-tight mb-4 drop-shadow-lg"
+          className="uppercase font-extrabold font-space-grotesk text-[2.8rem] md:text-[4.5rem] lg:text-[5.5rem] leading-none tracking-tight mb-4 drop-shadow-lg"
           style={{ letterSpacing: '0.02em' }}
         >
           ARYAN SINGH SHAKTAWAT
         </h1>
         {/* Greeting with fade-in animation */}
         <p
-          className="font-mono text-lg md:text-2xl font-medium text-[#e6e6e8] mb-3 opacity-0 animate-fadeIn"
+          className="font-geist-mono text-lg md:text-2xl font-medium text-[#e6e6e8] mb-3 opacity-0 animate-fadeIn"
           style={{ animation: 'fadeIn 1.2s ease 0.2s forwards', lineHeight: '1.5' }}
         >
           Hello, I’m Aryan—a creator of elegant interfaces and modern web solutions. Thanks for visiting!
         </p>
         {/* Secondary line for values/interests */}
-        <p className="font-sans text-base md:text-lg text-[#c6c6c9] mb-8 tracking-wide" style={{ lineHeight: '1.7' }}>
+        <p className="font-space-grotesk text-base md:text-lg text-[#c6c6c9] mb-8 tracking-wide" style={{ lineHeight: '1.7' }}>
           Driven by curiosity, design, and a love of code.
         </p>
 
@@ -53,7 +53,7 @@ const Hero = () => {
         </div>
 
         {/* Specializations list */}
-        <ul className="mt-4 space-y-3 text-base md:text-lg text-[#c6c6c9] font-mono">
+        <ul className="mt-4 space-y-3 text-base md:text-lg text-[#c6c6c9] font-geist-mono">
           <li className="flex items-start gap-3 justify-center">
             <span aria-hidden className="text-[#8a8a92]">↳</span>
             <span>Full-stack web apps</span>

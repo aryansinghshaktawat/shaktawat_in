@@ -10,8 +10,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Space Grotesk', 'sans-serif'],
-        mono: ['Roboto Mono', 'monospace'],
+        'space-grotesk': ['var(--font-space-grotesk)', 'Space Grotesk', 'sans-serif'],
+        'geist-mono': ['var(--font-geist-mono)', 'ui-monospace', 'monospace'],
+        sans: ['var(--font-space-grotesk)', 'Space Grotesk', 'sans-serif'],
+        mono: ['var(--font-geist-mono)', 'ui-monospace', 'monospace'],
       },
       colors: {
         'dark-text-100': '#e3dfd2',

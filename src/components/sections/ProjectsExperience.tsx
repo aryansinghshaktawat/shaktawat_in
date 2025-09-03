@@ -62,7 +62,7 @@ export default function ProjectsExperience() {
       <div className="max-w-6xl mx-auto px-4 py-20 md:py-28">
         {/* Headline */}
         <h2
-          className="uppercase text-left font-sans font-extrabold text-2xl md:text-3xl tracking-tight"
+          className="uppercase text-left font-space-grotesk font-extrabold text-2xl md:text-3xl tracking-tight"
           style={{ letterSpacing: "-0.02em" }}
         >
           Projects & Experience
@@ -76,11 +76,11 @@ export default function ProjectsExperience() {
               className="group rounded-lg border border-[#26272e] bg-[#181a20] p-5 transition-colors hover:bg-[#1b1e25] hover:border-[#2f313a]"
             >
               <header>
-                <h3 className="uppercase font-sans font-bold text-base text-white tracking-wide">
+                <h3 className="uppercase font-space-grotesk font-bold text-base text-white tracking-wide">
                   {p.title}
                 </h3>
               </header>
-              <p className="mt-3 text-sm text-[#c6c6c9] font-mono leading-relaxed">
+              <p className="mt-3 text-sm text-[#c6c6c9] font-geist-mono leading-relaxed">
                 {p.description}
               </p>
               <ul className="mt-4 flex flex-wrap gap-2">
@@ -124,11 +124,11 @@ export default function ProjectsExperience() {
               className="group rounded-lg border border-[#26272e] bg-[#181a20] p-5 transition-colors hover:bg-[#1b1e25] hover:border-[#2f313a]"
             >
               <header className="flex items-baseline justify-between gap-4">
-                <h3 className="uppercase font-sans font-bold text-base text-white tracking-wide">
+                <h3 className="uppercase font-space-grotesk font-bold text-base text-white tracking-wide">
                   {e.title}
                 </h3>
               </header>
-              <p className="mt-2 text-sm text-[#c6c6c9] font-mono">{e.description}</p>
+              <p className="mt-2 text-sm text-[#c6c6c9] font-geist-mono">{e.description}</p>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {e.tech.map((t) => (
                   <li
@@ -173,7 +173,7 @@ export default function ProjectsExperience() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="px-5 py-4 border-b border-[#24262c] flex items-center justify-between">
-              <h4 className="uppercase font-sans font-bold text-sm tracking-wide">{openItem.title}</h4>
+              <h4 className="uppercase font-space-grotesk font-bold text-sm tracking-wide">{openItem.title}</h4>
               <button
                 onClick={() => setOpenId(null)}
                 className="p-2 rounded-md hover:bg-white/5"
@@ -185,7 +185,7 @@ export default function ProjectsExperience() {
               </button>
             </div>
             <div className="px-5 py-4">
-              <p className="text-sm text-[#c6c6c9] font-mono leading-relaxed">{openItem.details}</p>
+              <p className="text-sm text-[#c6c6c9] font-geist-mono leading-relaxed">{openItem.details}</p>
             </div>
           </div>
         </div>

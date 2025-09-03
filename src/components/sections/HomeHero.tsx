@@ -15,7 +15,7 @@ export default function HomeHero() {
   <div className="w-full md:w-auto flex flex-col items-center md:block mb-8 md:mb-0" />
         {/* Minimal centered hero with animated underline */}
         <div className="w-full flex flex-col justify-center items-center text-center">
-          <h1 className="uppercase font-extrabold font-sans text-[2.6rem] md:text-[4rem] lg:text-[5rem] leading-none tracking-tight mb-2 drop-shadow-lg" style={{ letterSpacing: '0.01em' }}>
+          <h1 className="uppercase font-extrabold font-space-grotesk text-[2.6rem] md:text-[4rem] lg:text-[5rem] leading-none tracking-tight mb-2 drop-shadow-lg" style={{ letterSpacing: '0.01em' }}>
             ARYAN SINGH SHAKTAWAT
           </h1>
 
@@ -34,7 +34,7 @@ export default function HomeHero() {
             </div>
           </div>
 
-          <p className="font-sans text-lg md:text-2xl text-[#65cdf9] font-semibold max-w-3xl leading-relaxed mb-6">
+          <p className="font-geist-mono text-lg md:text-2xl text-[#65cdf9] font-semibold max-w-3xl leading-relaxed mb-6">
             I&apos;m a passionate B.Tech Computer Science student exploring AI, Cybersecurity, and Software Development through hands-on projects and continuous learning.
           </p>
 

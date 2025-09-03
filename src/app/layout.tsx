@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import RevealProvider from "@/components/RevealProvider";
 import GrainOverlay from "@/components/GrainOverlay";
 import PageTransition from "@/components/PageTransition";
+import { spaceGrotesk, geistMono } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   title: "Aryan Singh Shaktawat",
@@ -34,8 +35,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-  <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
-      <body className="min-h-screen flex flex-col">
+  <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth" className={spaceGrotesk.variable}>
+      <body className="min-h-screen flex flex-col font-geist-mono">
         <ThemeProvider>
           <GrainOverlay />
           <Header />

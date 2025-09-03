@@ -14,7 +14,7 @@ const Footer = () => {
             <svg className="w-5 h-5 text-[#e6e6e8]" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M12 .5C5.73.5.98 5.24.98 11.5c0 4.85 3.14 8.96 7.5 10.41.55.1.75-.24.75-.54v-1.9c-3.05.67-3.7-1.31-3.7-1.31-.5-1.27-1.22-1.6-1.22-1.6-.99-.68.07-.66.07-.66 1.1.08 1.67 1.13 1.67 1.13.98 1.67 2.57 1.19 3.19.9.1-.71.38-1.19.7-1.47-2.44-.28-5-1.22-5-5.44 0-1.2.43-2.19 1.13-2.96-.11-.28-.49-1.4.11-2.9 0 0 .93-.3 3.06 1.13.88-.25 1.83-.37 2.77-.38.94.01 1.89.13 2.77.38 2.12-1.44 3.06-1.13 3.06-1.13.6 1.5.22 2.62.11 2.9.7.77 1.12 1.76 1.12 2.96 0 4.23-2.57 5.16-5.02 5.43.39.34.74 1.02.74 2.06v3.05c0 .3.19.65.76.54 4.34-1.46 7.49-5.56 7.49-10.41C23.02 5.24 18.27.5 12 .5Z" clipRule="evenodd"/></svg>
           </a>
         </div>
-        <p className="mt-4 text-[12px] tracking-wide text-[#9ea0a6] font-mono">© Aryan Singh Shaktawat {new Date().getFullYear()} — All rights reserved</p>
+        <p className="mt-4 text-[12px] tracking-wide text-[#9ea0a6] font-geist-mono">© Aryan Singh Shaktawat {new Date().getFullYear()} — All rights reserved</p>
       </div>
     </footer>
   );

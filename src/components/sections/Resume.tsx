@@ -23,7 +23,7 @@ const Resume = () => {
           <div>
             <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight">Aryan Singh Shaktawat</h1>
             <p className="text-sm md:text-[15px] text-[#c6c6c9] mt-1">B.Tech CSE (Cyber Security &amp; Forensics), 5th Semester — UPES Dehradun</p>
-            <p className="text-sm text-[#9ea0a6] font-mono mt-1">
+            <p className="text-sm text-[#9ea0a6] font-geist-mono mt-1">
               Email: <a href="mailto:aryan@shaktawat.in" className="underline decoration-dotted underline-offset-2 hover:decoration-solid">aryan@shaktawat.in</a>
               {' '}·{' '}
               Website: <a href="https://shaktawat.in" target="_blank" rel="noopener noreferrer" className="underline decoration-dotted underline-offset-2 hover:decoration-solid">shaktawat.in</a>
@@ -52,9 +52,9 @@ const Resume = () => {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <h4 className="uppercase text-sm font-bold tracking-wide">Cyber Security Intern</h4>
-                <p className="uppercase text-[12px] tracking-wide text-[#9ea0a6] font-mono">STF Cyber Cell, Uttarakhand Police, Dehradun</p>
+                <p className="uppercase text-[12px] tracking-wide text-[#9ea0a6] font-geist-mono">STF Cyber Cell, Uttarakhand Police, Dehradun</p>
               </div>
-              <span className="text-[12px] text-[#9ea0a6] font-mono whitespace-nowrap">June 2025 – July 2025</span>
+              <span className="text-[12px] text-[#9ea0a6] font-geist-mono whitespace-nowrap">June 2025 – July 2025</span>
             </div>
             <ul className="mt-2 space-y-1">
               <Bullet>Assisted Special Task Force cyber unit in real-time cybercrime investigations and digital forensics operations</Bullet>
@@ -68,9 +68,9 @@ const Resume = () => {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <h4 className="uppercase text-sm font-bold tracking-wide">Social Intern</h4>
-                <p className="uppercase text-[12px] tracking-wide text-[#9ea0a6] font-mono">Shine India Foundation</p>
+                <p className="uppercase text-[12px] tracking-wide text-[#9ea0a6] font-geist-mono">Shine India Foundation</p>
               </div>
-              <span className="text-[12px] text-[#9ea0a6] font-mono whitespace-nowrap">June 2024 – July 2024</span>
+              <span className="text-[12px] text-[#9ea0a6] font-geist-mono whitespace-nowrap">June 2024 – July 2024</span>
             </div>
             <ul className="mt-2 space-y-1">
               <Bullet>Participated in social campaigns and community engagement initiatives focusing on health awareness and public welfare</Bullet>

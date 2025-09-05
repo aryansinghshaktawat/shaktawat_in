@@ -77,7 +77,9 @@ export default function Home() {
             
             {/* Left: Hero Content */}
             <div className="text-center lg:text-left">
-              <HackerName text="Aryan Singh Shaktawat" className="text-4xl md:text-6xl font-space-grotesk font-extrabold text-white mb-6" />
+              <div className="mb-6">
+                <HackerName text="Aryan Singh Shaktawat" className="text-4xl md:text-6xl font-space-grotesk font-extrabold text-white leading-tight" />
+              </div>
               <p className="text-xl md:text-2xl text-slate-300 mb-8 font-geist-mono">
                 Aspiring <span className="text-cyan-400 font-bold">Cybersecurity</span> & <span className="text-blue-400 font-bold">Tech Enthusiast</span>
               </p>

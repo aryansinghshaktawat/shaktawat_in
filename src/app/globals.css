@@ -268,3 +268,28 @@ a, button, input, textarea { transition: color 150ms ease, background-color 150m
   min-height: 60vh;
 }
 
+/* Scramble text stability for mobile */
+.scramble-stable {
+  transform-origin: center;
+  will-change: contents;
+  contain: layout;
+}
+
+/* Prevent layout shifts during scramble animation */
+@media (max-width: 768px) {
+  .scramble-stable {
+    min-height: 1.1em;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+    word-break: keep-all;
+  }
+}
+
+/* Ensure stable text rendering */
+.scramble-stable * {
+  font-feature-settings: "tnum" 1; /* Use tabular numbers for consistent width */
+  letter-spacing: 0.02em;
+}
+

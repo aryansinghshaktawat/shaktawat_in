@@ -15,6 +15,10 @@ module.exports = {
       changefreq: "weekly",
       priority: 0.8,
     }),
+    await config.transform(config, "/profile", {
+      changefreq: "monthly",
+      priority: 0.9,
+    }),
     await config.transform(config, "/projects", {
       changefreq: "weekly", 
       priority: 0.8,

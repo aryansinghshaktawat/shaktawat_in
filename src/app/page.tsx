@@ -31,7 +31,14 @@ const personSchema = {
     "Cybersecurity", "Web Development", "Digital Forensics", 
     "AI Integration", "Full Stack Development", "Computer Science"
   ],
-  "description": "B.Tech CSE student specializing in cybersecurity, forensics, and full-stack development"
+  "description": "B.Tech CSE student specializing in cybersecurity, forensics, and full-stack development",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://shaktawat.in/profile.webp",
+    "caption": "Aryan Singh Shaktawat - Professional Profile Photo",
+    "width": 300,
+    "height": 300
+  }
 };
 
 const websiteSchema = {
@@ -101,10 +108,12 @@ export default function Home() {
                 <div className="relative mb-6">
                   <Image
                     src="/profile.webp"
-                    alt="Aryan Singh Shaktawat"
+                    alt="Aryan Singh Shaktawat - Cybersecurity Expert and Full Stack Developer"
                     width={300}
                     height={300}
                     className="w-full h-auto rounded-2xl object-cover"
+                    priority={true}
+                    title="Aryan Singh Shaktawat - Professional Profile Photo"
                   />
                 </div>
                 

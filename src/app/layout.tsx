@@ -35,6 +35,12 @@ export const metadata: Metadata = {
     siteName: "shaktawat.in",
     images: [
       {
+        url: "/profile.webp",
+        width: 300,
+        height: 300,
+        alt: "Aryan Singh Shaktawat — Professional Profile Photo",
+      },
+      {
         url: "/og-image.png",
         width: 1200,
         height: 630,

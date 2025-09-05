@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://shaktawat.in
+
+# Sitemaps
+Sitemap: https://shaktawat.in/sitemap.xml

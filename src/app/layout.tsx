@@ -9,23 +9,62 @@ import PageTransition from "@/components/ui/PageTransition";
 import { spaceGrotesk } from "@/lib/fonts";
 
 export const metadata: Metadata = {
-  title: "Aryan Singh Shaktawat",
-  description: "Cybersecurity Enthusiast & Developer",
+  title: {
+    default: "Aryan Singh Shaktawat — Cybersecurity & Full‑Stack",
+    template: "%s — Aryan Singh Shaktawat",
+  },
+  description:
+    "Aryan Singh Shaktawat — B.Tech CSE student. Cybersecurity, forensics, full‑stack development, AI integrations. Portfolio, projects and blog.",
   metadataBase: new URL("https://shaktawat.in"),
+  keywords: [
+    "Aryan Singh Shaktawat","Aryan Shaktawat","Aryan S Shaktawat","A S Shaktawat",
+    "Aryan Shaktawat resume","Aryan Shaktawat projects","Aryan Shaktawat blog",
+    "Aryan Shaktawat GitHub","Aryan Shaktawat LinkedIn","Aryan Shaktawat UPES",
+    "Aryan Shaktawat cybersecurity","Aryan Shaktawat forensics","Aryan Shaktawat CSE",
+    "Aryan Singh","aryan singh shaktawat","Aryan S","A. Shaktawat",
+    "cybersecurity","full-stack","portfolio","forensics","AI","developer",
+    "Aryan Shaktawat full stack","Aryan Shaktawat developer","Aryan Shaktawat website",
+    "Aryan Shaktawat contact","Aryan S Shaktawat resume PDF","Aryan Shaktawat UPES Dehradun"
+  ],
+  authors: [{ name: "Aryan Singh Shaktawat", url: "https://shaktawat.in" }],
+  creator: "Aryan Singh Shaktawat",
   openGraph: {
-    title: "Aryan Singh Shaktawat — Portfolio",
-    description: "Creative web developer. Cybersecurity enthusiast.",
-    type: "website",
+    title: "Aryan Singh Shaktawat — Cybersecurity & Projects",
+    description: "Portfolio, projects and blog by Aryan Singh Shaktawat.",
     url: "https://shaktawat.in",
+    siteName: "shaktawat.in",
     images: [
-      { url: "/vercel.svg", width: 1200, height: 630, alt: "Aryan — Portfolio" },
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Aryan Singh Shaktawat — Portfolio",
+      },
     ],
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aryan Singh Shaktawat — Portfolio",
-    description: "Creative web developer. Cybersecurity enthusiast.",
-    images: ["/vercel.svg"],
+    title: "Aryan Singh Shaktawat",
+    description: "Cybersecurity & Full‑Stack Developer",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
 };
 
@@ -36,6 +75,11 @@ export default function RootLayout({
 }>) {
   return (
   <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth" className={spaceGrotesk.variable}>
+      <head>
+        <link rel="preload" href="/fonts/SpaceGrotesk-Variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body className="min-h-screen flex flex-col font-geist-mono">
         <ThemeProvider>
           <GrainOverlay />

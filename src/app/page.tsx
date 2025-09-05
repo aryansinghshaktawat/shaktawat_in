@@ -1,11 +1,57 @@
 "use client";
 import ContactInvite from '@/components/sections/ContactInvite';
 import HackerName from '@/components/ui/HackerName';
+import JsonLd from '@/components/seo/JsonLd';
 import Image from 'next/image';
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Aryan Singh Shaktawat",
+  "alternateName": [
+    "Aryan Shaktawat","Aryan S Shaktawat","A S Shaktawat","Aryan Singh",
+    "Aryan Shaktawat resume","Aryan Shaktawat projects","Aryan Shaktawat blog",
+    "Aryan Shaktawat GitHub","Aryan Shaktawat LinkedIn","Aryan Shaktawat UPES",
+    "aryan singh shaktawat","Aryan S","A. Shaktawat","AryanShaktawat",
+    "Aryan-Shaktawat","Aryan Shaktawat cybersecurity","Aryan Shaktawat forensics",
+    "Aryan Shaktawat full stack","Aryan Shaktawat developer","Aryan Shaktawat CSE"
+  ],
+  "url": "https://shaktawat.in",
+  "sameAs": [
+    "https://github.com/aryansinghshaktawat",
+    "https://linkedin.com/in/aryansinghshaktawat"
+  ],
+  "jobTitle": "Full-Stack Developer",
+  "worksFor": { 
+    "@type": "Organization", 
+    "name": "UPES Dehradun",
+    "url": "https://www.upes.ac.in"
+  },
+  "knowsAbout": [
+    "Cybersecurity", "Web Development", "Digital Forensics", 
+    "AI Integration", "Full Stack Development", "Computer Science"
+  ],
+  "description": "B.Tech CSE student specializing in cybersecurity, forensics, and full-stack development"
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Aryan Singh Shaktawat Portfolio",
+  "url": "https://shaktawat.in",
+  "description": "Portfolio, projects and blog by Aryan Singh Shaktawat",
+  "author": {
+    "@type": "Person",
+    "name": "Aryan Singh Shaktawat"
+  }
+};
 
 export default function Home() {
   return (
-    <main className="flex flex-col min-h-screen">
+    <>
+      <JsonLd data={personSchema} />
+      <JsonLd data={websiteSchema} />
+      <main className="flex flex-col min-h-screen">
       {/* Modern Hero Section */}
       <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
         {/* Animated background pattern */}
@@ -278,5 +324,6 @@ export default function Home() {
         <ContactInvite />
       </div>
     </main>
+    </>
   );
 }

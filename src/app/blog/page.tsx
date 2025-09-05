@@ -67,6 +67,14 @@ export default function BlogPage() {
 }
 
 export const metadata: Metadata = {
-  title: 'Blog — Aryan Singh Shaktawat',
-  description: 'Notes and articles on web dev, performance, DX, and OSINT.',
+  title: "Blog & Insights",
+  description: "Deep dives into web development, cybersecurity, and modern development tools by Aryan Singh Shaktawat.",
+  openGraph: {
+    title: "Blog & Insights — Aryan Singh Shaktawat",
+    description: "Deep dives into web development, cybersecurity, and modern development tools.",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://shaktawat.in/blog",
+  },
 };

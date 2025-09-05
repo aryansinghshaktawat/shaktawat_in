@@ -193,6 +193,14 @@ const ProjectsPage = () => {
 export default ProjectsPage;
 
 export const metadata: Metadata = {
-  title: 'Projects — Aryan Singh Shaktawat',
-  description: 'A collection of projects demonstrating technical skills, problem-solving capabilities, and innovative thinking across various domains.',
+  title: 'Projects & Portfolio',
+  description: 'Explore cybersecurity tools, web applications, and innovative solutions built by Aryan Singh Shaktawat. From disaster rescue apps to eco-education platforms.',
+  openGraph: {
+    title: "Projects & Portfolio — Aryan Singh Shaktawat",
+    description: "Explore cybersecurity tools, web applications, and innovative solutions.",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://shaktawat.in/projects",
+  },
 };

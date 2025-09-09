@@ -93,15 +93,15 @@ const ProjectsPage = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] animated-bg flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[40vh] md:min-h-[50vh] animated-bg flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900/50 to-gray-900/80"></div>
-        <div className="relative z-10 text-center px-6 py-20">
+        <div className="relative z-10 text-center px-4 md:px-6 py-12 md:py-20">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-6xl md:text-7xl font-bold text-white mb-8 tracking-tight leading-none">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 md:mb-8 tracking-tight leading-none">
               Projects
             </h1>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto mb-8 rounded-full"></div>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light">
+            <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto mb-6 md:mb-8 rounded-full"></div>
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light">
               A collection of projects demonstrating technical skills, problem-solving capabilities, and innovative thinking across various domains.
             </p>
           </div>

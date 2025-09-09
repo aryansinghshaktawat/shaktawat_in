@@ -25,11 +25,10 @@ body {
   min-height: 100vh;
 }
 
-/* Animated background gradient */
+/* Optimized background gradient */
 @keyframes gradientShift {
-  0% { background-position: 0% 50%; }
+  0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
 /* Floating particles animation */
@@ -275,15 +274,36 @@ a, button, input, textarea { transition: color 150ms ease, background-color 150m
   contain: layout;
 }
 
-/* Prevent layout shifts during scramble animation */
+/* Mobile optimizations */
 @media (max-width: 768px) {
   .scramble-stable {
     min-height: 1.1em;
     display: block;
-    white-space: nowrap;
-    overflow: hidden;
+    white-space: normal;
+    overflow: visible;
     text-overflow: clip;
-    word-break: keep-all;
+    word-break: break-word;
+    hyphens: auto;
+  }
+  
+  /* Reduce motion for mobile performance */
+  .animate-pulse {
+    animation-duration: 3s;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+  
+  /* Better touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Optimize glass effect for mobile */
+  .glass {
+    backdrop-filter: blur(8px);
   }
 }
 

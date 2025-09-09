@@ -1,3 +1,3 @@
 export default function GrainOverlay() {
-  return <div aria-hidden className="grain-layer" />;
+  return <div className="grain-layer" aria-hidden="true" />;
 }

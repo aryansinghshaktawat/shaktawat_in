@@ -29,10 +29,10 @@ const Contact = () => {
           Get In Touch
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 lg:gap-12">
           {/* Form card */}
           <div className="md:col-span-3">
-            <div className="glass hover-lift p-6 md:p-8">
+            <div className="glass hover-lift p-8">
               <div className="mb-6 p-4 glass rounded-lg border border-yellow-400/30">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></div>
@@ -112,10 +112,10 @@ const Contact = () => {
 
           {/* Alt contacts */}
           <div className="md:col-span-2">
-            <div className="glass hover-lift p-4 md:p-6">
+            <div className="glass hover-lift p-6">
               <h3 className="uppercase font-space-grotesk font-bold text-sm tracking-wide text-white">Elsewhere</h3>
-              <p className="mt-2 text-xs md:text-[13px] text-white/60 font-geist-mono">Prefer a quick ping? Find me here.</p>
-              <div className="mt-4 md:mt-5 grid grid-cols-3 gap-2 md:gap-3">
+              <p className="mt-2 text-[13px] text-white/60 font-geist-mono">Prefer a quick ping? Find me here.</p>
+              <div className="mt-5 grid grid-cols-3 gap-3">
                 <a href="mailto:aryan@shaktawat.in" className="group flex flex-col items-center gap-2 glass p-4 hover-lift transition-colors" aria-label="Email">
                   <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16v12H4z" strokeWidth="2"/><path d="m22 6-10 7L2 6" strokeWidth="2"/></svg>
                   <span className="text-[11px] font-geist-mono uppercase tracking-wide text-white/60">Email</span>

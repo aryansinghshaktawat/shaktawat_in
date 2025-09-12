@@ -1,25 +1,22 @@
 "use client";
-
-import { motion, AnimatePresence } from 'framer-motion';
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const [key, setKey] = useState(pathname);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setKey(pathname), [pathname]);
+  useEffect(() => setMounted(true), []);
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={pathname}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -20 }}
-        transition={{
-          duration: 0.3,
-          ease: "easeInOut"
-        }}
-      >
-        {children}
-      </motion.div>
-    </AnimatePresence>
+    <div key={key} className={mounted ? "page-fade" : undefined}>
+      {children}
+      <style jsx>{`
+        .page-fade { opacity: 0; animation: fadeInPage 260ms ease forwards; }
+        @keyframes fadeInPage { to { opacity: 1; } }
+      `}</style>
+    </div>
   );
 }

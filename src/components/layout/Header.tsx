@@ -102,7 +102,7 @@ const Header = () => {
       <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-[4px] bg-[linear-gradient(90deg,transparent,#65cdf9_50%,transparent)] opacity-70 shadow-[0_2px_24px_0_#65cdf952]" />
   <div className="w-full pl-0 pr-6 h-[64px] flex items-center justify-between relative">
         {/* Logo at extreme left, full height */}
-  <div className="navbar-logo pl-4 md:pl-10 flex items-center h-full">
+  <div className="navbar-logo pl-10 flex items-center h-full">
           <Link href="/" className="pointer-events-auto inline-flex items-center h-full group" onClick={(e) => { e.preventDefault(); router.push('/'); }}>
             <Image
               src="/darklogo.png"
@@ -110,7 +110,7 @@ const Header = () => {
               width={45}
               height={45}
               priority
-              className="block h-[40px] md:h-[50px] w-auto drop-shadow-lg relative top-[1px] transition-all duration-200 group-hover:scale-110 group-hover:drop-shadow-[0_0_20px_#65cdf980]"
+              className="block h-[50px] w-auto drop-shadow-lg relative top-[1px] transition-all duration-200 group-hover:scale-110 group-hover:drop-shadow-[0_0_20px_#65cdf980]"
               style={{ objectFit: 'contain' }}
             />
           </Link>

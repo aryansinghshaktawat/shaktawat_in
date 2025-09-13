@@ -74,15 +74,29 @@ def main():
 
     # Create favicon.ico in src/app
     if processed:
-        icons = [Image.open(x).convert("RGBA") for x in processed]
-        # ensure sizes for ICO: 16 and 32
-        ico_sizes = []
-        for im in icons:
-            ico_sizes.append(im)
+        # Ensure we have both 16x16 and 32x32 images. If 16x16 missing but 32x32 exists, downscale.
+        sizes = {16: None, 32: None}
+        for p in processed:
+            im = Image.open(p).convert("RGBA")
+            w, h = im.size
+            if w == 16 and h == 16:
+                sizes[16] = im
+            if w == 32 and h == 32:
+                sizes[32] = im
+
+        # If 16 missing but 32 present, downscale 32 -> 16 and save PNG
+        if sizes[16] is None and sizes[32] is not None:
+            sizes[16] = sizes[32].resize((16, 16), Image.LANCZOS)
+            gen16_path = PUBLIC / "favicon-16x16.png"
+            sizes[16].save(gen16_path)
+            print(f"Wrote generated: {gen16_path}")
+
         ico_path = APP / "favicon.ico"
-        # save ICO with multiple sizes
-        ico_sizes[0].save(ico_path, format="ICO", sizes=[(16, 16), (32, 32)])
-        print(f"Wrote: {ico_path}")
+        ico_imgs = [img for img in (sizes[16], sizes[32]) if img is not None]
+        if ico_imgs:
+            # Save ICO with multiple sizes
+            ico_imgs[0].save(ico_path, format="ICO", sizes=[(16, 16), (32, 32)])
+            print(f"Wrote: {ico_path}")
 
 
 if __name__ == "__main__":

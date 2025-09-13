@@ -21,7 +21,7 @@ const personSchema = {
     "https://github.com/aryansinghshaktawat",
     "https://linkedin.com/in/aryansinghshaktawat"
   ],
-  "jobTitle": "Full-Stack Developer",
+  "jobTitle": "cybersecurity and forensics Developer",
   "worksFor": { 
     "@type": "Organization", 
     "name": "UPES Dehradun",
@@ -31,7 +31,7 @@ const personSchema = {
     "Cybersecurity", "Web Development", "Digital Forensics", 
     "AI Integration", "Full Stack Development", "Computer Science"
   ],
-  "description": "B.Tech CSE student specializing in cybersecurity, forensics, and full-stack development",
+  "description": "B.Tech CSE student specializing in cybersecurity, forensics, and cybersecurity and forensics development",
   "image": {
     "@type": "ImageObject",
     "url": "https://shaktawat.in/profile.webp",
@@ -58,9 +58,9 @@ export default function Home() {
     <>
       <JsonLd data={personSchema} />
       <JsonLd data={websiteSchema} />
-      <main className="flex flex-col min-h-screen">
+  <main className="flex flex-col min-h-screen">
       {/* Modern Hero Section */}
-      <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+  <section className="relative min-h-[calc(100vh-var(--site-header-height))] pt-20 sm:pt-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
         {/* Animated background pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_49%,rgba(59,130,246,0.05)_50%,transparent_51%)] bg-[length:20px_20px] animate-pulse"></div>
         
@@ -98,8 +98,7 @@ export default function Home() {
                   <span className="text-slate-300 ml-1">Dehradun</span>
                 </div>
                 <div className="glass rounded-full px-4 py-2">
-                  <span className="text-green-400 font-bold">Full-Stack</span>
-                  <span className="text-slate-300 ml-1">Developer</span>
+                  <span className="text-green-400 font-bold">cybersecurity and forensics</span>
                 </div>
               </div>
             </div>
@@ -119,25 +118,7 @@ export default function Home() {
                   />
                 </div>
                 
-                <h3 className="text-2xl font-space-grotesk font-bold text-white mb-4">Current Focus</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
-                    <span className="text-slate-300 text-sm">AI model integrations</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-blue-400"></div>
-                    <span className="text-slate-300 text-sm">OSINT tools development</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-green-400"></div>
-                    <span className="text-slate-300 text-sm">Cybersecurity research</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-purple-400"></div>
-                    <span className="text-slate-300 text-sm">Portfolio modernization</span>
-                  </div>
-                </div>
+                <h3 className="text-2xl font-space-grotesk font-bold text-white mb-4 text-center">Aryan Singh Shaktawat</h3>
               </div>
             </div>
           </div>

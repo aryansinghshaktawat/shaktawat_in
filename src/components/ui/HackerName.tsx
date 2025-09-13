@@ -48,7 +48,7 @@ export default function HackerName({ text, className = '' }: Props) {
   return (
     <h1 
       ref={ref as React.RefObject<HTMLHeadingElement>} 
-      className={`${className} scramble-stable relative`}
+      className={`${className} hacker-name scramble-stable relative`}
       aria-label={text}
       style={{
         // Prevent layout shifts by maintaining stable dimensions

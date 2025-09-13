@@ -58,7 +58,7 @@ const ResumePage = () => {
               </div>
               <h3 className="font-space-grotesk text-xl font-bold text-white mb-3">Skills</h3>
               <p className="font-geist-mono text-[#9ea0a6] mb-4">Technical Expertise</p>
-              <div className="text-[#f59e0b] font-geist-mono text-sm">Full-Stack & Security</div>
+              <div className="text-[#f59e0b] font-geist-mono text-sm">cybersecurity and forensics & Security</div>
             </div>
           </div>
 

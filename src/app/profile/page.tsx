@@ -15,7 +15,7 @@ const profileSchema = {
     "contentUrl": "https://shaktawat.in/profile.webp"
   },
   "jobTitle": "Cybersecurity Expert and Full Stack Developer",
-  "description": "Professional headshot of Aryan Singh Shaktawat, cybersecurity expert and full-stack developer"
+  "description": "Professional headshot of Aryan Singh Shaktawat, cybersecurity expert and cybersecurity and forensics developer"
 };
 
 export default function ProfilePage() {
@@ -49,7 +49,7 @@ export default function ProfilePage() {
               </h2>
               <p className="text-white/70">
                 B.Tech Computer Science Engineering student specializing in cybersecurity, 
-                digital forensics, and full-stack development.
+                digital forensics, and cybersecurity and forensics development.
               </p>
             </div>
           </div>
@@ -61,7 +61,7 @@ export default function ProfilePage() {
 
 export const metadata: Metadata = {
   title: 'Profile & About',
-  description: 'Professional profile and headshot of Aryan Singh Shaktawat, cybersecurity expert and full-stack developer.',
+  description: 'Professional profile and headshot of Aryan Singh Shaktawat, cybersecurity expert and cybersecurity and forensics developer.',
   openGraph: {
     title: "Aryan Singh Shaktawat - Professional Profile",
     description: "Professional headshot and profile of cybersecurity expert Aryan Singh Shaktawat.",

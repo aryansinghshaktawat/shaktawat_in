@@ -1,4 +1,7 @@
 // src/components/sections/Resume.tsx
+'use client';
+
+import React from 'react';
 import Link from 'next/link';
 
 const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
@@ -43,7 +46,7 @@ const Resume = () => {
               </p>
             </div>
             <div className="flex gap-2">
-              <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-md border border-white/20 text-xs font-medium text-white bg-white/10 hover:bg-white/20 transition-all duration-200">
+              <Link href="/AryanSinghShaktawat_CSF_Resume.pdf" target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 rounded-md border border-white/20 text-xs font-medium text-white bg-white/10 hover:bg-white/20 transition-all duration-200">
                 Download PDF
               </Link>
             </div>

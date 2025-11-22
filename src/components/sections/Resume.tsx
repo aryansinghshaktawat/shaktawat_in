@@ -27,7 +27,8 @@ const Resume = () => {
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 py-10 md:py-16">
-        {/* Download Resume Section */}
+        
+        {/* Download Resume CTA (prominent) */}
         <div className="bg-gradient-to-r from-[#65cdf9]/10 via-[#10b981]/10 to-[#f59e0b]/10 border border-[#65cdf9]/30 rounded-3xl p-12 text-center mb-8 animate-fade-in-up">
           <h3 className="font-space-grotesk text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#65cdf9] to-[#10b981] mb-6">Download Professional Resume</h3>
           <p className="font-geist-mono text-lg text-[#e6e6e8] mb-8 max-w-2xl mx-auto">Get the complete PDF version with detailed project descriptions and technical proficiencies</p>

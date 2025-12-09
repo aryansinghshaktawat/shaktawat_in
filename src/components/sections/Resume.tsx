@@ -32,9 +32,14 @@ const Resume = () => {
         <div className="bg-gradient-to-r from-[#65cdf9]/10 via-[#10b981]/10 to-[#f59e0b]/10 border border-[#65cdf9]/30 rounded-3xl p-12 text-center mb-8 animate-fade-in-up">
           <h3 className="font-space-grotesk text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#65cdf9] to-[#10b981] mb-6">Download Professional Resume</h3>
           <p className="font-geist-mono text-lg text-[#e6e6e8] mb-8 max-w-2xl mx-auto">Get the complete PDF version with detailed project descriptions and technical proficiencies</p>
-          <Link target="_blank" rel="noopener noreferrer" href="/AryanSinghShaktawat_CSF_Resume.pdf" className="px-3 py-1.5 rounded-md border border-white/20 text-xs font-medium text-white bg-white/10 hover:bg-white/20 transition-all duration-200">
-            Download PDF
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link target="_blank" rel="noopener noreferrer" href="/AryanSinghShaktawat_CSF_Resume.pdf" className="px-3 py-1.5 rounded-md border border-white/20 text-xs font-medium text-white bg-white/10 hover:bg-white/20 transition-all duration-200">
+              Download PDF
+            </Link>
+            <Link target="_blank" rel="noopener noreferrer" href="/resume/aryan-visa-se-resume.pdf" className="px-3 py-1.5 rounded-md border border-white/20 text-xs font-medium text-white bg-white/10 hover:bg-white/20 transition-all duration-200">
+              Visa Software Engineering Internship Resume (PDF)
+            </Link>
+          </div>
         </div>
 
         {/* Header */}

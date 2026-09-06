@@ -6,8 +6,6 @@
 import { useRef } from "react";
 import {
   motion,
-  useScroll,
-  useTransform,
   useInView,
 } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
@@ -63,11 +61,6 @@ const personSchema = {
 ═══════════════════════════════════════════════ */
 export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
-  const { scrollYProgress: heroScroll } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const heroY = useTransform(heroScroll, [0, 1], [0, -40]);
 
   return (
     <>
@@ -115,12 +108,31 @@ export default function Home() {
                 }}
                 id="hero-card"
               >
-                {/* Left-aligned Visual: Blended Profile Image */}
-                <div style={{ position: "relative", width: "100%", maxWidth: 380, margin: "0 auto" }}>
+                {/* Left-aligned Visual: 3-Layer Overlapping Composition */}
+                <div className="relative w-full aspect-square max-h-[460px] md:h-[480px] flex items-center justify-center">
+
+                  {/* Element 1: The Dark Green Code Box (Background Layer: z-10) */}
                   <motion.div
-                    style={{ y: heroY }}
-                    transition={{ duration: 0.8 }}
+                    animate={{ y: [0, -8, 0] }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute top-6 md:top-8 left-2 md:left-4 z-10 hidden sm:block bg-[#2A4134] text-[#E2EBE4] rounded-2xl p-4 md:p-5 shadow-2xl w-56 md:w-60 font-mono text-xs"
                   >
+                    <div className="flex gap-1.5 mb-2.5">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#FF6B6B] opacity-80" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#FFD93D] opacity-80" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#6BCB77] opacity-80" />
+                    </div>
+                    <div className="space-y-1 text-[0.72rem] leading-relaxed">
+                      <div><span className="text-[#6BC9E8]">const</span> <span className="text-[#F8D77A]">aryan</span> = &#123;</div>
+                      <div className="pl-3"><span className="text-[#B8E0C4]">role</span>: <span className="text-[#F5B8B8]">&quot;cyber-eng&quot;</span>,</div>
+                      <div className="pl-3"><span className="text-[#B8E0C4]">stack</span>: <span className="text-[#F5B8B8]">&quot;next+py&quot;</span>,</div>
+                      <div className="pl-3"><span className="text-[#B8E0C4]">mode</span>: &#123; <span className="text-[#B8E0C4]">secure</span>: <span className="text-[#6BC9E8]">true</span> &#125;</div>
+                      <div>&#125;</div>
+                    </div>
+                  </motion.div>
+
+                  {/* Element 2: The Portrait (Middle Layer: z-20) */}
+                  <div className="absolute inset-x-0 bottom-0 mx-auto z-20 w-full max-w-[300px] md:max-w-[350px]">
                     <Image
                       src="/profile.webp"
                       alt="Aryan Singh Shaktawat Profile"
@@ -134,11 +146,33 @@ export default function Home() {
                         borderRadius: "2rem",
                         mixBlendMode: "multiply",
                         filter: "saturate(0.9) contrast(1.05)",
-                        WebkitMaskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
-                        maskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
+                        WebkitMaskImage: "linear-gradient(to bottom, black 65%, transparent 100%)",
+                        maskImage: "linear-gradient(to bottom, black 65%, transparent 100%)",
                       }}
                     />
+                  </div>
+
+                  {/* Element 3: The White Glass Box (Foreground Layer: z-30) */}
+                  <motion.div
+                    animate={{ y: [0, -8, 0] }}
+                    transition={{ duration: 5, delay: 0.8, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute bottom-8 md:bottom-10 right-2 md:right-4 z-30 bg-white/90 backdrop-blur-md border border-white/60 shadow-xl rounded-2xl p-4 md:p-5 w-52 md:w-56 font-sans text-xs"
+                  >
+                    <div className="flex gap-1.5 mb-2.5">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#FF6B6B] opacity-80" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#FFD93D] opacity-80" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#6BCB77] opacity-80" />
+                    </div>
+                    <div className="space-y-2 font-medium text-[#1A2E22] text-[0.8rem]">
+                      {["Pen Testing", "AES-256", "OSINT", "Next.js"].map((item) => (
+                        <div key={item} className="flex items-center justify-between">
+                          <span>{item}</span>
+                          <span className="text-[#2A4134] font-bold">✓</span>
+                        </div>
+                      ))}
+                    </div>
                   </motion.div>
+
                 </div>
 
                 {/* Right-aligned Heading & Subheading */}

@@ -76,9 +76,9 @@ export default function Header() {
           <Image
             src="/apple-touch-icon.png"
             alt="Aryan Singh Shaktawat Logo"
-            width={36}
-            height={36}
-            className="w-9 h-9 object-contain brightness-0 opacity-90 transition-opacity hover:opacity-100"
+            width={56}
+            height={56}
+            className="w-14 h-14 object-contain brightness-0 opacity-90 transition-opacity hover:opacity-100"
             priority
           />
         </a>

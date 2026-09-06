@@ -2,14 +2,14 @@
 // Soft Sage theme — minimalist floating header with pill nav links.
 "use client";
 
-import Image from "next/image";
 import { useState, useEffect } from "react";
+import { Sun } from "lucide-react";
 
 const NAV_LINKS = [
-  { href: "#about",    label: "About"    },
-  { href: "#journey",  label: "Journey"  },
-  { href: "#work",     label: "Work"     },
-  { href: "#contact",  label: "Contact"  },
+  { href: "#about",    label: "About"     },
+  { href: "#work",     label: "Work"      },
+  { href: "#journey",  label: "Strengths" },
+  { href: "#contact",  label: "Contact"   },
 ] as const;
 
 export default function Header() {
@@ -61,7 +61,7 @@ export default function Header() {
           justifyContent: "space-between",
         }}
       >
-        {/* Logo — image mark */}
+        {/* Logo — ARYN Text Mark */}
         <a
           href="#hero"
           onClick={(e) => handleNav(e, "#hero")}
@@ -73,43 +73,48 @@ export default function Header() {
           }}
           aria-label="Aryan Singh Shaktawat — Home"
         >
-          <Image
-            src="/apple-touch-icon.png"
-            alt="Aryan Singh Shaktawat Logo"
-            width={56}
-            height={56}
-            className="w-14 h-14 object-contain brightness-0 opacity-90 transition-opacity hover:opacity-100"
-            priority
-          />
+          <span className="font-extrabold text-2xl tracking-tighter text-[#1A2E22] font-mono">
+            ARYN
+          </span>
         </a>
 
-        {/* Desktop nav */}
-        <nav
-          aria-label="Primary"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 4,
-            background: "rgba(255,255,255,0.6)",
-            backdropFilter: "blur(12px)",
-            borderRadius: 9999,
-            padding: "6px 10px",
-            border: "1px solid rgba(42,65,52,0.08)",
-            boxShadow: "0 4px 24px -8px rgba(42,65,52,0.08)",
-          }}
-          className="hidden sm:flex"
-        >
-          {NAV_LINKS.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={(e) => handleNav(e, item.href)}
-              className={`nav-pill ${active === item.href ? "active" : ""}`}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        {/* Right side: Desktop nav + Theme toggle */}
+        <div className="hidden sm:flex items-center gap-3">
+          <nav
+            aria-label="Primary"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 4,
+              background: "rgba(255,255,255,0.75)",
+              backdropFilter: "blur(12px)",
+              borderRadius: 9999,
+              padding: "6px 12px",
+              border: "1px solid rgba(42,65,52,0.08)",
+              boxShadow: "0 4px 20px -6px rgba(42,65,52,0.08)",
+            }}
+          >
+            {NAV_LINKS.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={(e) => handleNav(e, item.href)}
+                className={`nav-pill ${active === item.href ? "active" : ""}`}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* Theme Toggle Pill */}
+          <button
+            type="button"
+            aria-label="Toggle theme"
+            className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-md border border-black/5 shadow-sm flex items-center justify-center text-[#1A2E22] hover:bg-white transition-all hover:scale-105"
+          >
+            <Sun size={18} strokeWidth={2} />
+          </button>
+        </div>
 
         {/* Mobile hamburger */}
         <button

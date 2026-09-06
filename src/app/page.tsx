@@ -8,11 +8,26 @@ import {
   motion,
   useInView,
 } from "framer-motion";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Mail } from "lucide-react";
 import Image from "next/image";
 import JsonLd from "@/components/seo/JsonLd";
 import ResumeButton from "@/components/ui/ResumeButton";
 import ContactSection from "@/components/sections/ContactSection";
+
+const GithubIcon = ({ size = 18 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+    <path d="M9 18c-4.51 2-5-2-7-2" />
+  </svg>
+);
+
+const LinkedinIcon = ({ size = 18 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect width="4" height="12" x="2" y="9" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
 
 /* ─── Scroll-reveal wrapper ─── */
 function FadeSection({
@@ -58,7 +73,7 @@ const personSchema = {
 
 /* ═══════════════════════════════════════════════
    MAIN PAGE COMPONENT
-═══════════════════════════════════════════════ */
+   ═══════════════════════════════════════════════ */
 export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
 
@@ -75,7 +90,7 @@ export default function Home() {
           ref={heroRef}
           style={{
             minHeight: "100vh",
-            paddingTop: "calc(var(--site-header-height) + 40px)",
+            paddingTop: "calc(var(--site-header-height) + 24px)",
             paddingBottom: 60,
             display: "flex",
             flexDirection: "column",
@@ -86,7 +101,7 @@ export default function Home() {
         >
           <div
             style={{
-              maxWidth: 1200,
+              maxWidth: 1240,
               margin: "0 auto",
               padding: "0 24px",
               width: "100%",
@@ -97,160 +112,258 @@ export default function Home() {
                 className="glass-card"
                 style={{
                   borderRadius: "2.5rem",
-                  padding: "clamp(32px, 5vw, 64px)",
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: "clamp(32px, 4vw, 64px)",
-                  alignItems: "center",
-                  minHeight: "62vh",
+                  padding: "clamp(24px, 4vw, 48px)",
                   position: "relative",
                   overflow: "hidden",
                 }}
                 id="hero-card"
               >
-                {/* Left-aligned Visual: 3-Layer Overlapping Composition */}
-                <div className="relative w-full aspect-square max-h-[460px] md:h-[480px] flex items-center justify-center">
+                {/* Main Hero Content Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                  
+                  {/* Left-aligned Visual: Composition Layer */}
+                  <div className="relative w-full aspect-square max-h-[480px] md:h-[500px] flex items-center justify-center">
+                    
+                    {/* Background Soft Organic Blob */}
+                    <div className="absolute w-[300px] h-[300px] rounded-full bg-[#C8D9CC]/45 blur-2xl top-10 left-6 z-0" />
+                    
+                    {/* Concentric Organic Curved Vector Lines */}
+                    <svg
+                      className="absolute top-4 left-6 w-[280px] h-[280px] z-0 opacity-40 pointer-events-none"
+                      viewBox="0 0 200 200"
+                      fill="none"
+                      stroke="#3D5045"
+                      strokeWidth="1"
+                    >
+                      <path d="M 30 140 C 20 60, 100 20, 170 50" />
+                      <path d="M 20 150 C 10 50, 110 10, 180 40" strokeDasharray="3 3" />
+                    </svg>
 
-                  {/* Element 1: The Dark Green Code Box (Background Layer: z-10) */}
-                  <motion.div
-                    animate={{ y: [0, -8, 0] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-6 md:top-8 left-2 md:left-4 z-10 hidden sm:block bg-[#2A4134] text-[#E2EBE4] rounded-2xl p-4 md:p-5 shadow-2xl w-56 md:w-60 font-mono text-xs"
-                  >
-                    <div className="flex gap-1.5 mb-2.5">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#FF6B6B] opacity-80" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#FFD93D] opacity-80" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#6BCB77] opacity-80" />
+                    {/* Top-Left Handwritten Annotation */}
+                    <div className="absolute top-1 left-0 sm:left-2 z-30 font-['Caveat',cursive] text-lg sm:text-xl font-bold text-[#1A2E22] leading-tight select-none pointer-events-none flex flex-col items-start">
+                      <span>Secure</span>
+                      <span>Build</span>
+                      <span>Repeat</span>
+                      <svg width="45" height="35" viewBox="0 0 50 40" fill="none" stroke="#1A2E22" strokeWidth="2" strokeLinecap="round" className="ml-6 -mt-1 opacity-85">
+                        <path d="M 5 5 Q 35 8 42 28 M 34 26 L 42 28 L 38 18" />
+                      </svg>
                     </div>
-                    <div className="space-y-1 text-[0.72rem] leading-relaxed">
-                      <div><span className="text-[#6BC9E8]">const</span> <span className="text-[#F8D77A]">aryan</span> = &#123;</div>
-                      <div className="pl-3"><span className="text-[#B8E0C4]">role</span>: <span className="text-[#F5B8B8]">&quot;cyber-eng&quot;</span>,</div>
-                      <div className="pl-3"><span className="text-[#B8E0C4]">stack</span>: <span className="text-[#F5B8B8]">&quot;next+py&quot;</span>,</div>
-                      <div className="pl-3"><span className="text-[#B8E0C4]">mode</span>: &#123; <span className="text-[#B8E0C4]">secure</span>: <span className="text-[#6BC9E8]">true</span> &#125;</div>
-                      <div>&#125;</div>
-                    </div>
-                  </motion.div>
 
-                  {/* Element 2: The Portrait (Middle Layer: z-20) */}
-                  <div className="absolute inset-x-0 bottom-0 mx-auto z-20 w-full max-w-[300px] md:max-w-[350px]">
-                    <Image
-                      src="/profile.webp"
-                      alt="Aryan Singh Shaktawat Profile"
-                      width={380}
-                      height={460}
-                      priority
-                      style={{
-                        width: "100%",
-                        height: "auto",
-                        display: "block",
-                        borderRadius: "2rem",
-                        mixBlendMode: "multiply",
-                        filter: "saturate(0.9) contrast(1.05)",
-                        WebkitMaskImage: "linear-gradient(to bottom, black 65%, transparent 100%)",
-                        maskImage: "linear-gradient(to bottom, black 65%, transparent 100%)",
-                      }}
-                    />
+                    {/* Element 1: The Dark Green Code Box (Top-Right of Portrait: z-10) */}
+                    <motion.div
+                      animate={{ y: [0, -8, 0] }}
+                      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                      className="absolute top-8 right-1 sm:right-4 z-10 hidden sm:block bg-[#1E3326] text-[#E2EBE4] rounded-2xl p-4 sm:p-5 shadow-2xl w-56 sm:w-64 font-mono text-xs border border-white/10"
+                    >
+                      <div className="flex gap-1.5 mb-2.5">
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#FF6B6B] opacity-90" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#FFD93D] opacity-90" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#6BCB77] opacity-90" />
+                      </div>
+                      <div className="space-y-1 text-[0.72rem] leading-relaxed">
+                        <div><span className="text-[#6BC9E8]">const</span> <span className="text-[#F8D77A]">aryan</span> = &#123;</div>
+                        <div className="pl-4"><span className="text-[#B8E0C4]">role</span>: <span className="text-[#F5B8B8]">&quot;cyber-eng&quot;</span>,</div>
+                        <div className="pl-4"><span className="text-[#B8E0C4]">stack</span>: <span className="text-[#F5B8B8]">&quot;next+py&quot;</span>,</div>
+                        <div className="pl-4"><span className="text-[#B8E0C4]">mode</span>: &#123; <span className="text-[#B8E0C4]">secure</span>: <span className="text-[#6BC9E8]">true</span> &#125;</div>
+                        <div>&#125;</div>
+                      </div>
+                    </motion.div>
+
+                    {/* Element 2: The Portrait (Middle Layer: z-20) */}
+                    <div className="absolute inset-x-0 bottom-0 mx-auto z-20 w-full max-w-[280px] sm:max-w-[320px] md:max-w-[350px]">
+                      <Image
+                        src="/profile.webp"
+                        alt="Aryan Singh Shaktawat Profile"
+                        width={380}
+                        height={460}
+                        priority
+                        style={{
+                          width: "100%",
+                          height: "auto",
+                          display: "block",
+                          borderRadius: "2rem",
+                          mixBlendMode: "multiply",
+                          filter: "saturate(0.9) contrast(1.05)",
+                          WebkitMaskImage: "linear-gradient(to bottom, black 65%, transparent 100%)",
+                          maskImage: "linear-gradient(to bottom, black 65%, transparent 100%)",
+                        }}
+                      />
+                    </div>
+
+                    {/* Element 3: The White Glass Box (Right of Portrait: z-30) */}
+                    <motion.div
+                      animate={{ y: [0, -8, 0] }}
+                      transition={{ duration: 5, delay: 0.8, repeat: Infinity, ease: "easeInOut" }}
+                      className="absolute bottom-14 sm:bottom-16 right-0 sm:right-2 z-30 bg-white/90 backdrop-blur-md border border-white/70 shadow-xl rounded-2xl p-4 sm:p-5 w-48 sm:w-56 font-sans text-xs"
+                    >
+                      <div className="flex gap-1.5 mb-2.5">
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#FF6B6B] opacity-90" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#FFD93D] opacity-90" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#6BCB77] opacity-90" />
+                      </div>
+                      <div className="space-y-2 font-medium text-[#1A2E22] text-[0.8rem]">
+                        {[
+                          "Pen Testing",
+                          "AES-256",
+                          "OSINT",
+                          "Next.js",
+                        ].map((item) => (
+                          <div key={item} className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <span className="w-2 h-2 rounded-full bg-[#34D399]" />
+                              <span>{item}</span>
+                            </div>
+                            <span className="text-[#1A2E22] font-bold">✓</span>
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+
+                    {/* Element 4: Bottom-Left Glass Badge (z-30) */}
+                    <div className="absolute bottom-6 left-0 sm:left-2 z-30 bg-white/85 backdrop-blur-md border border-white/70 shadow-lg rounded-2xl px-4 py-3 text-xs font-semibold text-[#1A2E22] flex items-start gap-2.5">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#34D399] mt-1 animate-pulse" />
+                      <div className="leading-tight">
+                        <div>Always learning</div>
+                        <div>Always building</div>
+                      </div>
+                    </div>
+
+                    {/* Bottom-Right Handwritten Annotation */}
+                    <div className="absolute -bottom-2 right-2 sm:right-6 z-30 font-['Caveat',cursive] text-lg sm:text-xl font-bold text-[#1A2E22] leading-none select-none pointer-events-none text-right flex flex-col items-end">
+                      <svg width="40" height="35" viewBox="0 0 50 40" fill="none" stroke="#1A2E22" strokeWidth="2" strokeLinecap="round" className="mb-0.5 opacity-85">
+                        <path d="M 45 35 Q 25 15 10 12 M 10 20 L 10 12 L 18 10" />
+                      </svg>
+                      <div className="text-right">
+                        <div>From</div>
+                        <div>curiosity to</div>
+                        <div className="relative inline-block mt-0.5">
+                          <span>impact</span>
+                          <div className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#1A2E22] rounded-full" />
+                          <div className="absolute -bottom-2 left-1 right-1 h-[2px] bg-[#1A2E22] rounded-full opacity-70" />
+                        </div>
+                      </div>
+                    </div>
+
                   </div>
 
-                  {/* Element 3: The White Glass Box (Foreground Layer: z-30) */}
-                  <motion.div
-                    animate={{ y: [0, -8, 0] }}
-                    transition={{ duration: 5, delay: 0.8, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute bottom-8 md:bottom-10 right-2 md:right-4 z-30 bg-white/90 backdrop-blur-md border border-white/60 shadow-xl rounded-2xl p-4 md:p-5 w-52 md:w-56 font-sans text-xs"
-                  >
-                    <div className="flex gap-1.5 mb-2.5">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#FF6B6B] opacity-80" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#FFD93D] opacity-80" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#6BCB77] opacity-80" />
+                  {/* Right Column: Hero Information & Actions */}
+                  <div className="flex flex-col items-start text-left lg:pl-4">
+                    
+                    {/* Subheading */}
+                    <motion.p
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.7, delay: 0.2 }}
+                      className="text-xs sm:text-sm font-semibold tracking-[0.2em] text-[#3D5045] uppercase mb-4"
+                    >
+                      CYBER SECURITY &amp; FULL-STACK ENGINEER
+                    </motion.p>
+
+                    {/* Heading */}
+                    <motion.h1
+                      initial={{ opacity: 0, y: 24 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                      className="font-['Outfit',sans-serif] font-black text-4xl sm:text-5xl lg:text-6xl text-[#1A2E22] leading-[1.05] tracking-tight mb-6"
+                    >
+                      ARYAN SINGH
+                      <br />
+                      <span className="inline-flex items-center">
+                        SHAKTAWAT
+                        <span className="inline-block w-2.5 sm:w-3 h-[0.9em] bg-[#A8C9B0] align-middle ml-2 rounded-sm" />
+                      </span>
+                    </motion.h1>
+
+                    {/* Body Paragraph */}
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.7, delay: 0.55 }}
+                      className="text-sm sm:text-base text-[#3D5045] max-w-lg mb-8 leading-relaxed font-normal"
+                    >
+                      Translating raw data &amp; vulnerabilities into secure, high-performance systems. Specializing in offensive security, digital forensics, and full-stack web architecture.
+                    </motion.p>
+
+                    {/* Action Buttons */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.7, delay: 0.7 }}
+                      className="flex items-center gap-4 flex-wrap mb-10"
+                    >
+                      <a
+                        href="#work"
+                        onClick={(e) => { e.preventDefault(); document.getElementById("work")?.scrollIntoView({ behavior: "smooth" }); }}
+                        className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#1E3326] text-white font-medium text-sm hover:bg-[#15241B] transition-all shadow-md hover:shadow-lg hover:scale-[1.02]"
+                      >
+                        View Work <ArrowRight size={16} />
+                      </a>
+                      <ResumeButton />
+                    </motion.div>
+
+                    {/* Metrics Divider Line & Keywords Bar */}
+                    <div className="w-full border-t border-[#1A2E22]/10 pt-6">
+                      <div className="flex items-center justify-between text-[0.7rem] sm:text-[0.75rem] font-bold tracking-[0.25em] text-[#6B7F70] uppercase">
+                        <span>SECURE</span>
+                        <span className="text-[#3D5045]/40">•</span>
+                        <span>ANALYZE</span>
+                        <span className="text-[#3D5045]/40">•</span>
+                        <span>BUILD</span>
+                        <span className="text-[#3D5045]/40">•</span>
+                        <span>IMPACT</span>
+                      </div>
                     </div>
-                    <div className="space-y-2 font-medium text-[#1A2E22] text-[0.8rem]">
-                      {["Pen Testing", "AES-256", "OSINT", "Next.js"].map((item) => (
-                        <div key={item} className="flex items-center justify-between">
-                          <span>{item}</span>
-                          <span className="text-[#2A4134] font-bold">✓</span>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
+
+                  </div>
 
                 </div>
 
-                {/* Right-aligned Heading & Subheading */}
-                <div style={{ textAlign: "right", display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
-                  <motion.p
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.7, delay: 0.2 }}
-                    className="section-label"
-                    style={{ marginBottom: 16 }}
-                  >
-                    Cyber Security &amp; Full-Stack Engineer
-                  </motion.p>
-
-                  <motion.h1
-                    initial={{ opacity: 0, y: 24 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                    style={{
-                      fontFamily: "var(--font-outfit)",
-                      fontWeight: 900,
-                      fontSize: "clamp(2.4rem, 5.5vw, 4.2rem)",
-                      letterSpacing: "-0.05em",
-                      color: "var(--text-primary)",
-                      lineHeight: 1.0,
-                      marginBottom: 20,
-                    }}
-                  >
-                    ARYAN SINGH
-                    <br />
-                    <span style={{ color: "var(--accent)" }}>SHAKTAWAT</span>
-                  </motion.h1>
-
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.7, delay: 0.55 }}
-                    style={{
-                      fontFamily: "var(--font-inter)",
-                      fontSize: "0.95rem",
-                      color: "var(--text-secondary)",
-                      maxWidth: 420,
-                      marginBottom: 36,
-                      lineHeight: 1.75,
-                    }}
-                  >
-                    Translating raw data &amp; vulnerabilities into secure, high-performance systems.
-                    Specializing in offensive security, digital forensics, and full-stack web architecture.
-                  </motion.p>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.7 }}
-                    style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "flex-end" }}
-                  >
+                {/* Hero Card Footer Bar */}
+                <div className="mt-10 pt-6 border-t border-[#1A2E22]/08 flex flex-wrap items-center justify-between gap-4 text-xs font-medium text-[#3D5045]">
+                  
+                  {/* Left Footer: Social Icons + Location */}
+                  <div className="flex items-center gap-4">
                     <a
-                      href="#work"
-                      onClick={(e) => { e.preventDefault(); document.getElementById("work")?.scrollIntoView({ behavior: "smooth" }); }}
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 8,
-                        padding: "13px 26px",
-                        borderRadius: 9999,
-                        background: "var(--accent)",
-                        color: "#fff",
-                        fontFamily: "var(--font-inter)",
-                        fontWeight: 600,
-                        fontSize: "0.9rem",
-                        textDecoration: "none",
-                        transition: "all 250ms ease",
-                      }}
+                      href="https://github.com/aryansinghshaktawat"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-full hover:bg-black/5 text-[#1A2E22] transition-colors"
+                      aria-label="GitHub"
                     >
-                      View Work <ArrowRight size={15} />
+                      <GithubIcon size={18} />
                     </a>
-                    <ResumeButton />
-                  </motion.div>
+                    <a
+                      href="https://linkedin.com/in/aryan-singh-shaktawat"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-full hover:bg-black/5 text-[#1A2E22] transition-colors"
+                      aria-label="LinkedIn"
+                    >
+                      <LinkedinIcon size={18} />
+                    </a>
+                    <a
+                      href="#contact"
+                      onClick={(e) => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}
+                      className="p-2 rounded-full hover:bg-black/5 text-[#1A2E22] transition-colors"
+                      aria-label="Contact Email"
+                    >
+                      <Mail size={18} />
+                    </a>
+                    
+                    <span className="w-[1px] h-4 bg-[#1A2E22]/20" />
+                    
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-[#34D399]" />
+                      <span>Based in India</span>
+                    </div>
+                  </div>
+
+                  {/* Right Footer: Open to Opportunities Badge */}
+                  <div className="flex items-center gap-2 bg-white/80 backdrop-blur-md border border-white/60 px-4 py-2 rounded-full shadow-xs text-[#1A2E22]">
+                    <span className="w-2 h-2 rounded-full bg-[#34D399] animate-pulse" />
+                    <span className="font-semibold text-xs">Open to Opportunities</span>
+                  </div>
+
                 </div>
               </div>
             </FadeSection>

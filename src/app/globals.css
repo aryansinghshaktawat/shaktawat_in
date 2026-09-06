@@ -4,13 +4,13 @@
    Stack: Next.js 15 · Tailwind CSS 4 · Framer Motion
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 /* ─── CSS Custom Properties ─── */
 :root {
   --font-outfit: 'Outfit', 'Montserrat', system-ui, sans-serif;
   --font-inter: 'Inter', system-ui, sans-serif;
+  --font-handwritten: 'Caveat', cursive, sans-serif;
 
   /* Palette */
   --bg-start:       #FDFCF8;

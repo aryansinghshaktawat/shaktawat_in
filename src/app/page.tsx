@@ -1,321 +1,1142 @@
+// src/app/page.tsx
+// Aryan Singh Shaktawat Portfolio — Soft Sage & Forest aesthetic
+// Sections: Hero · About · Strengths · Projects · Contact/Footer
+// Animations: Framer Motion scroll-reveal, parallax, marquee
 "use client";
-import ContactInvite from '@/components/sections/ContactInvite';
-import HackerName from '@/components/ui/HackerName';
-import JsonLd from '@/components/seo/JsonLd';
-import Image from 'next/image';
 
+import { useRef } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useInView,
+} from "framer-motion";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import JsonLd from "@/components/seo/JsonLd";
+
+
+function FadeSection({
+  children,
+  className = "",
+  delay = 0,
+  style = {},
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+  style?: React.CSSProperties;
+}) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-10% 0px" });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
+      className={className}
+      style={style}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/* ─── Schemas ─── */
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Aryan Singh Shaktawat",
-  "alternateName": [
-    "Aryan Shaktawat","Aryan S Shaktawat","A S Shaktawat","Aryan Singh",
-    "Aryan Shaktawat resume","Aryan Shaktawat projects","Aryan Shaktawat blog",
-    "Aryan Shaktawat GitHub","Aryan Shaktawat LinkedIn","Aryan Shaktawat UPES",
-    "aryan singh shaktawat","Aryan S","A. Shaktawat","AryanShaktawat",
-    "Aryan-Shaktawat","Aryan Shaktawat cybersecurity","Aryan Shaktawat forensics",
-    "Aryan Shaktawat full stack","Aryan Shaktawat developer","Aryan Shaktawat CSE"
-  ],
-  "url": "https://shaktawat.in",
-  "sameAs": [
+  name: "Aryan Singh Shaktawat",
+  url: "https://shaktawat.in",
+  sameAs: [
     "https://github.com/aryansinghshaktawat",
-    "https://linkedin.com/in/aryansinghshaktawat"
+    "https://linkedin.com/in/aryan-singh-shaktawat",
   ],
-  "jobTitle": "cybersecurity and forensics Developer",
-  "worksFor": { 
-    "@type": "Organization", 
-    "name": "UPES Dehradun",
-    "url": "https://www.upes.ac.in"
-  },
-  "knowsAbout": [
-    "Cybersecurity", "Web Development", "Digital Forensics", 
-    "AI Integration", "Full Stack Development", "Computer Science"
-  ],
-  "description": "B.Tech CSE student specializing in cybersecurity, forensics, and cybersecurity and forensics development",
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://shaktawat.in/profile.webp",
-    "caption": "Aryan Singh Shaktawat - Professional Profile Photo",
-    "width": 300,
-    "height": 300
-  }
+  jobTitle: "Cybersecurity & Full-Stack Developer",
+  worksFor: { "@type": "Organization", name: "UPES Dehradun" },
 };
 
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Aryan Singh Shaktawat Portfolio",
-  "url": "https://shaktawat.in",
-  "description": "Portfolio, projects and blog by Aryan Singh Shaktawat",
-  "author": {
-    "@type": "Person",
-    "name": "Aryan Singh Shaktawat"
-  }
-};
+/* ─── Abstract CSS blob component ─── */
+function AbstractBlobs({ variant = "A" }: { variant?: "A" | "B" | "C" }) {
+  const configs = {
+    A: [
+      { cls: "blob-yellow", w: 120, h: 120, top: 10, left: 15 },
+      { cls: "blob-sage",   w: 90,  h: 90,  top: 55, left: 45 },
+      { cls: "blob-yellow", w: 60,  h: 60,  top: 30, left: 65 },
+    ],
+    B: [
+      { cls: "blob-sage",   w: 110, h: 110, top: 15, left: 5  },
+      { cls: "blob-yellow", w: 80,  h: 80,  top: 50, left: 40 },
+      { cls: "blob-sage",   w: 55,  h: 55,  top: 20, left: 60 },
+    ],
+    C: [
+      { cls: "blob-yellow", w: 100, h: 100, top: 20, left: 20 },
+      { cls: "blob-sage",   w: 85,  h: 85,  top: 45, left: 50 },
+      { cls: "blob-yellow", w: 65,  h: 65,  top: 10, left: 55 },
+    ],
+  };
+  return (
+    <div style={{ position: "relative", width: "100%", height: 200 }}>
+      {configs[variant].map((b, i) => (
+        <div
+          key={i}
+          className={b.cls}
+          style={{ width: b.w, height: b.h, top: `${b.top}%`, left: `${b.left}%` }}
+        />
+      ))}
+    </div>
+  );
+}
 
+/* ─── Hero code-art block (decorative) ─── */
+function CodeArtBlock({ rotate = 0, accent = false }: { rotate?: number; accent?: boolean }) {
+  return (
+    <div
+      style={{
+        borderRadius: "2rem",
+        background: accent
+          ? "linear-gradient(135deg, #2A4134 0%, #3D5E4A 100%)"
+          : "rgba(255,255,255,0.82)",
+        backdropFilter: "blur(16px)",
+        border: accent
+          ? "1px solid rgba(255,255,255,0.12)"
+          : "1px solid rgba(42,65,52,0.1)",
+        boxShadow: accent
+          ? "0 32px 64px -16px rgba(42,65,52,0.40)"
+          : "0 24px 48px -12px rgba(42,65,52,0.18)",
+        padding: "28px 32px",
+        transform: `rotate(${rotate}deg)`,
+        fontFamily: "var(--font-inter)",
+        overflow: "hidden",
+        position: "relative",
+        minWidth: 220,
+      }}
+    >
+      {/* Top dots */}
+      <div style={{ display: "flex", gap: 6, marginBottom: 18 }}>
+        {["#FF6B6B", "#FFD93D", "#6BCB77"].map((c, i) => (
+          <span key={i} style={{ width: 10, height: 10, borderRadius: "50%", background: c, display: "block", opacity: 0.7 }} />
+        ))}
+      </div>
+      {/* Mock code lines */}
+      {accent ? (
+        <>
+          <div style={{ color: "#9DC8AA", fontSize: "0.72rem", marginBottom: 8, fontFamily: "monospace" }}>
+            <span style={{ color: "#6BC9E8" }}>const</span>{" "}
+            <span style={{ color: "#F8D77A" }}>aryan</span>{" "}
+            <span style={{ color: "#9DC8AA" }}>= &#123;</span>
+          </div>
+          <div style={{ color: "#9DC8AA", fontSize: "0.72rem", paddingLeft: 16, marginBottom: 4, fontFamily: "monospace" }}>
+            <span style={{ color: "#B8E0C4" }}>role</span>:{" "}
+            <span style={{ color: "#F5B8B8" }}>&quot;cyber-eng&quot;</span>,
+          </div>
+          <div style={{ color: "#9DC8AA", fontSize: "0.72rem", paddingLeft: 16, marginBottom: 4, fontFamily: "monospace" }}>
+            <span style={{ color: "#B8E0C4" }}>stack</span>:{" "}
+            <span style={{ color: "#F5B8B8" }}>&quot;next+py&quot;</span>,
+          </div>
+          <div style={{ color: "#9DC8AA", fontSize: "0.72rem", paddingLeft: 16, marginBottom: 8, fontFamily: "monospace" }}>
+            <span style={{ color: "#B8E0C4" }}>mode</span>:{" "}
+            <span style={{ color: "#9DC8AA" }}>&#123;</span>{" "}
+            <span style={{ color: "#F5B8B8" }}>secure</span>:{" "}
+            <span style={{ color: "#6BC9E8" }}>true</span>{" "}
+            <span style={{ color: "#9DC8AA" }}>&#125;</span>
+          </div>
+          <div style={{ color: "#9DC8AA", fontSize: "0.72rem", fontFamily: "monospace" }}>&#125;</div>
+        </>
+      ) : (
+        <>
+          {["Pen Testing ✓", "AES-256 ✓", "OSINT ✓", "Next.js ✓"].map((line, i) => (
+            <div
+              key={i}
+              style={{
+                fontSize: "0.8rem",
+                color: i % 2 === 0 ? "var(--accent)" : "var(--text-secondary)",
+                marginBottom: 10,
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+                fontFamily: "var(--font-inter)",
+                fontWeight: 500,
+              }}
+            >
+              <span
+                style={{
+                  width: 6,
+                  height: 6,
+                  borderRadius: "50%",
+                  background: "var(--sage-green)",
+                  display: "inline-block",
+                  flexShrink: 0,
+                }}
+              />
+              {line}
+            </div>
+          ))}
+        </>
+      )}
+    </div>
+  );
+}
+
+/* ─── Strength Card ─── */
+function StrengthCard({
+  index,
+  title,
+  body,
+  blobVariant,
+}: {
+  index: number;
+  title: string;
+  body: string;
+  blobVariant: "A" | "B" | "C";
+}) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-5% 0px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.75, delay: index * 0.13, ease: [0.22, 1, 0.36, 1] }}
+      className="glass-card"
+      style={{
+        borderRadius: "2rem",
+        padding: "36px 32px",
+        display: "flex",
+        flexDirection: "column",
+        gap: 20,
+        flex: 1,
+        minWidth: 0,
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Blob visual */}
+      <div style={{ position: "relative", height: 170, borderRadius: "1.5rem", overflow: "hidden", background: "rgba(232,239,233,0.5)" }}>
+        <AbstractBlobs variant={blobVariant} />
+      </div>
+
+      {/* Index number */}
+      <span
+        style={{
+          fontFamily: "var(--font-outfit)",
+          fontSize: "0.75rem",
+          fontWeight: 700,
+          letterSpacing: "0.15em",
+          color: "var(--text-muted)",
+        }}
+      >
+        {String(index + 1).padStart(2, "0")}
+      </span>
+
+      <h3
+        style={{
+          fontFamily: "var(--font-outfit)",
+          fontWeight: 700,
+          fontSize: "1.2rem",
+          color: "var(--text-primary)",
+          letterSpacing: "-0.02em",
+        }}
+      >
+        {title}
+      </h3>
+      <p style={{ fontSize: "0.875rem", color: "var(--text-secondary)", lineHeight: 1.65, marginTop: -8 }}>
+        {body}
+      </p>
+    </motion.div>
+  );
+}
+
+/* ─── Project Row ─── */
+function ProjectRow({
+  index,
+  title,
+  tag,
+  description,
+  flipped = false,
+  link = "https://github.com/aryansinghshaktawat",
+}: {
+  index: number;
+  title: string;
+  tag: string;
+  description: string;
+  flipped?: boolean;
+  link?: string;
+}) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-8% 0px" });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const imgY = useTransform(scrollYProgress, [0, 1], [-24, 24]);
+
+  const ImageBlock = (
+    <motion.div
+      style={{ y: imgY, flex: "0 0 auto", width: "100%" }}
+      className="project-img-col"
+    >
+      <div
+        style={{
+          borderRadius: "2rem",
+          overflow: "hidden",
+          background: "linear-gradient(135deg, #2A4134 0%, #3D5E4A 60%, #1E3028 100%)",
+          aspectRatio: "4/3",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          boxShadow: "0 32px 64px -16px rgba(42,65,52,0.28)",
+          position: "relative",
+        }}
+      >
+        {/* Decorative inner pattern */}
+        <div style={{ position: "absolute", inset: 0, opacity: 0.06 }}>
+          {Array.from({ length: 6 }).map((_, row) =>
+            Array.from({ length: 8 }).map((_, col) => (
+              <span
+                key={`${row}-${col}`}
+                style={{
+                  position: "absolute",
+                  top: `${row * 18}%`,
+                  left: `${col * 14}%`,
+                  width: 4,
+                  height: 4,
+                  borderRadius: "50%",
+                  background: "#E2EBE4",
+                  display: "block",
+                }}
+              />
+            ))
+          )}
+        </div>
+        <div style={{ textAlign: "center", color: "rgba(226,235,228,0.8)", zIndex: 1 }}>
+          <div
+            style={{
+              fontFamily: "var(--font-outfit)",
+              fontSize: "2.5rem",
+              fontWeight: 900,
+              letterSpacing: "-0.04em",
+              lineHeight: 1,
+              marginBottom: 8,
+            }}
+          >
+            {title.split(" ")[0]}
+          </div>
+          <div
+            style={{
+              fontSize: "0.7rem",
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              opacity: 0.55,
+              fontFamily: "var(--font-inter)",
+            }}
+          >
+            {tag}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+
+  const TextBlock = (
+    <div style={{ flex: 1, minWidth: 0 }}>
+      <span className="section-label" style={{ display: "block", marginBottom: 16 }}>
+        Project {String(index + 1).padStart(2, "0")}
+      </span>
+      <h3
+        style={{
+          fontFamily: "var(--font-outfit)",
+          fontWeight: 800,
+          fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)",
+          letterSpacing: "-0.04em",
+          color: "var(--text-primary)",
+          marginBottom: 20,
+          lineHeight: 1.1,
+        }}
+      >
+        {title}
+      </h3>
+      <div className="sage-line" style={{ marginBottom: 24 }} />
+      <p
+        style={{
+          fontSize: "1rem",
+          color: "var(--text-secondary)",
+          lineHeight: 1.75,
+          maxWidth: 420,
+          marginBottom: 32,
+        }}
+      >
+        {description}
+      </p>
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 10,
+          padding: "12px 24px",
+          borderRadius: 9999,
+          background: "var(--accent)",
+          color: "#fff",
+          fontFamily: "var(--font-inter)",
+          fontWeight: 600,
+          fontSize: "0.875rem",
+          textDecoration: "none",
+          transition: "all 250ms ease",
+          letterSpacing: "0.02em",
+        }}
+        onMouseOver={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--accent-hover)"; (e.currentTarget as HTMLElement).style.transform = "scale(1.03)"; }}
+        onMouseOut={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--accent)"; (e.currentTarget as HTMLElement).style.transform = "scale(1)"; }}
+      >
+        View Project <ArrowUpRight size={16} />
+      </a>
+    </div>
+  );
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 48,
+        alignItems: "center",
+      }}
+      className={`project-row ${flipped ? "project-row-flipped" : ""}`}
+    >
+      {ImageBlock}
+      {TextBlock}
+    </motion.div>
+  );
+}
+
+/* ═══════════════════════════════════════════════
+   MAIN PAGE COMPONENT
+═══════════════════════════════════════════════ */
 export default function Home() {
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress: heroScroll } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroY1 = useTransform(heroScroll, [0, 1], [0, -60]);
+  const heroY2 = useTransform(heroScroll, [0, 1], [0, -40]);
+
   return (
     <>
       <JsonLd data={personSchema} />
-      <JsonLd data={websiteSchema} />
-  <main className="flex flex-col min-h-screen">
-      {/* Modern Hero Section */}
-  <section className="relative min-h-[calc(100vh-var(--site-header-height))] pt-20 sm:pt-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
-        {/* Animated background pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_49%,rgba(59,130,246,0.05)_50%,transparent_51%)] bg-[length:20px_20px] animate-pulse"></div>
-        
-        {/* Floating geometric elements */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-20 left-20 w-32 h-32 border border-cyan-400/20 rounded-lg rotate-45 animate-spin-slow"></div>
-          <div className="absolute bottom-20 right-20 w-24 h-24 bg-gradient-to-r from-cyan-400/10 to-blue-500/10 rounded-full animate-pulse"></div>
-          <div className="absolute top-1/2 right-10 w-20 h-20 border border-cyan-400/20 rounded-full animate-bounce"></div>
-          <div className="absolute bottom-40 left-10 w-16 h-16 bg-gradient-to-r from-blue-400/10 to-purple-500/10 rounded-lg animate-pulse"></div>
-        </div>
+      <div style={{ position: "relative", minHeight: "100vh" }}>
 
-        <div className="relative z-10 flex flex-col justify-center min-h-screen max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
-            {/* Left: Hero Content */}
-            <div className="text-center lg:text-left">
-              <div className="mb-6">
-                <HackerName text="Aryan Singh Shaktawat" className="text-4xl md:text-6xl font-space-grotesk font-extrabold text-white leading-tight" />
-              </div>
-              <p className="text-xl md:text-2xl text-slate-300 mb-8 font-geist-mono">
-                Aspiring <span className="text-cyan-400 font-bold">Cybersecurity</span> & <span className="text-blue-400 font-bold">Tech Enthusiast</span>
-              </p>
-              <p className="text-lg text-slate-400 mb-8 max-w-lg">
-                B.Tech CSE student passionate about building tools, integrating AI models, and exploring cybersecurity & forensics.
-              </p>
-              
-              {/* Quick stats */}
-              <div className="flex flex-wrap gap-4 justify-center lg:justify-start mb-8">
-                <div className="glass rounded-full px-4 py-2">
-                  <span className="text-cyan-400 font-bold">5th</span>
-                  <span className="text-slate-300 ml-1">Semester</span>
+        {/* ════════════════════════════════════════
+            A. HERO SECTION
+        ════════════════════════════════════════ */}
+        <section
+          id="hero"
+          ref={heroRef}
+          style={{
+            minHeight: "100vh",
+            paddingTop: "calc(var(--site-header-height) + 48px)",
+            paddingBottom: 80,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          {/* Large floating card */}
+          <div
+            style={{
+              maxWidth: 1200,
+              margin: "0 auto",
+              padding: "0 24px",
+              width: "100%",
+            }}
+          >
+            <FadeSection>
+              <div
+                className="glass-card"
+                style={{
+                  borderRadius: "2.5rem",
+                  padding: "clamp(32px, 5vw, 64px)",
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "clamp(32px, 4vw, 64px)",
+                  alignItems: "center",
+                  minHeight: "60vh",
+                  position: "relative",
+                  overflow: "hidden",
+                }}
+                id="hero-card"
+              >
+                {/* Left: overlapping code blocks */}
+                <div
+                  style={{
+                    position: "relative",
+                    height: "clamp(280px, 40vw, 420px)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <motion.div
+                    style={{ position: "absolute", left: "0%", top: "8%", y: heroY1 }}
+                  >
+                    <CodeArtBlock accent />
+                  </motion.div>
+                  <motion.div
+                    style={{ position: "absolute", right: "0%", bottom: "5%", y: heroY2 }}
+                  >
+                    <CodeArtBlock rotate={-2} />
+                  </motion.div>
                 </div>
-                <div className="glass rounded-full px-4 py-2">
-                  <span className="text-blue-400 font-bold">UPES</span>
-                  <span className="text-slate-300 ml-1">Dehradun</span>
-                </div>
-                <div className="glass rounded-full px-4 py-2">
-                  <span className="text-green-400 font-bold">cybersecurity and forensics</span>
-                </div>
-              </div>
-            </div>
 
-            {/* Right: Profile & Skills */}
-            <div className="flex justify-center lg:justify-end">
-              <div className="glass rounded-3xl p-8 max-w-sm hover-lift">
-                <div className="relative mb-6">
-                  <Image
-                    src="/profile.webp"
-                    alt="Aryan Singh Shaktawat - Cybersecurity Expert and Full Stack Developer"
-                    width={300}
-                    height={300}
-                    className="w-full h-auto rounded-2xl object-cover"
-                    priority={true}
-                    title="Aryan Singh Shaktawat - Professional Profile Photo"
-                  />
+                {/* Right: text */}
+                <div>
+                  <motion.p
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.7, delay: 0.2 }}
+                    className="section-label"
+                    style={{ marginBottom: 20 }}
+                  >
+                    Cyber Security &amp; Full-Stack
+                  </motion.p>
+
+                  <motion.h1
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                    style={{
+                      fontFamily: "var(--font-outfit)",
+                      fontWeight: 900,
+                      fontSize: "clamp(2.4rem, 5.5vw, 4.2rem)",
+                      letterSpacing: "-0.05em",
+                      color: "var(--text-primary)",
+                      lineHeight: 1.0,
+                      marginBottom: 16,
+                    }}
+                  >
+                    ARYAN
+                    <br />
+                    SINGH
+                    <br />
+                    <span style={{ color: "var(--accent)" }}>SHAKTAWAT</span>
+                  </motion.h1>
+
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.7, delay: 0.55 }}
+                    style={{
+                      fontFamily: "var(--font-inter)",
+                      fontSize: "0.9rem",
+                      fontWeight: 400,
+                      letterSpacing: "0.2em",
+                      textTransform: "uppercase",
+                      color: "var(--text-muted)",
+                      marginBottom: 36,
+                    }}
+                  >
+                    Engineering Profile
+                  </motion.p>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.7 }}
+                    style={{ display: "flex", gap: 12, flexWrap: "wrap" }}
+                  >
+                    <a
+                      href="#work"
+                      onClick={(e) => { e.preventDefault(); document.getElementById("work")?.scrollIntoView({ behavior: "smooth" }); }}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 8,
+                        padding: "13px 26px",
+                        borderRadius: 9999,
+                        background: "var(--accent)",
+                        color: "#fff",
+                        fontFamily: "var(--font-inter)",
+                        fontWeight: 600,
+                        fontSize: "0.9rem",
+                        textDecoration: "none",
+                        transition: "all 250ms ease",
+                        letterSpacing: "0.02em",
+                      }}
+                    >
+                      View Work <ArrowRight size={15} />
+                    </a>
+                    <a
+                      href="mailto:hello@shaktawat.in?subject=Resume%20Request%20—%20Aryan%20Singh%20Shaktawat"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 8,
+                        padding: "13px 26px",
+                        borderRadius: 9999,
+                        background: "transparent",
+                        border: "1.5px solid rgba(42,65,52,0.25)",
+                        color: "var(--text-primary)",
+                        fontFamily: "var(--font-inter)",
+                        fontWeight: 600,
+                        fontSize: "0.9rem",
+                        textDecoration: "none",
+                        transition: "all 250ms ease",
+                        letterSpacing: "0.02em",
+                      }}
+                    >
+                      Resume <ArrowUpRight size={15} />
+                    </a>
+                  </motion.div>
                 </div>
-                
-                <h3 className="text-2xl font-space-grotesk font-bold text-white mb-4 text-center">Aryan Singh Shaktawat</h3>
               </div>
+            </FadeSection>
+          </div>
+
+          {/* Scroll marquee */}
+          <div
+            style={{
+              marginTop: 40,
+              overflow: "hidden",
+              opacity: 0.4,
+            }}
+          >
+            <div className="marquee-track">
+              {Array.from({ length: 10 }).map((_, i) => (
+                <span
+                  key={i}
+                  style={{
+                    fontFamily: "var(--font-inter)",
+                    fontSize: "0.72rem",
+                    fontWeight: 500,
+                    letterSpacing: "0.25em",
+                    textTransform: "uppercase",
+                    color: "var(--text-muted)",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  Scroll down &nbsp;•&nbsp;
+                </span>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Modern Journey Section */}
-      <section className="relative bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 py-20 overflow-hidden">
-        {/* Background pattern */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-900/20 via-transparent to-transparent"></div>
-        
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
-          {/* Section Header */}
-          <div className="text-center mb-20">
-            <h2 className="font-space-grotesk text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-6">
-              My Journey in Code
-            </h2>
-            <p className="font-geist-mono text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
-              From curious beginner to passionate builder — transforming ideas into reality through code
-            </p>
+        {/* ════════════════════════════════════════
+            B. INTRODUCTION / ABOUT SECTION
+        ════════════════════════════════════════ */}
+        <section
+          id="about"
+          style={{
+            padding: "120px 24px",
+            maxWidth: 1200,
+            margin: "0 auto",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          {/* Watermark */}
+          <div
+            className="watermark"
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              fontFamily: "var(--font-outfit)",
+              fontWeight: 900,
+              fontSize: "clamp(4rem, 12vw, 10rem)",
+              letterSpacing: "-0.04em",
+              color: "rgba(42,65,52,0.04)",
+              whiteSpace: "nowrap",
+              zIndex: 0,
+              pointerEvents: "none",
+              userSelect: "none",
+            }}
+            aria-hidden="true"
+          >
+            SECURE. BUILD. PROTECT.
           </div>
 
-          {/* Modern Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-            
-            {/* Learning Philosophy Card */}
-            <div className="group glass rounded-3xl p-8 hover-lift border border-cyan-500/20">
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/5 to-blue-400/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-              <div className="relative z-10">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <span className="text-3xl">🧠</span>
-                </div>
-                <h3 className="font-space-grotesk text-2xl font-bold text-white mb-4">Learning Philosophy</h3>
-                <p className="font-geist-mono text-slate-300 leading-relaxed">
-                  <span className="text-cyan-400 font-bold">I am a learner first, and everything else follows.</span> 
-                  The best way to understand technology is to build it, break it, and rebuild it better.
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <FadeSection>
+              <h2
+                style={{
+                  fontFamily: "var(--font-outfit)",
+                  fontWeight: 900,
+                  fontSize: "clamp(2rem, 5vw, 3.8rem)",
+                  letterSpacing: "-0.04em",
+                  color: "var(--text-primary)",
+                  lineHeight: 1.1,
+                  maxWidth: 860,
+                  marginBottom: 64,
+                }}
+              >
+                Engineering secured by logic,{" "}
+                <span style={{ color: "var(--accent)" }}>built for scale.</span>
+              </h2>
+            </FadeSection>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "clamp(32px, 4vw, 64px)",
+                alignItems: "start",
+              }}
+              className="about-grid"
+            >
+              <FadeSection delay={0.1}>
+                <p
+                  style={{
+                    fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)",
+                    color: "var(--text-secondary)",
+                    lineHeight: 1.8,
+                  }}
+                >
+                  Nice to meet you. I am{" "}
+                  <strong style={{ color: "var(--text-primary)", fontWeight: 700 }}>
+                    Aryan Singh Shaktawat
+                  </strong>
+                  , a final-year B.Tech CSE undergrad specializing in Cyber
+                  Security and Forensics at UPES, Dehradun.
                 </p>
-              </div>
-            </div>
+              </FadeSection>
 
-            {/* Current Adventures Card */}
-            <div className="group glass rounded-3xl p-8 hover-lift border border-green-500/20">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-400/5 to-emerald-400/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-              <div className="relative z-10">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <span className="text-3xl">⚡</span>
-                </div>
-                <h3 className="font-space-grotesk text-2xl font-bold text-white mb-4">Current Adventures</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></div>
-                    <span className="text-slate-300">AI model integrations (Llama-3, Perplexity)</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
-                    <span className="text-slate-300">OSINT tools that actually work</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></div>
-                    <span className="text-slate-300">Portfolio rebuild from scratch</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Real Talk Card */}
-            <div className="group glass rounded-3xl p-8 hover-lift border border-yellow-500/20 md:col-span-2 lg:col-span-1">
-              <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/5 to-orange-400/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-              <div className="relative z-10">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <span className="text-3xl">💯</span>
-                </div>
-                <h3 className="font-space-grotesk text-2xl font-bold text-white mb-4">The Real Talk</h3>
-                <p className="font-geist-mono text-slate-300 leading-relaxed">
-                  I&apos;m that student who <span className="text-cyan-400 font-bold">Googles syntax</span>, celebrates error-free compilation, 
-                  and gets genuinely excited about <span className="text-green-400 font-bold">solving real problems</span> with code.
+              <FadeSection delay={0.2}>
+                <p
+                  style={{
+                    fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)",
+                    color: "var(--text-secondary)",
+                    lineHeight: 1.8,
+                  }}
+                >
+                  I focus on translating raw data and vulnerabilities into secure,
+                  high-performance systems, blending{" "}
+                  <strong style={{ color: "var(--accent)", fontWeight: 600 }}>
+                    offensive security
+                  </strong>{" "}
+                  with full-stack development to build systems that don&apos;t just
+                  work — they endure.
                 </p>
+              </FadeSection>
+            </div>
+
+            {/* Stats row */}
+            <FadeSection delay={0.3}>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "clamp(24px, 4vw, 56px)",
+                  flexWrap: "wrap",
+                  marginTop: 64,
+                  paddingTop: 48,
+                  borderTop: "1px solid rgba(42,65,52,0.1)",
+                }}
+              >
+                {[
+                  { val: "10+", label: "Projects Shipped" },
+                  { val: "3+", label: "Years of Practice" },
+                  { val: "UPES", label: "CSE · CSF Spec." },
+                  { val: "2026", label: "Expected Grad." },
+                ].map((s) => (
+                  <div key={s.label}>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-outfit)",
+                        fontWeight: 800,
+                        fontSize: "2rem",
+                        color: "var(--accent)",
+                        letterSpacing: "-0.04em",
+                      }}
+                    >
+                      {s.val}
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-inter)",
+                        fontSize: "0.78rem",
+                        color: "var(--text-muted)",
+                        fontWeight: 500,
+                        letterSpacing: "0.05em",
+                        marginTop: 4,
+                      }}
+                    >
+                      {s.label}
+                    </div>
+                  </div>
+                ))}
               </div>
+            </FadeSection>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════
+            C. STRENGTHS SECTION
+        ════════════════════════════════════════ */}
+        <section
+          id="strengths"
+          style={{ padding: "100px 24px", background: "rgba(42,65,52,0.025)" }}
+        >
+          <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+            <FadeSection>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "baseline",
+                  justifyContent: "space-between",
+                  gap: 24,
+                  marginBottom: 56,
+                  flexWrap: "wrap",
+                }}
+              >
+                <h2
+                  style={{
+                    fontFamily: "var(--font-outfit)",
+                    fontWeight: 900,
+                    fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
+                    letterSpacing: "-0.05em",
+                    color: "var(--text-primary)",
+                  }}
+                >
+                  Strength
+                </h2>
+                <span className="section-label">Capabilities</span>
+              </div>
+            </FadeSection>
+
+            {/* 3 cards */}
+            <div
+              style={{
+                display: "flex",
+                gap: 24,
+                flexWrap: "wrap",
+              }}
+            >
+              <StrengthCard
+                index={0}
+                title="Offensive Security & OSINT"
+                body="Logical evaluation of vulnerabilities — from web application exploits and binary analysis to open-source intelligence gathering for forensic investigations."
+                blobVariant="A"
+              />
+              <StrengthCard
+                index={1}
+                title="Full-Stack Architecture"
+                body="Designing and building scalable, production-ready applications with Next.js, FastAPI, and PostgreSQL. From API design to frontend polish."
+                blobVariant="B"
+              />
+              <StrengthCard
+                index={2}
+                title="DevOps & Telemetry"
+                body="Docker containerisation, CI/CD pipelines, and low-latency binary protocols for high-frequency data streams. Infrastructure that scales quietly."
+                blobVariant="C"
+              />
             </div>
           </div>
+        </section>
 
-          {/* Modern Timeline */}
-          <div className="relative max-w-4xl mx-auto">
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-cyan-400 via-blue-400 to-purple-400 rounded-full"></div>
-            
-            <div className="space-y-20">
-              {/* Student Journey */}
-              <div className="flex flex-col lg:flex-row items-center gap-8">
-                <div className="lg:w-1/2 lg:pr-12">
-                  <div className="glass rounded-3xl p-8 hover-lift border border-cyan-500/20">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-white font-bold text-lg">1</div>
-                      <h3 className="font-space-grotesk text-2xl font-bold text-cyan-400">Student Journey</h3>
-                    </div>
-                    <p className="font-geist-mono text-slate-300 leading-relaxed">
-                      Currently in my <span className="text-cyan-400 font-bold">third year of B.Tech CSE with Cyber Security &amp; Forensics</span> 
-                      at UPES Dehradun. Every day brings new challenges, late-night coding sessions, and those amazing &quot;aha!&quot; moments.
-                    </p>
-                  </div>
-                </div>
-                <div className="lg:w-1/2 lg:pl-12">
-                  <div className="text-center lg:text-left">
-                    <div className="inline-flex items-center gap-3 glass px-6 py-3 rounded-full border border-cyan-500/20">
-                      <div className="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></div>
-                      <span className="font-geist-mono text-cyan-400 font-bold">5th Semester & Counting</span>
-                    </div>
-                  </div>
+        {/* ════════════════════════════════════════
+            D. PROJECTS SECTION (alternating rows)
+        ════════════════════════════════════════ */}
+        <section id="work" style={{ padding: "120px 24px" }}>
+          <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+            <FadeSection>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "baseline",
+                  justifyContent: "space-between",
+                  gap: 24,
+                  marginBottom: 72,
+                  flexWrap: "wrap",
+                }}
+              >
+                <h2
+                  style={{
+                    fontFamily: "var(--font-outfit)",
+                    fontWeight: 900,
+                    fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
+                    letterSpacing: "-0.05em",
+                    color: "var(--text-primary)",
+                  }}
+                >
+                  Selected Work
+                </h2>
+                <span className="section-label">Projects</span>
+              </div>
+            </FadeSection>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: 96 }}>
+              <ProjectRow
+                index={0}
+                title="PehraSafe"
+                tag="Safety · IoT · AI"
+                description="Intelligent SOS alerting with zero-latency telemetry. Utilizing on-device AI and proprietary binary protocols to deliver emergency alerts with sub-100ms response times when network conditions degrade."
+                flipped={false}
+              />
+              <ProjectRow
+                index={1}
+                title="CIOT Toolkit"
+                tag="OSINT · Forensics"
+                description="Cyber Investigation OSINT Toolkit — automating intelligence gathering for forensic auditing. Ensuring evidence integrity through layered API integrations, structured reporting, and non-destructive enumeration."
+                flipped={true}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════
+            E. CONTACT / FOOTER (dark inversion)
+        ════════════════════════════════════════ */}
+        <footer
+          id="contact"
+          style={{
+            background: "var(--accent)",
+            borderRadius: "2.5rem 2.5rem 0 0",
+            color: "#E2EBE4",
+            padding: "clamp(56px, 8vw, 96px) clamp(24px, 5vw, 64px) 48px",
+            marginTop: 32,
+          }}
+        >
+          <FadeSection>
+            <div
+              style={{
+                maxWidth: 1200,
+                margin: "0 auto",
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "clamp(40px, 5vw, 80px)",
+                alignItems: "start",
+              }}
+              className="footer-grid"
+            >
+              {/* Left: certifications & roles */}
+              <div>
+                <p
+                  style={{
+                    fontFamily: "var(--font-inter)",
+                    fontSize: "0.72rem",
+                    fontWeight: 600,
+                    letterSpacing: "0.2em",
+                    textTransform: "uppercase",
+                    color: "rgba(226,235,228,0.5)",
+                    marginBottom: 32,
+                  }}
+                >
+                  Certifications &amp; Roles
+                </p>
+                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 20 }}>
+                  {[
+                    { label: "Google Foundations of Cybersecurity", sub: "Google Career Certificates" },
+                    { label: "Operations Head, IEEE SPS UPES", sub: "Student Chapter · 2024–25" },
+                    { label: "Cyber Security Intern", sub: "STF, Uttarakhand Police" },
+                  ].map((item) => (
+                    <li key={item.label} style={{ display: "flex", alignItems: "flex-start", gap: 14 }}>
+                      <span
+                        style={{
+                          width: 6,
+                          height: 6,
+                          borderRadius: "50%",
+                          background: "rgba(226,235,228,0.4)",
+                          display: "inline-block",
+                          marginTop: 8,
+                          flexShrink: 0,
+                        }}
+                      />
+                      <div>
+                        <div
+                          style={{
+                            fontFamily: "var(--font-outfit)",
+                            fontWeight: 600,
+                            fontSize: "1rem",
+                            color: "#E2EBE4",
+                            lineHeight: 1.3,
+                          }}
+                        >
+                          {item.label}
+                        </div>
+                        <div
+                          style={{
+                            fontSize: "0.78rem",
+                            color: "rgba(226,235,228,0.5)",
+                            marginTop: 3,
+                            fontFamily: "var(--font-inter)",
+                          }}
+                        >
+                          {item.sub}
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+
+                <div
+                  style={{
+                    marginTop: 56,
+                    paddingTop: 40,
+                    borderTop: "1px solid rgba(226,235,228,0.12)",
+                  }}
+                >
+                  <p
+                    style={{
+                      fontFamily: "var(--font-outfit)",
+                      fontWeight: 800,
+                      fontSize: "clamp(2rem, 5vw, 3.2rem)",
+                      letterSpacing: "-0.05em",
+                      color: "#E2EBE4",
+                      lineHeight: 1.05,
+                    }}
+                  >
+                    Let&apos;s build
+                    <br />
+                    something secure.
+                  </p>
+                  <p
+                    style={{
+                      marginTop: 12,
+                      color: "rgba(226,235,228,0.55)",
+                      fontSize: "0.875rem",
+                      fontFamily: "var(--font-inter)",
+                    }}
+                  >
+                    hello@shaktawat.in
+                  </p>
                 </div>
               </div>
 
-              {/* Learning Style */}
-              <div className="flex flex-col lg:flex-row-reverse items-center gap-8">
-                <div className="lg:w-1/2 lg:pl-12">
-                  <div className="glass rounded-3xl p-8 hover-lift border border-green-500/20">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center text-white font-bold text-lg">2</div>
-                      <h3 className="font-space-grotesk text-2xl font-bold text-green-400">Learning by Doing</h3>
-                    </div>
-                    <p className="font-geist-mono text-slate-300 leading-relaxed">
-                      <span className="text-green-400 font-bold">From Classroom Theory to Real-World Projects.</span> 
-                      I learn best with my hands on the keyboard, building interfaces that don&apos;t make people want to throw their computers out the window.
-                    </p>
-                  </div>
-                </div>
-                <div className="lg:w-1/2 lg:pr-12">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="glass rounded-2xl p-6 text-center hover-lift border border-green-500/20">
-                      <div className="text-3xl mb-3">⚡</div>
-                      <div className="font-geist-mono text-sm text-green-400 font-bold">MONTH-LONG</div>
-                      <div className="font-geist-mono text-sm text-slate-300">Deep Dives</div>
-                    </div>
-                    <div className="glass rounded-2xl p-6 text-center hover-lift border border-yellow-500/20">
-                      <div className="text-3xl mb-3">🎯</div>
-                      <div className="font-geist-mono text-sm text-yellow-400 font-bold">PRACTICAL</div>
-                      <div className="font-geist-mono text-sm text-slate-300">Focus</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Future Vision */}
-              <div className="flex flex-col lg:flex-row items-center gap-8">
-                <div className="lg:w-1/2 lg:pr-12">
-                  <div className="glass rounded-3xl p-8 hover-lift border border-purple-500/20">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center text-white font-bold text-lg">3</div>
-                      <h3 className="font-space-grotesk text-2xl font-bold text-purple-400">What&apos;s Next?</h3>
-                    </div>
-                    <p className="font-geist-mono text-slate-300 leading-relaxed">
-                      Every <span className="text-cyan-400 font-bold">API integration</span>, every <span className="text-green-400 font-bold">GUI component</span>, 
-                      every <span className="text-yellow-400 font-bold">cybersecurity tool</span> I build is a step toward becoming the developer I want to be.
-                    </p>
-                  </div>
-                </div>
-                <div className="lg:w-1/2 lg:pl-12">
-                  <div className="text-center">
-                    <div className="glass rounded-3xl p-8 text-center hover-lift border border-purple-500/20">
-                      <div className="text-5xl mb-4">🚀</div>
-                      <div className="font-space-grotesk text-xl font-bold text-white mb-2">Ready to Collaborate?</div>
-                      <div className="font-geist-mono text-slate-400">Let&apos;s learn and build together</div>
-                    </div>
-                  </div>
+              {/* Right: pill-shaped link buttons */}
+              <div>
+                <p
+                  style={{
+                    fontFamily: "var(--font-inter)",
+                    fontSize: "0.72rem",
+                    fontWeight: 600,
+                    letterSpacing: "0.2em",
+                    textTransform: "uppercase",
+                    color: "rgba(226,235,228,0.5)",
+                    marginBottom: 32,
+                  }}
+                >
+                  Connect
+                </p>
+                <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                  {[
+                    {
+                      label: "GitHub",
+                      sub: "aryansinghshaktawat",
+                      href: "https://github.com/aryansinghshaktawat",
+                    },
+                    {
+                      label: "LinkedIn",
+                      sub: "aryan-singh-shaktawat",
+                      href: "https://linkedin.com/in/aryan-singh-shaktawat",
+                    },
+                    {
+                      label: "Request Resume",
+                      sub: "Via email",
+                      href: "mailto:hello@shaktawat.in?subject=Resume%20Request%20%E2%80%94%20Aryan%20Singh%20Shaktawat&body=Hi%20Aryan%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20love%20a%20copy%20of%20your%20resume.%0A%0AThank%20you!",
+                    },
+                  ].map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target={link.href.startsWith("http") ? "_blank" : undefined}
+                      rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className="pill-btn"
+                    >
+                      <div>
+                        <div style={{ fontFamily: "var(--font-outfit)", fontWeight: 700, fontSize: "1.05rem" }}>
+                          {link.label}
+                        </div>
+                        <div style={{ fontSize: "0.75rem", opacity: 0.45, fontFamily: "var(--font-inter)", fontWeight: 400, marginTop: 2 }}>
+                          {link.sub}
+                        </div>
+                      </div>
+                      <ArrowRight size={20} style={{ opacity: 0.7, flexShrink: 0 }} />
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Call to Action */}
-          <div className="text-center mt-24">
-            <div className="glass rounded-3xl p-12 max-w-4xl mx-auto hover-lift border border-cyan-500/20">
-              <h3 className="font-space-grotesk text-4xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
-                Let&apos;s Build Something Amazing
-              </h3>
-              <p className="font-geist-mono text-xl text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-                Want to learn alongside me or see what a determined student can create? 
-                <span className="text-cyan-400 font-bold"> Let&apos;s figure it out together.</span>
+            {/* Bottom bar */}
+            <div
+              style={{
+                maxWidth: 1200,
+                margin: "64px auto 0",
+                paddingTop: 28,
+                borderTop: "1px solid rgba(226,235,228,0.1)",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                flexWrap: "wrap",
+                gap: 12,
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "var(--font-outfit)",
+                  fontWeight: 800,
+                  fontSize: "1.3rem",
+                  letterSpacing: "-0.05em",
+                  color: "rgba(226,235,228,0.6)",
+                }}
+              >
+                ARYN
+              </span>
+              <p
+                style={{
+                  fontFamily: "var(--font-inter)",
+                  fontSize: "0.78rem",
+                  color: "rgba(226,235,228,0.35)",
+                  fontWeight: 400,
+                }}
+              >
+                © {new Date().getFullYear()} Aryan Singh Shaktawat · Built with Next.js · Framer Motion
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <div className="bg-gradient-to-r from-cyan-400 to-blue-500 text-white px-8 py-4 rounded-full font-space-grotesk font-bold hover:scale-105 transition-transform cursor-pointer">
-                  B.Tech Student
-                </div>
-                <div className="bg-gradient-to-r from-green-400 to-emerald-500 text-white px-8 py-4 rounded-full font-space-grotesk font-bold hover:scale-105 transition-transform cursor-pointer">
-                  Code Learner
-                </div>
-                <div className="bg-gradient-to-r from-purple-400 to-pink-500 text-white px-8 py-4 rounded-full font-space-grotesk font-bold hover:scale-105 transition-transform cursor-pointer">
-                  Future Problem Solver
-                </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </FadeSection>
+        </footer>
 
-      <div data-reveal className="animated-bg">
-        <ContactInvite />
       </div>
-    </main>
+
+      {/* Responsive styles */}
+      <style jsx global>{`
+        @media (max-width: 860px) {
+          #hero-card {
+            grid-template-columns: 1fr !important;
+          }
+          .about-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .footer-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .project-row {
+            gap: 32px !important;
+          }
+        }
+        @media (min-width: 768px) {
+          .project-row {
+            flex-direction: row !important;
+            gap: 64px;
+          }
+          .project-row .project-img-col {
+            width: 45% !important;
+            flex: 0 0 45% !important;
+          }
+          .project-row-flipped {
+            flex-direction: row-reverse !important;
+          }
+        }
+      `}</style>
     </>
   );
 }

@@ -1,3 +1,5 @@
+// src/app/theme-provider.tsx
+// Default theme forced to "light" for this portfolio.
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
@@ -17,7 +19,7 @@ type ThemeProviderState = {
 };
 
 const initialState: ThemeProviderState = {
-  theme: "system",
+  theme: "light",
   setTheme: () => null,
   toggleTheme: () => null,
 };
@@ -26,19 +28,25 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
 export function ThemeProvider({
   children,
-  defaultTheme = "dark",
+  defaultTheme = "light", // ← Changed from "dark" to "light"
   storageKey = "ui-theme",
   ...props
 }: ThemeProviderProps) {
   const [theme, setThemeState] = useState<Theme>(defaultTheme);
 
   useEffect(() => {
+    // Always force light class on html element for this portfolio
     const root = window.document.documentElement;
     root.classList.remove("light", "dark");
-    
+    root.classList.add("light");
+  }, []);
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    root.classList.remove("light", "dark");
+
     if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
         ? "dark"
         : "light";
       root.classList.add(systemTheme);
@@ -70,9 +78,7 @@ export function ThemeProvider({
 
 export const useTheme = () => {
   const context = useContext(ThemeProviderContext);
-
   if (context === undefined)
     throw new Error("useTheme must be used within a ThemeProvider");
-
   return context;
 };

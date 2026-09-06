@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "./theme-provider";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import RevealProvider from "@/components/ui/RevealProvider";
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import PageTransition from "@/components/ui/PageTransition";
@@ -108,16 +107,15 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="min-h-screen flex flex-col font-geist-mono">
+      <body className="min-h-screen flex flex-col">
         <ThemeProvider>
           <GrainOverlay />
           <Header />
           <RevealProvider>
-            <main className="pt-20 flex-1">
+            <main className="flex-1">
               <PageTransition>{children}</PageTransition>
             </main>
           </RevealProvider>
-          <Footer />
         </ThemeProvider>
       </body>
     </html>

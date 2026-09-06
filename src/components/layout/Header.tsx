@@ -6,10 +6,10 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 
 const NAV_LINKS = [
-  { href: "#about",      label: "About"      },
-  { href: "#work",       label: "Work"        },
-  { href: "#strengths",  label: "Strengths"  },
-  { href: "#contact",    label: "Contact"    },
+  { href: "#about",    label: "About"    },
+  { href: "#journey",  label: "Journey"  },
+  { href: "#work",     label: "Work"     },
+  { href: "#contact",  label: "Contact"  },
 ] as const;
 
 export default function Header() {
@@ -74,26 +74,12 @@ export default function Header() {
           aria-label="Aryan Singh Shaktawat — Home"
         >
           <Image
-            src="/darklogo.png"
-            alt="Aryan Singh Shaktawat logo"
-            width={40}
-            height={40}
+            src="/apple-touch-icon.png"
+            alt="Aryan Singh Shaktawat Logo"
+            width={36}
+            height={36}
+            className="w-9 h-9 object-contain brightness-0 opacity-90 transition-opacity hover:opacity-100"
             priority
-            style={{
-              objectFit: "contain",
-              filter: "brightness(0.35) sepia(0.4) hue-rotate(80deg)",
-              transition: "filter 250ms ease, transform 250ms ease",
-            }}
-            onMouseOver={(e) => {
-              (e.currentTarget as HTMLImageElement).style.filter =
-                "brightness(0.2) sepia(0.6) hue-rotate(80deg) saturate(1.4)";
-              (e.currentTarget as HTMLImageElement).style.transform = "scale(1.08)";
-            }}
-            onMouseOut={(e) => {
-              (e.currentTarget as HTMLImageElement).style.filter =
-                "brightness(0.35) sepia(0.4) hue-rotate(80deg)";
-              (e.currentTarget as HTMLImageElement).style.transform = "scale(1)";
-            }}
           />
         </a>
 

@@ -1,13 +1,14 @@
-This folder contains shared UI components and page sections for the site.
+# Components Architecture
 
-Structure:
-- `ui/` — small, reusable UI components (ThemeSwitcher, Avatar, PageTransition, etc.).
-- `layout/` — header/footer and layout pieces.
-- `sections/` — large page sections for About, Contact, Blog, Skills, etc.
+This directory contains clean, modular UI components and page sections for the portfolio.
 
-Guidelines:
-- Keep one canonical file per feature (avoid duplicate components).
-- Client components must include `"use client"` at top.
-- Avoid placeholder hrefs like `"#"`; prefer proper routes or `mailto:`/external links.
-- Remove unused components to keep codebase clean.
-clear
+## Structure:
+- `layout/` — Global site header (`Header.tsx`).
+- `sections/` — Interactive page sections (`ContactSection.tsx`).
+- `seo/` — Structured data schemas (`JsonLd.tsx`).
+- `ui/` — Reusable client UI components (`ResumeButton.tsx`, `GrainOverlay.tsx`, `PageTransition.tsx`, `RevealProvider.tsx`).
+
+## Guidelines:
+- Single canonical file per feature.
+- Soft Sage & Forest aesthetic tokens (`--accent`, `--card-bg`, `--text-primary`).
+- Server actions placed in `@/app/actions/`.

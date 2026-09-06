@@ -1,158 +1,432 @@
-// src/components/sections/ContactSection.tsx
-// "Let's Build Something Secure." CTA with beautiful icon social links.
-// No form — prominent link cards for LinkedIn, GitHub, Email, Resume.
 "use client";
 
-import ScrollReveal from "@/components/ui/ScrollReveal";
-
-const CONTACT_LINKS = [
-  {
-    id: "linkedin",
-    label: "LinkedIn",
-    sublabel: "Connect professionally",
-    href: "https://linkedin.com/in/aryan-singh-shaktawat",
-    target: "_blank",
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M6.94 7.5a1.94 1.94 0 1 1 0-3.88 1.94 1.94 0 0 1 0 3.88ZM3.75 20.25h6.39V9H3.75v11.25Zm8.61 0h6.39v-6.1c0-3.25-1.74-4.76-4.06-4.76-1.87 0-2.71 1.03-3.18 1.75v-1.5H12.36V20.25Z" />
-      </svg>
-    ),
-    color: "#0A66C2",
-  },
-  {
-    id: "github",
-    label: "GitHub",
-    sublabel: "See my code",
-    href: "https://github.com/aryansinghshaktawat",
-    target: "_blank",
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path fillRule="evenodd" d="M12 .5C5.73.5.98 5.24.98 11.5c0 4.85 3.14 8.96 7.5 10.41.55.1.75-.24.75-.54v-1.9c-3.05.67-3.7-1.31-3.7-1.31-.5-1.27-1.22-1.6-1.22-1.6-.99-.68.07-.66.07-.66 1.1.08 1.67 1.13 1.67 1.13.98 1.67 2.57 1.19 3.19.9.1-.71.38-1.19.7-1.47-2.44-.28-5-1.22-5-5.44 0-1.2.43-2.19 1.13-2.96-.11-.28-.49-1.4.11-2.9 0 0 .93-.3 3.06 1.13.88-.25 1.83-.37 2.77-.38.94.01 1.89.13 2.77.38 2.12-1.44 3.06-1.13 3.06-1.13.6 1.5.22 2.62.11 2.9.7.77 1.12 1.76 1.12 2.96 0 4.23-2.57 5.16-5.02 5.43.39.34.74 1.02.74 2.06v3.05c0 .3.19.65.76.54 4.34-1.46 7.49-5.56 7.49-10.41C23.02 5.24 18.27.5 12 .5Z" clipRule="evenodd" />
-      </svg>
-    ),
-    color: "#1F2937",
-  },
-  {
-    id: "email",
-    label: "Email",
-    sublabel: "hello@shaktawat.in",
-    href: "mailto:hello@shaktawat.in",
-    target: undefined,
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <rect x="2" y="4" width="20" height="16" rx="2" />
-        <polyline points="2,4 12,13 22,4" />
-      </svg>
-    ),
-    color: "#3B82F6",
-  },
-  {
-    id: "resume",
-    label: "Resume",
-    sublabel: "Request a copy",
-    href: "mailto:hello@shaktawat.in?subject=Resume%20Request%20%E2%80%94%20Aryan%20Singh%20Shaktawat&body=Hi%20Aryan%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20love%20to%20have%20a%20copy%20of%20your%20resume.%0A%0AThank%20you!",
-    target: undefined,
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-        <polyline points="14,2 14,8 20,8" />
-        <line x1="16" y1="13" x2="8" y2="13" />
-        <line x1="16" y1="17" x2="8" y2="17" />
-        <polyline points="10,9 9,9 8,9" />
-      </svg>
-    ),
-    color: "#8B5CF6",
-  },
-] as const;
+import { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { Mail, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { toast } from "sonner";
+import { sendContactEmail } from "@/app/actions/contact";
 
 export default function ContactSection() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-10% 0px" });
+
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setErrorMsg("");
+
+    const formData = new FormData(e.currentTarget);
+    const formElement = e.currentTarget;
+
+    try {
+      const res = await sendContactEmail(formData);
+
+      if (res.success) {
+        setSubmitted(true);
+        formElement.reset();
+        toast.success(res.message);
+      } else {
+        setErrorMsg(res.message);
+        toast.error(res.message);
+      }
+    } catch (err) {
+      console.error(err);
+      const fallbackError = "Something went wrong while sending your message. Please try again.";
+      setErrorMsg(fallbackError);
+      toast.error(fallbackError);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section
       id="contact"
-      className="section-base relative overflow-hidden"
-      style={{ background: "var(--bg-primary)" }}
-      aria-label="Contact"
+      ref={ref}
+      style={{
+        padding: "120px 24px 80px",
+        maxWidth: 1200,
+        margin: "0 auto",
+        position: "relative",
+      }}
     >
-      {/* Decorative background blob */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 pointer-events-none"
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         style={{
-          background: "radial-gradient(ellipse 80% 50% at 50% 100%, rgba(59,130,246,0.07) 0%, transparent 70%)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "center",
         }}
-      />
+      >
+        {/* Subheading */}
+        <span
+          className="section-label"
+          style={{
+            letterSpacing: "0.25em",
+            fontSize: "0.75rem",
+            marginBottom: 16,
+            display: "block",
+          }}
+        >
+          CONTACT
+        </span>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Section label */}
-        <ScrollReveal>
-          <p className="section-label">Get In Touch</p>
-          <h2 className="section-heading mb-4">
-            Let&apos;s Build Something{" "}
-            <span className="gradient-text-blue">Secure.</span>
-          </h2>
-          <div className="section-divider mx-auto" />
-          <p
-            className="text-lg leading-relaxed mb-12 max-w-2xl mx-auto"
-            style={{ color: "var(--text-secondary)" }}
-          >
-            Whether you&apos;re looking for a security-minded developer, need a pen-test
-            perspective, or just want to collaborate — I&apos;d love to hear from you.
-          </p>
-        </ScrollReveal>
+        {/* Main Heading */}
+        <h2
+          style={{
+            fontFamily: "var(--font-outfit)",
+            fontWeight: 900,
+            fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
+            letterSpacing: "-0.04em",
+            color: "var(--text-primary)",
+            lineHeight: 1.1,
+            marginBottom: 20,
+            maxWidth: 700,
+          }}
+        >
+          Let&apos;s build something <span style={{ color: "var(--accent)" }}>secure.</span>
+        </h2>
 
-        {/* Contact link cards */}
-        <ScrollReveal delay={80}>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
-            {CONTACT_LINKS.map((link) => (
-              <a
-                key={link.id}
-                id={`contact-${link.id}`}
-                href={link.href}
-                target={link.target}
-                rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
-                className="contact-link"
-                aria-label={`${link.label} — ${link.sublabel}`}
-                style={{ ["--hover-color" as string]: link.color }}
+        {/* Description */}
+        <p
+          style={{
+            fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)",
+            color: "var(--text-secondary)",
+            lineHeight: 1.8,
+            maxWidth: 680,
+            marginBottom: 48,
+          }}
+        >
+          Whether it&apos;s building scalable software, discussing engineering ideas,
+          collaborating on exciting projects, or simply saying hello — I&apos;d love to hear from you.
+        </p>
+
+        {/* Contact Form Card */}
+        <div
+          className="glass-card"
+          style={{
+            borderRadius: "2.5rem",
+            padding: "clamp(28px, 5vw, 48px)",
+            width: "100%",
+            maxWidth: 640,
+            boxShadow: "0 24px 50px -15px rgba(42,65,52,0.14)",
+            textAlign: "left",
+          }}
+        >
+          {submitted ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                textAlign: "center",
+                padding: "32px 16px",
+                gap: 16,
+              }}
+            >
+              <div
+                style={{
+                  width: 56,
+                  height: 56,
+                  borderRadius: "50%",
+                  background: "rgba(16,185,129,0.12)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#10B981",
+                }}
               >
-                <span style={{ color: link.color }}>{link.icon}</span>
-                <span
-                  className="font-semibold text-sm"
-                  style={{ color: "var(--text-primary)", fontFamily: "var(--font-space-grotesk)" }}
+                <CheckCircle2 size={32} />
+              </div>
+              <h3
+                style={{
+                  fontFamily: "var(--font-outfit)",
+                  fontWeight: 700,
+                  fontSize: "1.4rem",
+                  color: "var(--text-primary)",
+                }}
+              >
+                Message Received!
+              </h3>
+              <p style={{ fontSize: "0.95rem", color: "var(--text-secondary)", maxWidth: 440 }}>
+                Thank you for reaching out. I have received your message and will respond as soon as possible.
+              </p>
+              <button
+                type="button"
+                onClick={() => setSubmitted(false)}
+                style={{
+                  marginTop: 12,
+                  padding: "10px 24px",
+                  borderRadius: 9999,
+                  background: "rgba(42,65,52,0.08)",
+                  color: "var(--text-primary)",
+                  border: "none",
+                  fontFamily: "var(--font-inter)",
+                  fontSize: "0.85rem",
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  transition: "all 200ms ease",
+                }}
+              >
+                Send Another Message
+              </button>
+            </motion.div>
+          ) : (
+            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+              {errorMsg && (
+                <div
+                  style={{
+                    padding: "12px 16px",
+                    borderRadius: "1rem",
+                    background: "rgba(239,68,68,0.08)",
+                    border: "1px solid rgba(239,68,68,0.2)",
+                    color: "#DC2626",
+                    fontSize: "0.875rem",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 10,
+                  }}
                 >
-                  {link.label}
-                </span>
-                <span
-                  className="text-xs text-center"
-                  style={{ color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}
+                  <AlertCircle size={18} style={{ flexShrink: 0 }} />
+                  <span>{errorMsg}</span>
+                </div>
+              )}
+
+              {/* Name Field */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                <label
+                  htmlFor="contact-name"
+                  style={{
+                    fontFamily: "var(--font-inter)",
+                    fontSize: "0.82rem",
+                    fontWeight: 600,
+                    color: "var(--text-primary)",
+                    letterSpacing: "0.02em",
+                  }}
                 >
-                  {link.sublabel}
+                  Your Name <span style={{ color: "var(--accent)" }}>*</span>
+                </label>
+                <input
+                  id="contact-name"
+                  name="name"
+                  type="text"
+                  required
+                  placeholder="Aryan Singh"
+                  style={{
+                    width: "100%",
+                    padding: "14px 20px",
+                    borderRadius: "1.25rem",
+                    background: "rgba(255, 255, 255, 0.75)",
+                    border: "1px solid rgba(42, 65, 52, 0.12)",
+                    color: "var(--text-primary)",
+                    fontFamily: "var(--font-inter)",
+                    fontSize: "0.95rem",
+                    backdropFilter: "blur(8px)",
+                    transition: "all 200ms ease",
+                    boxShadow: "0 2px 8px -2px rgba(42, 65, 52, 0.04)",
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = "var(--accent)";
+                    e.target.style.outline = "2px solid var(--accent)";
+                    e.target.style.background = "#ffffff";
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = "rgba(42, 65, 52, 0.12)";
+                    e.target.style.outline = "none";
+                    e.target.style.background = "rgba(255, 255, 255, 0.75)";
+                  }}
+                />
+              </div>
+
+              {/* Email Field */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                <label
+                  htmlFor="contact-email"
+                  style={{
+                    fontFamily: "var(--font-inter)",
+                    fontSize: "0.82rem",
+                    fontWeight: 600,
+                    color: "var(--text-primary)",
+                    letterSpacing: "0.02em",
+                  }}
+                >
+                  Email Address <span style={{ color: "var(--accent)" }}>*</span>
+                </label>
+                <input
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="aryan@example.com"
+                  style={{
+                    width: "100%",
+                    padding: "14px 20px",
+                    borderRadius: "1.25rem",
+                    background: "rgba(255, 255, 255, 0.75)",
+                    border: "1px solid rgba(42, 65, 52, 0.12)",
+                    color: "var(--text-primary)",
+                    fontFamily: "var(--font-inter)",
+                    fontSize: "0.95rem",
+                    backdropFilter: "blur(8px)",
+                    transition: "all 200ms ease",
+                    boxShadow: "0 2px 8px -2px rgba(42, 65, 52, 0.04)",
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = "var(--accent)";
+                    e.target.style.outline = "2px solid var(--accent)";
+                    e.target.style.background = "#ffffff";
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = "rgba(42, 65, 52, 0.12)";
+                    e.target.style.outline = "none";
+                    e.target.style.background = "rgba(255, 255, 255, 0.75)";
+                  }}
+                />
+              </div>
+
+              {/* Message Field */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                <label
+                  htmlFor="contact-message"
+                  style={{
+                    fontFamily: "var(--font-inter)",
+                    fontSize: "0.82rem",
+                    fontWeight: 600,
+                    color: "var(--text-primary)",
+                    letterSpacing: "0.02em",
+                  }}
+                >
+                  Message <span style={{ color: "var(--accent)" }}>*</span>
+                </label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  required
+                  rows={4}
+                  placeholder="I'd love to hear about your project or how we can collaborate..."
+                  style={{
+                    width: "100%",
+                    padding: "14px 20px",
+                    borderRadius: "1.25rem",
+                    background: "rgba(255, 255, 255, 0.75)",
+                    border: "1px solid rgba(42, 65, 52, 0.12)",
+                    color: "var(--text-primary)",
+                    fontFamily: "var(--font-inter)",
+                    fontSize: "0.95rem",
+                    backdropFilter: "blur(8px)",
+                    transition: "all 200ms ease",
+                    boxShadow: "0 2px 8px -2px rgba(42, 65, 52, 0.04)",
+                    resize: "vertical",
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = "var(--accent)";
+                    e.target.style.outline = "2px solid var(--accent)";
+                    e.target.style.background = "#ffffff";
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = "rgba(42, 65, 52, 0.12)";
+                    e.target.style.outline = "none";
+                    e.target.style.background = "rgba(255, 255, 255, 0.75)";
+                  }}
+                />
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={loading}
+                style={{
+                  width: "100%",
+                  padding: "16px 32px",
+                  borderRadius: 9999,
+                  background: "var(--accent)",
+                  color: "#ffffff",
+                  fontFamily: "var(--font-inter)",
+                  fontWeight: 600,
+                  fontSize: "1rem",
+                  border: "none",
+                  cursor: loading ? "not-allowed" : "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 10,
+                  transition: "all 250ms cubic-bezier(0.4, 0, 0.2, 1)",
+                  boxShadow: "0 12px 28px -6px rgba(42, 65, 52, 0.25)",
+                  opacity: loading ? 0.8 : 1,
+                  marginTop: 8,
+                }}
+                onMouseOver={(e) => {
+                  if (!loading) {
+                    (e.currentTarget as HTMLElement).style.background = "var(--accent-hover)";
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
+                  }
+                }}
+                onMouseOut={(e) => {
+                  if (!loading) {
+                    (e.currentTarget as HTMLElement).style.background = "var(--accent)";
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                  }
+                }}
+              >
+                {loading ? (
+                  <>
+                    <Loader2 size={18} className="animate-spin" />
+                    <span>Sending Message...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Send Message</span>
+                    <Mail size={18} />
+                  </>
+                )}
+              </button>
+
+              {/* Status Indicator directly below button */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 8,
+                  marginTop: 4,
+                }}
+              >
+                <span
+                  style={{
+                    width: 8,
+                    height: 8,
+                    borderRadius: "50%",
+                    background: "#10B981",
+                    display: "inline-block",
+                    boxShadow: "0 0 0 3px rgba(16, 185, 129, 0.25)",
+                  }}
+                  className="animate-pulse"
+                />
+                <span
+                  style={{
+                    fontFamily: "var(--font-inter)",
+                    fontSize: "0.78rem",
+                    fontWeight: 500,
+                    color: "var(--text-muted)",
+                    letterSpacing: "0.02em",
+                  }}
+                >
+                  Open to Opportunities
                 </span>
-              </a>
-            ))}
-          </div>
-        </ScrollReveal>
-
-        {/* Big CTA button */}
-        <ScrollReveal delay={160}>
-          <a
-            href="mailto:hello@shaktawat.in?subject=Hey%20Aryan%20—%20Let%27s%20Connect!&body=Hi%20Aryan%2C%0A%0AI%20saw%20your%20portfolio%20and%20wanted%20to%20reach%20out.%0A%0A"
-            className="btn-primary text-base !px-8 !py-4 inline-flex"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-              <polyline points="22,6 12,13 2,6" />
-            </svg>
-            Say Hello →
-          </a>
-
-          <p
-            className="mt-6 text-sm"
-            style={{ color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}
-          >
-            I typically respond within 24 hours · Based in India
-          </p>
-        </ScrollReveal>
-      </div>
+              </div>
+            </form>
+          )}
+        </div>
+      </motion.div>
     </section>
   );
 }

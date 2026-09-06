@@ -2,6 +2,7 @@
 // Soft Sage theme — minimalist floating header with pill nav links.
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect } from "react";
 
 const NAV_LINKS = [
@@ -60,21 +61,40 @@ export default function Header() {
           justifyContent: "space-between",
         }}
       >
-        {/* Logo */}
+        {/* Logo — image mark */}
         <a
           href="#hero"
           onClick={(e) => handleNav(e, "#hero")}
           style={{
-            fontFamily: "var(--font-outfit)",
-            fontWeight: 900,
-            fontSize: "1.6rem",
-            letterSpacing: "-0.06em",
-            color: "var(--accent)",
+            display: "flex",
+            alignItems: "center",
             textDecoration: "none",
+            flexShrink: 0,
           }}
           aria-label="Aryan Singh Shaktawat — Home"
         >
-          ARYN
+          <Image
+            src="/darklogo.png"
+            alt="Aryan Singh Shaktawat logo"
+            width={40}
+            height={40}
+            priority
+            style={{
+              objectFit: "contain",
+              filter: "brightness(0.35) sepia(0.4) hue-rotate(80deg)",
+              transition: "filter 250ms ease, transform 250ms ease",
+            }}
+            onMouseOver={(e) => {
+              (e.currentTarget as HTMLImageElement).style.filter =
+                "brightness(0.2) sepia(0.6) hue-rotate(80deg) saturate(1.4)";
+              (e.currentTarget as HTMLImageElement).style.transform = "scale(1.08)";
+            }}
+            onMouseOut={(e) => {
+              (e.currentTarget as HTMLImageElement).style.filter =
+                "brightness(0.35) sepia(0.4) hue-rotate(80deg)";
+              (e.currentTarget as HTMLImageElement).style.transform = "scale(1)";
+            }}
+          />
         </a>
 
         {/* Desktop nav */}

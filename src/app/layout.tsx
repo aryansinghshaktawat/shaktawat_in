@@ -6,6 +6,7 @@ import RevealProvider from "@/components/ui/RevealProvider";
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import PageTransition from "@/components/ui/PageTransition";
 import { spaceGrotesk } from "@/lib/fonts";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: {
@@ -116,6 +117,16 @@ export default function RootLayout({
               <PageTransition>{children}</PageTransition>
             </main>
           </RevealProvider>
+          {/* Sonner toast portal */}
+          <Toaster
+            position="bottom-center"
+            toastOptions={{
+              style: {
+                fontFamily: "var(--font-inter)",
+                borderRadius: 9999,
+              },
+            }}
+          />
         </ThemeProvider>
       </body>
     </html>

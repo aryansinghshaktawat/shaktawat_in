@@ -11,8 +11,11 @@ import {
   useTransform,
   useInView,
 } from "framer-motion";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ShieldCheck, Cpu, Search, MapPin } from "lucide-react";
+import Image from "next/image";
 import JsonLd from "@/components/seo/JsonLd";
+import ResumeButton from "@/components/ui/ResumeButton";
+import ContactSection from "@/components/sections/ContactSection";
 
 
 function FadeSection({
@@ -571,27 +574,8 @@ export default function Home() {
                     >
                       View Work <ArrowRight size={15} />
                     </a>
-                    <a
-                      href="mailto:hello@shaktawat.in?subject=Resume%20Request%20—%20Aryan%20Singh%20Shaktawat"
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 8,
-                        padding: "13px 26px",
-                        borderRadius: 9999,
-                        background: "transparent",
-                        border: "1.5px solid rgba(42,65,52,0.25)",
-                        color: "var(--text-primary)",
-                        fontFamily: "var(--font-inter)",
-                        fontWeight: 600,
-                        fontSize: "0.9rem",
-                        textDecoration: "none",
-                        transition: "all 250ms ease",
-                        letterSpacing: "0.02em",
-                      }}
-                    >
-                      Resume <ArrowUpRight size={15} />
-                    </a>
+                    {/* Animated resume request button */}
+                    <ResumeButton />
                   </motion.div>
                 </div>
               </div>
@@ -682,92 +666,340 @@ export default function Home() {
               </h2>
             </FadeSection>
 
+            {/* Two-col intro text + blended profile photo */}
             <div
               style={{
                 display: "grid",
                 gridTemplateColumns: "1fr 1fr",
-                gap: "clamp(32px, 4vw, 64px)",
-                alignItems: "start",
+                gap: "clamp(32px, 5vw, 64px)",
+                alignItems: "center",
+                position: "relative",
               }}
               className="about-grid"
             >
-              <FadeSection delay={0.1}>
-                <p
-                  style={{
-                    fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)",
-                    color: "var(--text-secondary)",
-                    lineHeight: 1.8,
-                  }}
-                >
-                  Nice to meet you. I am{" "}
-                  <strong style={{ color: "var(--text-primary)", fontWeight: 700 }}>
-                    Aryan Singh Shaktawat
-                  </strong>
-                  , a final-year B.Tech CSE undergrad specializing in Cyber
-                  Security and Forensics at UPES, Dehradun.
-                </p>
-              </FadeSection>
+              {/* Left Column: Narrative, Focus Pillars & Philosophy */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+                <FadeSection delay={0.1}>
+                  <p
+                    style={{
+                      fontSize: "clamp(1rem, 1.6vw, 1.12rem)",
+                      color: "var(--text-secondary)",
+                      lineHeight: 1.8,
+                    }}
+                  >
+                    Nice to meet you. I am{" "}
+                    <strong style={{ color: "var(--text-primary)", fontWeight: 700 }}>
+                      Aryan Singh Shaktawat
+                    </strong>
+                    , a final-year B.Tech CSE undergrad specializing in{" "}
+                    <span style={{ color: "var(--accent)", fontWeight: 600 }}>
+                      Cyber Security and Forensics
+                    </span>{" "}
+                    at UPES, Dehradun.
+                  </p>
+                </FadeSection>
 
-              <FadeSection delay={0.2}>
-                <p
-                  style={{
-                    fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)",
-                    color: "var(--text-secondary)",
-                    lineHeight: 1.8,
-                  }}
-                >
-                  I focus on translating raw data and vulnerabilities into secure,
-                  high-performance systems, blending{" "}
-                  <strong style={{ color: "var(--accent)", fontWeight: 600 }}>
-                    offensive security
-                  </strong>{" "}
-                  with full-stack development to build systems that don&apos;t just
-                  work — they endure.
-                </p>
-              </FadeSection>
+                <FadeSection delay={0.15}>
+                  <p
+                    style={{
+                      fontSize: "clamp(0.95rem, 1.4vw, 1.05rem)",
+                      color: "var(--text-secondary)",
+                      lineHeight: 1.75,
+                    }}
+                  >
+                    I focus on translating raw data and vulnerabilities into secure,
+                    high-performance systems, blending{" "}
+                    <strong style={{ color: "var(--accent)", fontWeight: 600 }}>
+                      offensive security
+                    </strong>{" "}
+                    with full-stack development to build systems that don&apos;t just
+                    work — they endure.
+                  </p>
+                </FadeSection>
+
+                {/* Focus Pillars */}
+                <FadeSection delay={0.2}>
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+                      gap: 14,
+                      marginTop: 8,
+                    }}
+                  >
+                    {[
+                      {
+                        icon: <ShieldCheck size={18} color="var(--accent)" />,
+                        title: "Offensive Security",
+                        desc: "Pentesting & Threat Assessment",
+                      },
+                      {
+                        icon: <Cpu size={18} color="var(--accent)" />,
+                        title: "Full-Stack Dev",
+                        desc: "Next.js & Python Architecture",
+                      },
+                      {
+                        icon: <Search size={18} color="var(--accent)" />,
+                        title: "Digital Forensics",
+                        desc: "Incident & Memory Analysis",
+                      },
+                    ].map((pillar, i) => (
+                      <div
+                        key={i}
+                        className="glass-card"
+                        style={{
+                          borderRadius: "1.25rem",
+                          padding: "16px 18px",
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: 6,
+                          transition: "all 250ms ease",
+                        }}
+                      >
+                        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                          {pillar.icon}
+                          <span
+                            style={{
+                              fontFamily: "var(--font-outfit)",
+                              fontWeight: 700,
+                              fontSize: "0.9rem",
+                              color: "var(--text-primary)",
+                            }}
+                          >
+                            {pillar.title}
+                          </span>
+                        </div>
+                        <span style={{ fontSize: "0.78rem", color: "var(--text-muted)", lineHeight: 1.35 }}>
+                          {pillar.desc}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </FadeSection>
+
+                {/* Philosophy Callout */}
+                <FadeSection delay={0.25}>
+                  <div
+                    style={{
+                      borderRadius: "1.25rem",
+                      background: "rgba(42,65,52,0.04)",
+                      borderLeft: "3px solid var(--accent)",
+                      padding: "18px 22px",
+                      marginTop: 4,
+                    }}
+                  >
+                    <p
+                      style={{
+                        fontFamily: "var(--font-outfit)",
+                        fontSize: "0.92rem",
+                        fontWeight: 500,
+                        fontStyle: "italic",
+                        color: "var(--text-primary)",
+                        lineHeight: 1.6,
+                      }}
+                    >
+                      &ldquo;Security isn&apos;t an afterthought — it is the foundational logic upon which true scale is built.&rdquo;
+                    </p>
+                  </div>
+                </FadeSection>
+              </div>
+
+              {/* Right Column: Blended Portrait Photo with Glass Frame & Floating Badges */}
+              <div style={{ position: "relative" }}>
+                <FadeSection delay={0.15}>
+                  <div
+                    style={{
+                      position: "relative",
+                      width: "100%",
+                      maxWidth: 380,
+                      margin: "0 auto",
+                    }}
+                  >
+                    {/* Portrait card wrapper */}
+                    <div
+                      className="glass-card"
+                      style={{
+                        borderRadius: "2.5rem",
+                        padding: 14,
+                        position: "relative",
+                      }}
+                    >
+                      <div
+                        style={{
+                          borderRadius: "2rem",
+                          overflow: "hidden",
+                          background: "linear-gradient(180deg, rgba(232,239,233,0.5) 0%, rgba(226,235,228,0.2) 100%)",
+                        }}
+                      >
+                        <Image
+                          src="/profile.webp"
+                          alt="Aryan Singh Shaktawat"
+                          width={380}
+                          height={460}
+                          style={{
+                            width: "100%",
+                            height: "auto",
+                            display: "block",
+                            borderRadius: "2rem",
+                            mixBlendMode: "multiply",
+                            filter: "saturate(0.88) contrast(1.05)",
+                            WebkitMaskImage:
+                              "linear-gradient(to bottom, black 15%, black 65%, transparent 98%), " +
+                              "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+                            WebkitMaskComposite: "destination-in",
+                            maskImage:
+                              "linear-gradient(to bottom, black 15%, black 65%, transparent 98%), " +
+                              "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+                            maskComposite: "intersect",
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Floating Status Badge (Top-Right) */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.35, duration: 0.6 }}
+                      style={{
+                        position: "absolute",
+                        top: 20,
+                        right: -12,
+                        background: "rgba(255, 255, 255, 0.94)",
+                        backdropFilter: "blur(12px)",
+                        border: "1px solid rgba(42,65,52,0.12)",
+                        borderRadius: 9999,
+                        padding: "8px 16px",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 8,
+                        boxShadow: "0 10px 24px -4px rgba(42,65,52,0.14)",
+                        zIndex: 2,
+                      }}
+                    >
+                      <span
+                        style={{
+                          width: 8,
+                          height: 8,
+                          borderRadius: "50%",
+                          background: "#10B981",
+                          display: "inline-block",
+                          boxShadow: "0 0 0 3px rgba(16,185,129,0.25)",
+                        }}
+                      />
+                      <span
+                        style={{
+                          fontFamily: "var(--font-inter)",
+                          fontSize: "0.75rem",
+                          fontWeight: 600,
+                          color: "var(--text-primary)",
+                        }}
+                      >
+                        Open for Roles
+                      </span>
+                    </motion.div>
+
+                    {/* Floating Location Badge (Bottom-Left) */}
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.45, duration: 0.6 }}
+                      style={{
+                        position: "absolute",
+                        bottom: 20,
+                        left: -12,
+                        background: "rgba(255, 255, 255, 0.94)",
+                        backdropFilter: "blur(12px)",
+                        border: "1px solid rgba(42,65,52,0.12)",
+                        borderRadius: 9999,
+                        padding: "8px 16px",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 8,
+                        boxShadow: "0 10px 24px -4px rgba(42,65,52,0.14)",
+                        zIndex: 2,
+                      }}
+                    >
+                      <MapPin size={14} color="var(--accent)" />
+                      <span
+                        style={{
+                          fontFamily: "var(--font-inter)",
+                          fontSize: "0.75rem",
+                          fontWeight: 600,
+                          color: "var(--text-primary)",
+                        }}
+                      >
+                        UPES, Dehradun
+                      </span>
+                    </motion.div>
+                  </div>
+                </FadeSection>
+              </div>
             </div>
 
-            {/* Stats row */}
+            {/* Glassmorphic Stats Grid */}
             <FadeSection delay={0.3}>
               <div
                 style={{
-                  display: "flex",
-                  gap: "clamp(24px, 4vw, 56px)",
-                  flexWrap: "wrap",
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+                  gap: 20,
                   marginTop: 64,
-                  paddingTop: 48,
+                  paddingTop: 40,
                   borderTop: "1px solid rgba(42,65,52,0.1)",
                 }}
               >
                 {[
-                  { val: "10+", label: "Projects Shipped" },
-                  { val: "3+", label: "Years of Practice" },
-                  { val: "UPES", label: "CSE · CSF Spec." },
-                  { val: "2026", label: "Expected Grad." },
-                ].map((s) => (
-                  <div key={s.label}>
+                  { val: "10+", label: "Projects Shipped", desc: "Full-Stack & Cyber Tools" },
+                  { val: "3+", label: "Years Practice", desc: "Security & Web Dev" },
+                  { val: "UPES", label: "CSE Spec.", desc: "Cyber Security & Forensics" },
+                  { val: "2026", label: "Graduation", desc: "B.Tech Candidate" },
+                ].map((s, i) => (
+                  <div
+                    key={i}
+                    className="glass-card"
+                    style={{
+                      borderRadius: "1.5rem",
+                      padding: "24px 24px",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 4,
+                      transition: "transform 250ms ease, box-shadow 250ms ease",
+                    }}
+                  >
                     <div
                       style={{
                         fontFamily: "var(--font-outfit)",
-                        fontWeight: 800,
-                        fontSize: "2rem",
+                        fontWeight: 900,
+                        fontSize: "2.4rem",
                         color: "var(--accent)",
                         letterSpacing: "-0.04em",
+                        lineHeight: 1,
                       }}
                     >
                       {s.val}
                     </div>
                     <div
                       style={{
-                        fontFamily: "var(--font-inter)",
-                        fontSize: "0.78rem",
-                        color: "var(--text-muted)",
-                        fontWeight: 500,
-                        letterSpacing: "0.05em",
+                        fontFamily: "var(--font-outfit)",
+                        fontWeight: 700,
+                        fontSize: "0.95rem",
+                        color: "var(--text-primary)",
                         marginTop: 4,
                       }}
                     >
                       {s.label}
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-inter)",
+                        fontSize: "0.75rem",
+                        color: "var(--text-muted)",
+                      }}
+                    >
+                      {s.desc}
                     </div>
                   </div>
                 ))}
@@ -891,10 +1123,14 @@ export default function Home() {
         </section>
 
         {/* ════════════════════════════════════════
-            E. CONTACT / FOOTER (dark inversion)
+            E. CONTACT FORM SECTION
+        ════════════════════════════════════════ */}
+        <ContactSection />
+
+        {/* ════════════════════════════════════════
+            F. FOOTER (dark inversion)
         ════════════════════════════════════════ */}
         <footer
-          id="contact"
           style={{
             background: "var(--accent)",
             borderRadius: "2.5rem 2.5rem 0 0",
@@ -992,9 +1228,9 @@ export default function Home() {
                       lineHeight: 1.05,
                     }}
                   >
-                    Let&apos;s build
+                    Engineering secured.
                     <br />
-                    something secure.
+                    Built for scale.
                   </p>
                   <p
                     style={{
@@ -1075,20 +1311,38 @@ export default function Home() {
                 justifyContent: "space-between",
                 alignItems: "center",
                 flexWrap: "wrap",
-                gap: 12,
+                gap: 16,
               }}
             >
-              <span
+              <div
                 style={{
-                  fontFamily: "var(--font-outfit)",
-                  fontWeight: 800,
-                  fontSize: "1.3rem",
-                  letterSpacing: "-0.05em",
-                  color: "rgba(226,235,228,0.6)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 10,
                 }}
               >
-                ARYN
-              </span>
+                <Image
+                  src="/darklogo.png"
+                  alt="Aryan Singh Shaktawat Logo"
+                  width={26}
+                  height={26}
+                  style={{
+                    objectFit: "contain",
+                    filter: "brightness(0) invert(0.9) opacity(0.7)",
+                  }}
+                />
+                <span
+                  style={{
+                    fontFamily: "var(--font-outfit)",
+                    fontWeight: 700,
+                    fontSize: "0.95rem",
+                    letterSpacing: "-0.02em",
+                    color: "rgba(226,235,228,0.7)",
+                  }}
+                >
+                  Aryan Singh Shaktawat
+                </span>
+              </div>
               <p
                 style={{
                   fontFamily: "var(--font-inter)",
@@ -1118,7 +1372,10 @@ export default function Home() {
             grid-template-columns: 1fr !important;
           }
         }
-        @media (max-width: 768px) {
+        @media (max-width: 640px) {
+          .about-photo-wrap {
+            display: none;
+          }
           .project-row {
             gap: 32px !important;
           }

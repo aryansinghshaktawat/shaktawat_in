@@ -1,11 +1,7 @@
-import { Space_Grotesk } from 'next/font/google'
-
-// Space Grotesk for headings (h1, h2)
-export const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  display: 'swap',
+export const spaceGrotesk = {
   variable: '--font-space-grotesk',
-})
+  className: 'font-space-grotesk',
+}
 
 // For body text - using system monospace with Geist fallback
 // Note: To use actual Geist font files, download from https://vercel.com/font

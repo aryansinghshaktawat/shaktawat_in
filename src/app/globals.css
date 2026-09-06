@@ -208,6 +208,11 @@ p { color: var(--text-secondary); line-height: 1.7; }
 }
 
 /* ─── Responsive ─── */
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
 @media (max-width: 768px) {
   :root { --site-header-height: 64px; }
   .pill-btn { font-size: 0.95rem; padding: 16px 20px; }

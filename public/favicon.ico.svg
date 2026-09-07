@@ -1,0 +1,13 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="256" height="256" fill="#103B30"/>
+  <g transform="translate(128, 128) scale(3)">
+    <!-- Central triangle -->
+    <polygon points="24,8 38,38 10,38" stroke="#BCD5C2" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Inner triangle -->
+    <polygon points="24,16 34,32 14,32" stroke="#8FAE9D" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Left lightning bolt -->
+    <path d="M6,24 L12,18 L10,26 L4,32" stroke="#BCD5C2" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Right lightning bolt -->
+    <path d="M42,24 L36,18 L38,26 L44,32" stroke="#BCD5C2" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

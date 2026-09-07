@@ -90,9 +90,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/favicon.ico?v=2",
-    apple: "/apple-touch-icon.png?v=2",
-    shortcut: "/favicon.ico?v=2",
+    icon: "/favicon.ico.svg",
+    apple: "/favicon.ico.svg",
+    shortcut: "/favicon.ico.svg",
   },
 };
 

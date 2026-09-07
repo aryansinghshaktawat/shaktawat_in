@@ -31,7 +31,7 @@ export async function requestResume(
       html: `
         <div style="font-family: 'Inter', sans-serif; max-width: 480px; margin: 0 auto; background: #FDFCF8; border-radius: 16px; padding: 40px; border: 1px solid rgba(42,65,52,0.08);">
           <div style="margin-bottom: 32px;">
-            <span style="font-size: 2rem; font-weight: 900; letter-spacing: -0.04em; color: #2A4134; font-family: 'Outfit', sans-serif;">ARYN</span>
+            <span style="font-size: 2rem; font-weight: 900; letter-spacing: -0.04em; color: #2A4134; font-family: 'Outfit', sans-serif;">Aryan Singh Shaktawat</span>
           </div>
           <h2 style="font-size: 1.4rem; font-weight: 700; color: #1A2E22; margin-bottom: 8px; font-family: 'Outfit', sans-serif; letter-spacing: -0.03em;">
             New Resume Request
@@ -62,7 +62,7 @@ export async function requestResume(
       html: `
         <div style="font-family: 'Inter', sans-serif; max-width: 480px; margin: 0 auto; background: #FDFCF8; border-radius: 16px; padding: 40px; border: 1px solid rgba(42,65,52,0.08);">
           <div style="margin-bottom: 32px;">
-            <span style="font-size: 2rem; font-weight: 900; letter-spacing: -0.04em; color: #2A4134; font-family: 'Outfit', sans-serif;">ARYN</span>
+            <span style="font-size: 2rem; font-weight: 900; letter-spacing: -0.04em; color: #2A4134; font-family: 'Outfit', sans-serif;">Aryan Singh Shaktawat</span>
           </div>
           <h2 style="font-size: 1.4rem; font-weight: 700; color: #1A2E22; margin-bottom: 12px; font-family: 'Outfit', sans-serif; letter-spacing: -0.03em;">
             Got it — I'll be in touch.

@@ -87,17 +87,21 @@ export default function Hero() {
           <a
             href="#hero"
             onClick={(e) => scrollTo(e, "#hero")}
-            className="no-underline hover:opacity-80 transition-opacity"
+            className="flex items-center justify-center no-underline hover:opacity-70 transition-opacity shrink-0"
             style={{
-              fontFamily: "var(--font-outfit)",
-              fontWeight: 900,
-              fontSize: "clamp(24px, 1.95vw, 32px)",
-              letterSpacing: "-0.02em",
-              color: INK,
+              width: "clamp(36px, 2.8vw, 48px)",
+              height: "clamp(36px, 2.8vw, 48px)",
             }}
-            aria-label="Aryan Singh Shaktawat — Home"
+            aria-label="Home"
           >
-            ARYN
+            <Image
+              src="/logo.svg"
+              alt="Logo"
+              width={48}
+              height={48}
+              priority
+              style={{ width: "100%", height: "auto" }}
+            />
           </a>
 
           <div className="flex items-center" style={{ gap: "clamp(12px, 1.2vw, 20px)" }}>

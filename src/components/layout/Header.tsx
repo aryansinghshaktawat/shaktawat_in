@@ -4,6 +4,7 @@
 
 import { useState, useEffect } from "react";
 import { Sun, Moon } from "lucide-react";
+import Image from "next/image";
 import { useTheme } from "@/app/theme-provider";
 import { usePathname } from "next/navigation";
 
@@ -71,7 +72,7 @@ export default function Header() {
           justifyContent: "space-between",
         }}
       >
-        {/* Logo — ARYN Text Mark */}
+        {/* Logo */}
         <a
           href="#hero"
           onClick={(e) => handleNav(e, "#hero")}
@@ -80,12 +81,19 @@ export default function Header() {
             alignItems: "center",
             textDecoration: "none",
             flexShrink: 0,
+            width: 36,
+            height: 36,
           }}
-          aria-label="Aryan Singh Shaktawat — Home"
+          aria-label="Home"
         >
-          <span className="font-['Outfit',sans-serif] font-black text-2xl tracking-[-0.03em] text-[#1A2E22]">
-            ARYN
-          </span>
+          <Image
+            src="/logo.svg"
+            alt="Logo"
+            width={36}
+            height={36}
+            priority
+            style={{ width: "100%", height: "auto" }}
+          />
         </a>
 
         {/* Right side: Desktop nav + Theme toggle */}

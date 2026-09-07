@@ -87,13 +87,13 @@ export default function ResumeButton() {
     borderRadius: 9999,
     overflow: "hidden",
     fontFamily: "var(--font-inter)",
-    fontWeight: 600,
-    fontSize: "0.9rem",
-    letterSpacing: "0.02em",
+    fontWeight: 500,
+    fontSize: "0.875rem",   /* matches text-sm = 14px */
+    letterSpacing: "0.01em",
     cursor: "pointer",
-    border: "1.5px solid rgba(42,65,52,0.25)",
+    border: "1.5px solid #1E3326",
     background: "transparent",
-    color: "var(--text-primary)",
+    color: "#1E3326",
     outline: "none",
     position: "relative",
   };
@@ -255,13 +255,13 @@ export default function ResumeButton() {
   return (
     <motion.button
       onClick={handleExpand}
-      whileHover={{ scale: 1.03, borderColor: "rgba(42,65,52,0.5)" }}
+      whileHover={{ scale: 1.02, backgroundColor: "rgba(30,51,38,0.06)" }}
       whileTap={{ scale: 0.98 }}
       style={{
         ...pillBase,
-        padding: "13px 26px",
+        padding: "14px 28px",   /* py-3.5 px-7 — same as View Work */
         gap: 8,
-        transition: "border-color 200ms ease",
+        transition: "background 200ms ease, border-color 200ms ease",
       }}
       aria-label="Request resume — click to enter your email"
     >

@@ -85,19 +85,22 @@ export default function ResumeButton() {
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 9999,
+    borderRadius: 34,
     overflow: "hidden",
     fontFamily: "var(--font-inter)",
-    fontWeight: 500,
-    fontSize: "0.875rem",
-    letterSpacing: "0.01em",
+    fontWeight: 600,
+    fontSize: "clamp(15px, 1.14vw, 19px)",
+    letterSpacing: "-0.005em",
     cursor: "pointer",
-    border: "1.5px solid #1E3326",
-    background: "transparent",
-    color: "#1E3326",
+    border: "1px solid rgba(16,59,48,0.28)",
+    background: "rgba(255,255,255,0.55)",
+    backdropFilter: "blur(14px)",
+    WebkitBackdropFilter: "blur(14px)",
+    color: "#103B30",
     outline: "none",
     position: "relative",
-    minHeight: 48,
+    height: "clamp(54px, 4.1vw, 68px)",
+    minWidth: "clamp(152px, 11.4vw, 190px)",
     whiteSpace: "nowrap",
   };
 
@@ -258,12 +261,12 @@ export default function ResumeButton() {
   return (
     <motion.button
       onClick={handleExpand}
-      whileHover={{ scale: 1.02, backgroundColor: "rgba(30,51,38,0.06)" }}
+      whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,0.85)" }}
       whileTap={{ scale: 0.98 }}
       style={{
         ...pillBase,
-        padding: "12px 28px",
-        gap: 8,
+        padding: "0 26px",
+        gap: 10,
         transition: "background 200ms ease, border-color 200ms ease",
       }}
       aria-label="Request resume — click to enter your email"

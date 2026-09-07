@@ -1,13 +1,22 @@
-<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Central triangle -->
-  <polygon points="24,8 38,38 10,38" stroke="#103B30" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Central large triangle -->
+  <polygon points="32,10 52,52 12,52" stroke="#103B30" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Middle triangle -->
+  <polygon points="32,20 46,44 18,44" stroke="#8FAE9D" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 
   <!-- Inner triangle -->
-  <polygon points="24,16 34,32 14,32" stroke="#8FAE9D" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="32,28 40,40 24,40" stroke="#BCD5C2" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 
-  <!-- Left lightning bolt -->
-  <path d="M6,24 L12,18 L10,26 L4,32" stroke="#103B30" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Left lightning bolt (outer) -->
+  <path d="M4,28 L10,20 L8,32 L2,42" stroke="#103B30" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 
-  <!-- Right lightning bolt -->
-  <path d="M42,24 L36,18 L38,26 L44,32" stroke="#103B30" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Left lightning bolt (inner) -->
+  <path d="M6,28 L10,22 L8,30 L4,38" stroke="#8FAE9D" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+
+  <!-- Right lightning bolt (outer) -->
+  <path d="M60,28 L54,20 L56,32 L62,42" stroke="#103B30" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Right lightning bolt (inner) -->
+  <path d="M58,28 L54,22 L56,30 L60,38" stroke="#8FAE9D" stroke-width="0.8" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
 </svg>

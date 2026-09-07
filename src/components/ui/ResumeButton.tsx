@@ -84,11 +84,12 @@ export default function ResumeButton() {
   const pillBase: React.CSSProperties = {
     display: "inline-flex",
     alignItems: "center",
+    justifyContent: "center",
     borderRadius: 9999,
     overflow: "hidden",
     fontFamily: "var(--font-inter)",
     fontWeight: 500,
-    fontSize: "0.875rem",   /* matches text-sm = 14px */
+    fontSize: "0.875rem",
     letterSpacing: "0.01em",
     cursor: "pointer",
     border: "1.5px solid #1E3326",
@@ -96,6 +97,8 @@ export default function ResumeButton() {
     color: "#1E3326",
     outline: "none",
     position: "relative",
+    minHeight: 48,
+    whiteSpace: "nowrap",
   };
 
   /* ─ DONE state ─ */
@@ -259,13 +262,13 @@ export default function ResumeButton() {
       whileTap={{ scale: 0.98 }}
       style={{
         ...pillBase,
-        padding: "14px 28px",   /* py-3.5 px-7 — same as View Work */
+        padding: "12px 28px",
         gap: 8,
         transition: "background 200ms ease, border-color 200ms ease",
       }}
       aria-label="Request resume — click to enter your email"
     >
-      Resume <ArrowUpRight size={15} />
+      Resume <ArrowUpRight size={16} />
     </motion.button>
   );
 }

@@ -3,7 +3,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Sun } from "lucide-react";
+import { Sun, Moon } from "lucide-react";
+import { useTheme } from "@/app/theme-provider";
+import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
   { href: "#about",    label: "About"     },
@@ -16,9 +18,14 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("");
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const { theme, toggleTheme } = useTheme();
+
+  const isHome = pathname === "/";
+  const isVisible = !isHome || scrolled;
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 80);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -47,6 +54,9 @@ export default function Header() {
         backdropFilter: scrolled ? "blur(20px) saturate(1.6)" : "none",
         WebkitBackdropFilter: scrolled ? "blur(20px) saturate(1.6)" : "none",
         borderBottom: scrolled ? "1px solid rgba(42,65,52,0.06)" : "none",
+        opacity: isVisible ? 1 : 0,
+        pointerEvents: isVisible ? "auto" : "none",
+        transform: isVisible ? "translateY(0)" : "translateY(-12px)",
       }}
       role="banner"
     >
@@ -73,7 +83,7 @@ export default function Header() {
           }}
           aria-label="Aryan Singh Shaktawat — Home"
         >
-          <span className="font-extrabold text-2xl tracking-tighter text-[#1A2E22] font-mono">
+          <span className="font-['Outfit',sans-serif] font-black text-2xl tracking-[-0.03em] text-[#1A2E22]">
             ARYN
           </span>
         </a>
@@ -109,10 +119,11 @@ export default function Header() {
           {/* Theme Toggle Pill */}
           <button
             type="button"
+            onClick={toggleTheme}
             aria-label="Toggle theme"
             className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-md border border-black/5 shadow-sm flex items-center justify-center text-[#1A2E22] hover:bg-white transition-all hover:scale-105"
           >
-            <Sun size={18} strokeWidth={2} />
+            {theme === "dark" ? <Moon size={18} strokeWidth={2} /> : <Sun size={18} strokeWidth={2} />}
           </button>
         </div>
 

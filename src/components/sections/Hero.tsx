@@ -593,7 +593,7 @@ export default function Hero() {
               <GithubIcon />
             </a>
             <a
-              href="https://linkedin.com/in/aryan-singh-shaktawat"
+              href="https://linkedin.com/in/aryansinghshaktawat"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"

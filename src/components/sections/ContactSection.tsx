@@ -422,7 +422,7 @@ export default function ContactSection() {
                   {
                     label: "LinkedIn Network",
                     sub: "linkedin.com/in/aryan-singh-shaktawat",
-                    href: "https://linkedin.com/in/aryan-singh-shaktawat",
+                    href: "https://linkedin.com/in/aryansinghshaktawat",
                   },
                   {
                     label: "Google Foundations of Cybersecurity",

@@ -49,7 +49,7 @@ const personSchema = {
   url: "https://shaktawat.in",
   sameAs: [
     "https://github.com/aryansinghshaktawat",
-    "https://linkedin.com/in/aryan-singh-shaktawat",
+    "https://linkedin.com/in/aryansinghshaktawat",
   ],
   jobTitle: "Cyber Security & Full-Stack Engineer",
   worksFor: { "@type": "Organization", name: "UPES Dehradun" },

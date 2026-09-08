@@ -76,7 +76,7 @@ export async function requestResume(
               While you wait, feel free to explore the portfolio at 
               <a href="https://shaktawat.in" style="color: #2A4134; font-weight: 600;">shaktawat.in</a> 
               or connect on 
-              <a href="https://linkedin.com/in/aryan-singh-shaktawat" style="color: #2A4134; font-weight: 600;">LinkedIn</a>.
+              <a href="https://linkedin.com/in/aryansinghshaktawat" style="color: #2A4134; font-weight: 600;">LinkedIn</a>.
             </p>
           </div>
           <p style="margin: 0; font-size: 0.78rem; color: #9CA3AF; font-family: monospace;">
